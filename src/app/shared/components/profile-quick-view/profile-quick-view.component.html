@@ -1,0 +1,153 @@
+<!-- for Contact Quick view -->
+<div *ngIf="contact?.id" >
+  <div class="quick-top-nav">
+    <div class="">
+      <span>QUICK PROFILE</span>
+    </div>
+    <div class="middle">
+      <div class="last-update-body">
+        <p class="{{getLastUpdatedStatus(contact).class}}">
+          <i class="{{getLastUpdatedStatus(contact).icon_class}}"></i>
+          {{getLastUpdatedStatus(contact).text}}
+          <span class="status-text"> {{getLastUpdatedStatus(contact).time_span}} </span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="p-d-flex profile-info-sec">
+    <div class="quick-profile-info">
+      <div class="user-pic">
+        <img [src]="contact?.logo_url" alt="">
+      </div>
+      <div class="user-info">
+        <div class="p-d-flex p-ai-center">
+        <h2 class="name">{{contact.first_name}} {{contact.last_name}}</h2>
+        <div class="social-links">
+          <ul>
+            <li [ngClass]="{'active': contact?.facebook_url}" (click)="goToLink(contact?.facebook_url)">
+              <i class="pi pi-facebook"></i>
+            </li>
+            <li [ngClass]="{'active': contact?.twitter_url}" (click)="goToLink(contact?.twitter_url)">
+              <i class="fab fa-twitter-square"></i>
+            </li>
+            <li [ngClass]="{'active': contact?.linkedin_url}" (click)="goToLink(contact?.linkedin_url)">
+              <i class="fab fa-linkedin"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+        <p class="position">{{contact.headline}}</p>
+        <div class="p-d-flex p-ai-center activity-info" [ngClass]="helperService.getStatusClass(contact.overall_verification_status)">
+          <img [src]="helperService.getStatusImage(contact?.overall_verification_status)" alt="" />
+          <span> <b>{{contact?.overall_verification_status}}</b> </span>
+        </div>
+      </div>
+    </div>
+    <p-divider layout="vertical" class="py-40p"></p-divider>
+    <div class="grade-section">
+      <div class="persona-score">
+        <app-circular-progress [percentage]="95" [isResponsive]="true"></app-circular-progress>
+        <div class="persona-txt">PERSONA SCORE</div>
+      </div>
+      <div class="accuracy-grade">
+        <img src="assets/icons/gradeA.svg" alt="">
+        <div class="persona-txt">ACCURACY GRADE</div>
+      </div>
+    </div>
+  </div>
+  <contact-profile-info [contact]="contact" [profileStatus]="profileStatus"></contact-profile-info>
+</div>
+
+<!-- for Company Quick view -->
+<div *ngIf="company?.id">
+  <div class="quick-top-nav">
+    <div class="quick-top-nav__title">
+      <span>QUICK PROFILE</span>
+    </div>
+
+    <div class="quick-top-nav__button end">
+      <button pButton pRipple type="button" label="Open Account Profile Page"></button>
+    </div>
+  </div>
+
+  <div class="p-d-flex p-jc-end p-px-3 p-py-2">
+    <img class="p-pr-3" src="assets/icons/menu-bars.svg" alt="">
+    <img class="p-pr-3" src="assets/icons/cloud.svg" alt="">
+    <img src="assets/icons/flag.svg" alt="">
+  </div>
+
+  <div class="p-d-flex profile-info-sec">
+    <div class="quick-profile-info quick-company-info">
+      <div class="user-pic company-pic mt-10">
+        <img src="assets/images/microsoft.svg" alt="">
+      </div>
+      <div class="user-info">
+        <div class="p-d-flex p-ai-center">
+        <h2 class="name">{{company.name}}</h2>
+        <img class="p-pl-1" src="assets/icons/upper-arrow.svg" alt="">
+        <img class="p-pl-1"src="assets/icons/linkdin.svg" alt="">
+        <img class="p-pl-1" src="assets/icons/twitter-borderd.svg" alt="">
+        </div>
+        <p class="address">{{company.company_location}}</p>
+        <span class="type">{{company.industry}} <b>•</b>  {{company.employee_range}}</span>
+
+        <div class="p-d-flex p-ai-center p-jc-center activity-info success">
+          <img src="assets/icons/correct-circle.svg" alt="" />
+          <span>Verified</span>
+          <span> <b>{{company.lastUpdatedDate}} days ago</b> </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <company-profile-info [company]="company"></company-profile-info>
+</div>
+
+<!-- for recently Searched Contacts -->
+<!-- for Contact Quick view -->
+<div *ngIf="recentSearchedContact?.type" >
+  <div class="quick-top-nav">
+    <div class="">
+      <span>QUICK Recent Searched Contact</span>
+    </div>
+    <div class="middle">
+      <div class="last-update-body">
+      </div>
+    </div>
+
+  </div>
+  <div class="p-d-flex profile-info-sec">
+    <div class="quick-profile-info">
+      <div class="user-pic">
+        <img [src]="" alt="">
+      </div>
+      <div class="user-info">
+        <h2 class="name">{{recentSearchedContact?.type}}</h2>
+        <p class="position">{{recentSearchedContact?.data.count}}</p>
+      </div>
+    </div>
+</div>
+
+<!-- for recently Searched Account -->
+<!-- for Contact Quick view -->
+<div *ngIf="recentSearchedAccount?.type" >
+  <div class="quick-top-nav">
+    <div class="">
+      <span>QUICK Recent Searched Contact</span>
+    </div>
+    <div class="middle">
+      <div class="last-update-body">
+      </div>
+    </div>
+
+  </div>
+  <div class="p-d-flex profile-info-sec">
+    <div class="quick-profile-info">
+      <div class="user-pic">
+        <img [src]="" alt="">
+      </div>
+      <div class="user-info">
+        <h2 class="name">{{recentSearchedAccount?.type}}</h2>
+        <p class="position">{{recentSearchedAccount?.data.count}}</p>
+      </div>
+    </div>
+</div>

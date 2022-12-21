@@ -1,0 +1,121 @@
+<div class="search-verify-wrapper">
+  <div>
+    <p-tabView>
+      <p-tabPanel header="Recent Contacts" tooltip="Recent Contacts">
+        <!-- recent contact list new design -->
+        <div class="search-verify-panel">
+          <!-- ceo profile -->
+          <div *ngFor='let contact of recentContacts'>
+            <div class="p-grid p-ai-center search-verify-card p-mt-3 cursor-pointer">
+              <div class="col-2 search-verify-card__image">
+                <img [src]="contact.logo_url" alt="" />
+              </div>
+              <div class="col-8 profile-info p-pl-2">
+                <div class="profile-title p-d-flex">
+                  <h4 class="m-0" pTooltip="{{contact.name | titlecase}}">{{contact.name | titlecase}}</h4>
+                  <div class="profile-contacts">
+                    <img class="arrow-secondary" src="assets/icons/upper-arrow.svg" />
+                    <img class="image-hover" src="assets/icons/upper-arrow-primary.svg" />
+                    <a href="{{contact.linkedin_url}}"> <img src="assets/icons/linkdin.svg" alt=""
+                        pTooltip="{{contact.linkedin_url}}"> </a>
+                  </div>
+                </div>
+                <div class="p-d-flex p-flex-column">
+                  <span class="role" pTooltip="{{contact.headline}}"> {{contact.headline}}</span>
+                  <span class="role" pTooltip="{{contact.industry}}">{{contact.industry}}</span>
+                </div>
+
+                <div class="p-pt-1 p-d-flex social-icons">
+                  <div class="p-d-flex p-ai-center">
+                    <a>
+                      <img tooltipPosition="bottom" [src]="helperService.getLeafeIconImage(contact?.overall_verification_status)"
+                        pTooltip="{{contact.lastUpdatedDate}}" alt="" />
+                    </a>
+                    <a>
+                      <img [src]="helperService.getMessageImage(contact.valid_email)" pTooltip="" alt="" />
+                    </a>
+                    <a>
+                      <img [src]="helperService.getPhoneImage(contact.phone_verified)" pTooltip="{{contact.phone}}" alt="" />
+                    </a>
+                  </div>
+
+                  <div class="p-d-flex p-ai-center activity-info"
+                    [ngClass]="helperService.getStatusClass(contact?.overall_verification_status)">
+                    <img [src]="helperService.getStatusImage(contact?.overall_verification_status)" alt="" />
+                    <span pTooltip="{{contact.overall_verification_status}}">{{contact.overall_verification_status}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <img src="assets/icons/seen-eye.svg" pTooltip="Recently Viewed Contact Detail" (click)="
+                openContactSideBar(contact)
+                  " alt="" />
+              </div>
+              <div class="col-1 p-text-center">
+                <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg"
+                    alt="" /></span>
+                <p-menu #menu [popup]="true" [model]="items"></p-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- second tab -->
+      <p-tabPanel tooltip="Recent Accounts" header="Recent Accounts">
+        <!-- recent accpunt list -->
+        <div class="search-verify-panel">
+          <!-- ceo profile -->
+          <div *ngFor='let account of recentAccounts'>
+            <div class="
+                p-grid p-ai-center
+                search-verify-card
+                p-mt-3
+                cursor-pointer
+              ">
+              <div class="col-2 search-verify-card__image">
+                <img src="assets/images/microsoft.svg" alt="" />
+              </div>
+              <div class="col-8 profile-info p-pl-2">
+                <div class="profile-title p-d-flex">
+                  <h4 class="m-0" pTooltip="{{account.name}}">{{account.name}}</h4>
+                  <div class="profile-contacts">
+                    <img class="arrow-secondary" src="assets/icons/upper-arrow.svg" />
+                    <img class="image-hover" src="assets/icons/upper-arrow-primary.svg" />
+                    <!-- <img src="{{account.linkedin_url}}" /> -->
+                  </div>
+                </div>
+
+                <div class="p-pt-1 p-d-flex social-icons">
+                  <div class="p-d-flex p-ai-center">
+                    <span class="employes pr-2"
+                      pTooltip="{{account.industry}}. {{account.employee_range}} employees"> {{account.industry}}.
+                      {{account.employee_range}} employees</span>
+                  </div>
+
+                </div>
+                <div class="p-d-flex p-ai-center activity-info success status-width">
+                  <img src="assets/icons/correct-circle.svg" alt="" />
+                  <span>Verified</span>
+                  <span pTooltip="{{account.lastUpdatedDate}} days ago">{{account.lastUpdatedDate}} days
+                    ago</span>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <img src="assets/icons/seen-eye.svg" pTooltip="Recent Accounts"
+                  (click)="openAccountSideBar(account)" alt="" />
+              </div>
+              <div class="col-1 p-text-center">
+                <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg"
+                    alt="" /></span>
+                <p-menu #menu [popup]="true" [model]="items"></p-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

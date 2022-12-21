@@ -1,0 +1,363 @@
+<p-table class="cursor-pointer" *ngIf="!isGridHidden" id="my-table" [value]="rowsData" [columns]="selectedColumns" selectionMode="multiple"
+  sortMode="multiple" [lazy]="useServerSideEvents" [paginator]="pagination" [rows]="defaultRows" scrollDirection="both"
+  [totalRecords]="totalRecords" [rowsPerPageOptions]="[5, 10, 15, { showAll: 'All' }]"
+  [showCurrentPageReport]="showCurrentPageReport" currentPageReportTemplate="Showing 0 to 10 of {{totalRecords}} entries"
+  (onSort)="handleSortChange($event)" (onFilter)="handleFilterChange($event)"
+  (onLazyLoad)="handleServerSideEvents($event)" (onPage)="handleServerSidePagination($event)" #dt [dataKey]="dataKey"
+  [(selection)]="selectedRows" [scrollable]="scrollable" [scrollHeight]="scrollHeight" editMode="row" (onRowSelect)="onRowSelection($event)" (onRowUnselect)="onRowUnSelection($event)"
+  [editingRowKeys]="editingRowKeys" [autoLayout]="true" [rowHover]="rowHover" (onHeaderCheckboxToggle)="handleHeaderCheckboxToggle($event)" >
+  <ng-template pTemplate="caption" *ngIf="allowColumnToggle || rowActions.length > 0 || useInlineCRUD">
+    <div class="p-d-flex p-jc-between">
+      <div>
+    <span *ngIf="allowColumnToggle">
+      <app-search-siderbar-menu [gridColumns]="columns" [selectedColumns]="selectedColumns" [filteredColumnsHeaders]="filteredColumnsHeaders" (columnsSelection)="columnsSelection($event)" (onSearching)="onSearching($event)" *ngIf="isSideBar" (closedSideBar)='closeSideBar($event)'></app-search-siderbar-menu>
+    </span>
+
+    <div *ngIf="rowActions.length > 0 && rowActions.length > 0" class="p-d-flex p-jc-end">
+      <span *ngFor="let rowAction of rowActions">
+        <button pButton type="button" [label]="rowAction.title" [class]="rowAction.class"
+          (click)="rowAction.onClick(selectedRows)"></button>
+      </span>
+    </div>
+    <button *ngIf="useInlineCRUD" pButton type="button" icon="pi pi-plus" class="ui-button-info p-mr-2" [label]="'Add'"
+      pAddRow [id]="dataKey" pTooltip="Add New Row" tooltipPosition="bottom" pRipple></button>
+
+    <button *ngIf="allowExportToExcel" type="button" pButton icon="pi pi-file-excel" (click)="exportExcel()"
+      class="p-button-success p-mr-2" pTooltip="Export to Excel" tooltipPosition="bottom" pRipple></button>
+    <button *ngIf="allowExportToPdf" type="button" pButton icon="pi pi-file-pdf" (click)="exportPdf()"
+      class="p-button-warning p-mr-2" pTooltip="Export to Pdf" tooltipPosition="bottom" pRipple></button>
+    </div>
+
+    <div class="p-d-flex flex-row-reverse">
+    <div class="p-d-flex p-ai-center">
+      <img  *ngIf='!showSearchBar'(click)="searchBar()" class="pl-3" src="assets/icons/search.svg" alt="">
+      <img class="pl-3" src="assets/icons/filter.svg" alt="">
+      <img class="pl-3" (click)="openSideBar()" src="assets/icons/template.svg" alt="">
+      <img class="pl-3" src="assets/icons/menu.svg" alt="">
+    </div>
+  <div class="input-search" *ngIf='showSearchBar'>
+    <span class="p-input-icon-right">
+      <i class="pi pi-search"></i>
+      <input type="search" pInputText   placeholder="Search Contacts..."  class="p-inputtext p-component ng-untouched ng-pristine ng-valid"></span>
+    </div>
+  </div>
+
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-cols>
+    <tr *ngIf='showBulkRow' class="selected-header" [ngClass]="">
+
+      <th *ngIf="allowSelection" style="width: 75px;">
+      </th>
+      <th class="action-buttons">
+        <button>{{selectedItems}}  selected</button>
+        <button>
+          <img src="assets/icons/plus.svg" alt="">
+          save</button>
+        <button>find people</button>
+        <button>lists</button>
+        <button>export</button>
+        <button>edit</button>
+        <button>...</button>
+      </th>
+
+    </tr>
+    <tr  *ngIf='showBulkRow' class="company-select-title">
+      <td></td>
+      <td></td>
+      <td colspan="6" *ngIf="!showClearSelection && showBulkRow ">
+     <span> All {{ selectedItems }} records on this page are selected. <a (click)="selectAllRecords()">Select all {{rowsData.length}} records.</a></span>
+    </td>
+      <td colspan="6" *ngIf="showClearSelection">
+     <span> All {{selectedItems }}  are selected. <a (click)="clearSelection()">Clear Selection.</a></span>
+    </td>
+   </tr>
+    <tr>
+      <th *ngIf="allowSelection" style="width: 75px;">
+        <p-tableHeaderCheckbox *ngIf="selectionType === 'multiple'" ></p-tableHeaderCheckbox>
+      </th>
+         <th *ngFor="let column of cols" [pSortableColumn]="column.field" [ngStyle]="{ width: column.width }"
+        [pSortableColumnDisabled]="column.sorting === false">
+        {{ column.header }}
+        <p-sortIcon *ngIf="column.sorting !== false" [field]="column.field"></p-sortIcon>
+      </th>
+      <th class="more-action" *ngIf="(columnActions.length > 0  && !showBulkRow )|| useInlineCRUD ">More Actions</th>
+    </tr>
+    <tr *ngIf="!filtering">
+
+      <th *ngFor="let column of cols" [ngSwitch]="column?.filter?.type">
+        <span *ngIf="column.filtering !== false">
+          <p-columnFilter [type]="'text'" [field]="column.field" *ngSwitchCase="'input'">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <!-- <input
+                type="text"
+                [(ngModel)]="column.value"
+                (keyup.enter)="filter($event.target.value)"
+                pInputText
+              /> -->
+            </ng-template>
+          </p-columnFilter>
+
+          <p-columnFilter type="boolean" [field]="column.field" *ngSwitchCase="'checkbox'">
+          </p-columnFilter>
+
+          <p-columnFilter [field]="column.field" matchMode="in" [showMenu]="false" *ngSwitchCase="'multi-select'">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-multiSelect [ngModel]="value" [options]="column.filter.data || []" (onChange)="filter($event.value)"
+                placeholder="Any" optionLabel="label">
+              </p-multiSelect>
+            </ng-template>
+          </p-columnFilter>
+
+          <p-columnFilter [field]="column.field" matchMode="in" [showMenu]="false" *ngSwitchCase="'dropdown'">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-dropdown [showClear]="true" [placeholder]="'Select'" [ngModel]="value"
+                [options]="column.filter.data || []" (onChange)="filter($event.value)"></p-dropdown>
+            </ng-template>
+          </p-columnFilter>
+
+          <p-columnFilter [field]="column.field" matchMode="in" [showMenu]="false" *ngSwitchCase="'calendar'">
+            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+              <p-calendar [placeholder]="'Select-Date'" [ngModel]="value" (onSelect)="filter($event)" appendTo="body"
+                [showButtonBar]="true" (onClearClick)="filter(null)">
+              </p-calendar>
+            </ng-template>
+          </p-columnFilter>
+
+          <p-columnFilter [type]="
+              column.type && column.type !== 'link' ? column.type : 'text'
+            " [field]="column.field" display="menu" *ngSwitchDefault>
+          </p-columnFilter>
+        </span>
+      </th>
+      <th *ngIf="columnActions.length > 0 || useInlineCRUD"></th>
+    </tr>
+
+
+
+
+
+  </ng-template>
+
+
+  <ng-template pTemplate="body" let-row let-editing="editing" let-ri="rowIndex" >
+    <tr (click)="!editing && handleRowClick(row)" [pEditableRow]="row" #gridRow [id]="row[dataKey]">
+      <td *ngIf="allowSelection" [ngStyle]="{ width: selectionColumnWidth }">
+        <p-tableRadioButton [value]="row" *ngIf="selectionType === 'single'"></p-tableRadioButton>
+        <p-tableCheckbox [value]="row" *ngIf="selectionType === 'multiple'"></p-tableCheckbox>
+      </td>
+      <td *ngFor="let column of selectedColumns" [ngSwitch]="column.type" [ngStyle]="{ width: column.width }">
+        <span *ngSwitchCase="'link'">
+          <a [href]="row[column.field]" target="_blank">{{
+            row[column.hyperlink] || row[column.field]
+            }}</a>
+        </span>
+        <span *ngSwitchCase="'date'">
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-calendar [appendTo]="'body'" [(ngModel)]="row[column.field]"></p-calendar>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ row[column.field] | date: column.format }}
+            </ng-template>
+          </p-cellEditor>
+        </span>
+        <span *ngSwitchDefault>
+          <span [ngSwitch]="column.type">
+            <span *ngSwitchCase="'boolean'">
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                  <p-checkbox [(ngModel)]="row[column.field]" [binary]="true"></p-checkbox>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{ row[column.field] }}
+                </ng-template>
+              </p-cellEditor>
+            </span>
+            <span *ngSwitchCase="'dropdown'">
+              <p-cellEditor>
+                <!-- <ng-template pTemplate="input">
+                  <app-dropdown
+                    [options]="column.data"
+                    [(value)]="row[column.field]"
+                  ></app-dropdown>
+                </ng-template> -->
+                <ng-template pTemplate="output">
+                  {{ row[column.field] }}
+                </ng-template>
+              </p-cellEditor>
+            </span>
+            <span *ngSwitchDefault>
+              <p-cellEditor class="p-d-flex">
+                <ng-template pTemplate="input">
+                  <input pInputText type="text" [(ngModel)]="row[column.field]"
+                    *ngIf="column.field !== dataKey; else locked_field" />
+                  <ng-template #locked_field><span *ngIf="!row.isNew">
+                      {{ row[column.field] }}
+                    </span></ng-template>
+                </ng-template>
+                <!-- recent Activity Tabs -->
+                <ng-template *ngIf="currentGrid === 'recentAccounts'" pTemplate="output">
+                  <div>
+                    <img [src]="row[column.field].image" alt=""  width="35"/>
+                  </div>
+                  <div class="p-d-flex flex-column">
+                  <div class="grid-text">
+                  {{ row[column?.field].accountName ? row[column?.field].accountName : ((row[column?.field] === 'Verify') ? '' : row[column?.field])}}</div>
+                  <div class="p-d-flex">
+                    <img src=" {{row[column.field].facebookIcon}}">
+                    <img src=" {{row[column.field].twitterIcon}}">
+                    <img src=" {{row[column.field].linkedinIcon}}">
+                  </div>
+                   </div>
+                   <button *ngIf="row[column?.field] === 'Verify'" class="verify-btn" pButton  type="button"   > {{row[column?.field] === 'Verify' ? row[column?.field] : '' }} </button>
+                </ng-template>
+
+                <ng-template *ngIf="currentGrid === 'recentContacts'" pTemplate="output">
+                  <div>
+                    <img [src]="row[column.field].image" alt=""  width="35"/>
+                  </div>
+                  <div class="p-d-flex flex-column">
+                  <div class="grid-text">
+                  {{ row[column?.field].contactName ? row[column?.field].contactName : ((row[column?.field] === 'Verify' || column.field === 'ContactInformation' || 'Company' ) ? '' : row[column?.field])}}</div>
+                  <span class="grid-text">{{row[column?.field]?.designation}}</span>
+                  <div class="p-d-flex">
+                    <img src=" {{row[column.field]?.linkedIn}}">
+                  </div>
+                  <div class="p-d-flex grid-text" *ngIf="column.field === 'Company'">
+                    <img src=" {{row[column.field]?.companyLogo}}">
+                       {{row[column.field]?.companyName}}
+
+                  </div>
+                  <div class="p-d-flex grid-text" *ngIf="column.field === 'LastActivity'">
+                       {{row[column.field]}}
+                  </div>
+                  <div class="p-d-flex grid-text" *ngIf="column.field === 'VerificationStatus'">
+                       {{row[column.field]}}
+                  </div>
+                  <div class="p-d-flex" *ngIf="column.field === 'ContactProfile'">
+                    <img src="{{row[column.field]}}">
+                  </div>
+                  <div class="p-d-flex" *ngIf="column.field === 'ContactInformation'" >
+                    <img class="p-pr-2" src=" {{row[column.field]?.email}}">
+                    <img class="p-pr-2" src=" {{row[column.field]?.telephone}}">
+                    <img class="p-pr-2" src=" {{row[column.field]?.location}}">
+                    <img class="p-pr-2" src=" {{row[column.field]?.phone}}">
+                  </div>
+                   </div>
+                   <button *ngIf="row[column?.field] === 'Verify'" class="verify-btn" pButton  type="button"   > {{row[column?.field] === 'Verify' ? row[column?.field] : '' }} </button>
+                </ng-template>
+
+                <ng-template *ngIf="currentGrid === 'recentSearches'" pTemplate="output">
+                  <div>
+                    <img [src]="row[column.field].image" alt=""  width="35"/>
+                  </div>
+                  <div class="p-d-flex flex-column">
+                  <div class="grid-text">
+                  {{ row[column?.field].searchesId ? row[column?.field].searchesId : ((row[column?.field] === 'Verify' || column.field === 'NoOfContacts' || 'ContactCriteria' || 'AccountCriteria' || 'Action' ) ? '' : row[column?.field])}}</div>
+                  <span class="grid-text">{{row[column?.field]?.designation}}</span>
+                  <div class="p-d-flex">
+                    <img src=" {{row[column.field]?.linkedIn}}">
+                  </div>
+                  <div class="p-d-flex grid-text" *ngIf="column.field === 'SearchesId'">
+                    <img src=" {{row[column.field]?.companyLogo}}">
+                       {{row[column.field]?.twoMoreContact}}
+
+                  </div>
+                  <div class="p-d-flex grid-text" *ngIf="column.field === 'LastActivity'">
+                       {{row[column.field]}}
+                  </div>
+                  <div class="p-d-flex grid-text" *ngIf="column.field === 'NoOfContacts'">
+                       {{row[column.field]?.noOfContacts}}
+                  </div>
+                  <div class="p-d-flex grid-text" *ngIf="column.field === 'ContactCriteria'" >
+                    {{row[column.field]?.jobTitle}}
+                    {{row[column.field]?.seniorityLevel}}
+                    {{row[column.field]?.twoMoreContact}}
+
+                  </div>
+                  <div class="p-d-flex grid-text" *ngIf="column.field === 'AccountCriteria'" >
+                    {{row[column.field]?.employeeRange}}
+                    {{row[column.field]?.revenueRange}}
+                    {{row[column.field]?.twoMoreAccount}}
+
+                  </div>
+                   </div>
+                   <button *ngIf="row[column?.field] === 'Run Search'" class="verify-btn" pButton  type="button"   > {{row[column?.field] === 'Run Search' ? row[column?.field] : '' }} </button>
+                </ng-template>
+                <!-- End recent Activity Tabs -->
+
+                <!-- Saved Criteria Tabs -->
+
+                 <!-- saved Criteria grid data -->
+                <ng-template *ngIf="currentGrid === 'savedSearches'" pTemplate="output">
+                  <div>
+                    <img [src]="row[column.field].img" alt=""  width="15"/>
+                  </div>
+                  <div class="p-d-flex flex-column p-pl-2">
+                  <div class="grid-text">
+                  {{ row[column?.field].searchName ? row[column?.field].searchName : ((row[column?.field] === 'Run Search') ? '' : row[column?.field])}}</div>
+                  <span class="grid-text">{{row[column?.field]?.type}}</span>
+                  <div class="p-d-flex">
+                    <img src=" {{row[column.field].facebookIcon}}">
+                  </div>
+                   </div>
+                   <button *ngIf="row[column?.field] === 'Run Search'" class="verify-btn" pButton  type="button"   > {{row[column?.field] === 'Run Search' ? row[column?.field] : '' }} </button>
+                </ng-template>
+
+                  <!-- account Criteria grid data -->
+                <ng-template *ngIf="currentGrid === 'accountCriteria'" pTemplate="output">
+                  <div>
+                    <img [src]="row[column.field].img" alt=""  width="15"/>
+                  </div>
+                  <div class="p-d-flex flex-column p-pl-2">
+                  <div class="grid-text">
+                  {{ row[column?.field].accountCriteriaName ? row[column?.field].accountCriteriaName : ((row[column?.field] === 'Run Search') ? '' : row[column?.field])}}</div>
+                   </div>
+                   <button *ngIf="row[column?.field] === 'Run Search'" class="verify-btn" pButton  type="button"   > {{row[column?.field] === 'Run Search' ? row[column?.field] : '' }} </button>
+                </ng-template>
+
+                  <!-- saved Persona Criteria grid data -->
+                <ng-template *ngIf="currentGrid === 'savedPersonaCriteria'" pTemplate="output">
+                  <div>
+                    <img [src]="row[column.field].img" alt=""  width="15"/>
+                  </div>
+                  <div class="p-d-flex flex-column p-pl-2">
+                  <div class="grid-text">
+                  {{ row[column?.field].personaName ? row[column?.field].personaName : ((row[column?.field] === 'Run Search') ? '' : row[column?.field])}}</div>
+                   </div>
+                   <button *ngIf="row[column?.field] === 'Run Search'" class="verify-btn" pButton  type="button"   > {{row[column?.field] === 'Run Search' ? row[column?.field] : '' }} </button>
+                </ng-template>
+
+                <!-- End Saved Criteria Tabs -->
+
+              </p-cellEditor>
+            </span>
+          </span>
+        </span>
+      </td>
+      <td class="more-action" *ngIf="columnActions.length > 0">
+        <span class="action-btn" *ngFor="let action of columnActions">
+          <i [title]="action.tooltip" [class]="action.icon" (click)="handleActionClick($event, action, row)"></i>
+        </span>
+      </td>
+      <td *ngIf="useInlineCRUD">
+        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+          (click)="onRowEditInit(row)" class="p-button-rounded p-button-text"></button>
+        <button pButton type="button" icon="pi pi-trash" (click)="onRowDeleteInit(row)"
+          class="p-button-rounded p-button-text" *ngIf="row.isNew !== true"></button>
+        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+          (click)="onRowEditSave(row)" class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+          (click)="onRowEditCancel(row, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="5">No records found.</td>
+    </tr>
+  </ng-template>
+</p-table>

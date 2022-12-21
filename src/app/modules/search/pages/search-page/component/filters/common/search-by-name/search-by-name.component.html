@@ -1,0 +1,90 @@
+<div class="input-search">
+  <span class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input type="search" #searchBox pInputText [(ngModel)]="searchText" placeholder="Search {{type}}..."
+      (keyup)="onSearchKey(searchBox.value, $event.keyCode)" (search)="onClearSearch()">
+  </span>
+</div>
+
+<!--  This is for displaying Contact short cards. -->
+<div *ngIf="type && type === 'Contacts'">
+  <div class="contact-widget" *ngIf="results && results.length">
+    <div class="contact-list scroll">
+      <div *ngFor="let entity of results; let i = index">
+        <div class="contact-card">
+          <img [src]="entity?.contact?.logo_url || defaultImage.contactImage" class="" />
+          <div class="contact-body">
+            <p class="name"><strong>{{entity?.contact?.first_name}} {{entity?.contact?.last_name}}</strong></p>
+            <p class="headline">{{entity?.contact?.headline}}</p>
+            <p class="{{getLastUpdatedStatus(entity.contact).class}}">
+              <i class="{{getLastUpdatedStatus(entity.contact).icon_class}}"></i>
+              {{getLastUpdatedStatus(entity?.contact).text}}
+              <span class="status-text"> {{getLastUpdatedStatus(entity?.contact).time_span}} </span>
+            </p>
+          </div>
+          {{entity?.contact?.iconClass}}
+          {{entity?.contact?.class}}
+          <button pButton type="button" icon="{{entity?.iconClass}}"
+            (click)="entity.contact && entity.contact.is_from_pdl ? getSelectedProfileFromDS(entity.contact, i) : getSelectedProfile(entity.contact, i)"
+            class="p-button-rounded p-button-text" [ngClass]="[entity.class]"></button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-list">
+      <div class="contact-class close-btn">
+        <button pButton type="button" label="Close" class="p-button-secondary p-button-sm p-button-outlined"
+          (click)="onCloseSuggestions()"></button>
+      </div>
+    </div>
+  </div>
+  <div class="contact-widget no-result" *ngIf="isNoResultContacts">
+    <div class="no-txt" *ngIf="noContactResultFoundPdl">No results found
+      <p>across 30+ API Sources</p>
+    </div>
+    <div class="no-txt" *ngIf="!noContactResultFoundPdl">No results found</div>
+    <div class="search-more-btn" *ngIf="!noContactResultFoundPdl">
+      <p-button label="Search More Sources" (click)="searchMoreContacts()"></p-button>
+    </div>
+    <div class="close-more">
+      <button pButton type="button" label="Close" class="p-button-secondary p-button-sm p-button-outlined"
+        (click)="onCloseSuggestions()"></button>
+    </div>
+  </div>
+</div>
+
+<!--  This is for displaying Company short cards. -->
+<div *ngIf="type && type === 'Accounts'">
+  <div class="contact-widget" *ngIf="results && results.length">
+    <div class="contact-list scroll">
+      <div *ngFor="let company of results; let i = index">
+        <div class="contact-card">
+          <img [src]="company.logo_url || defaultImage.companyImage" class="" />
+          <div class="contact-body">
+            <p class="name"><strong>{{company.name}}</strong></p>
+            <p class="headline">{{company.industry}}</p>
+            <p class="{{getLastUpdatedStatus(company).class}}">
+              <i class="{{getLastUpdatedStatus(company).icon_class}}"></i>
+              {{getLastUpdatedStatus(company).text}}
+              <span class="status-text"> {{getLastUpdatedStatus(company).time_span}} </span>
+            </p>
+          </div>
+          <button pButton type="button" icon="{{company.iconClass}}" (click)="getSelectedProfile(company, i)"
+            class="p-button-rounded p-button-text" [ngClass]="[company.class]"></button>
+        </div>
+      </div>
+    </div>
+    <div class="contact-list">
+      <div class="contact-class close-btn">
+        <button pButton type="button" label="Close" class="p-button-secondary p-button-sm p-button-outlined"
+          (click)="onCloseSuggestions()"></button>
+      </div>
+    </div>
+  </div>
+  <div class="contact-widget no-result" *ngIf="isNoResultCompanies">
+    <div class="no-txt">No results found</div>
+    <div class="close-more">
+      <button pButton type="button" label="Close" class="p-button-secondary p-button-sm p-button-outlined"
+        (click)="onCloseSuggestions()"></button>
+    </div>
+  </div>
+</div>

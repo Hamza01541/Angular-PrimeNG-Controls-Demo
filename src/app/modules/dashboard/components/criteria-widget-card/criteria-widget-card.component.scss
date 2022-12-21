@@ -1,0 +1,162 @@
+@import 'src/variables.scss';
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+    margin-top: 8px;
+    align-items: center;
+    max-width: 100% !important;
+    margin: 0px 0px 30px !important;
+    min-height: 100px;
+    height: auto;
+    background: $bg-light;
+    border: 1px solid rgba(129, 129, 165, 0.4);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    &.criteria {
+        height: 107px !important;
+    }
+    &__content {
+        text-align: center;
+        span{
+            color: $text-dark-gray;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        span,
+        p {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+        }
+        p {
+            margin: 0;
+            color: $text-primary !important;
+            padding-top: 8px;
+        }
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+        padding: 0 15px;
+        height: 62px !important;
+        &__headings {
+            padding-right: 20px;
+            span {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 21px;
+                /* identical to box height, or 175% */
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                /* Sub TT Color */
+                color: $text-dark-gray;
+                opacity: 0.5;
+            }
+            p {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                /* identical to box height, or 131% */
+                /* Sub TT Color */
+                color: $text-dark-gray;
+                margin: 0;
+            }
+        }
+        &__icons {
+            display: flex;
+            img {
+                padding-left: 15px;
+                cursor: pointer;
+            }
+        }
+    }
+    .border {
+        margin-left: -24px;
+        margin-right: -24px;
+        border-bottom: 1px solid rgba(129, 129, 165, 0.2);
+    }
+    &__body {
+        min-height: 500px;
+        padding: 15px 45px;
+        background: $bg-secondary;
+        border: 1px dashed $border-secondary;
+        border-radius: 3px;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        .content {
+            text-align: center;
+            span {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+            p {
+                font-size: 14px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+            button {
+                margin: 50px 0 70px 0;
+                color: $text-dark-gray;
+                background: $bg-light;
+                border: 1px solid rgba(129, 129, 165, 0.4);
+                height: 40px;
+                max-width: 220px;
+                width: 100%;
+                /* Primary 2 */
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                /* identical to box height, or 131% */
+                text-align: center;
+                cursor: pointer;
+                /* White */
+            }
+            button.active {
+                background: $bg-primary;
+                border: 1px solid $bg-primary;
+                color: $text-light;
+                box-sizing: border-box;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+            }
+        }
+        .video-thumbnails {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $bg-extra-light;
+            border-radius: 4px;
+            min-height: 105px;
+            img {
+                cursor: pointer;
+            }
+        }
+        a {
+            text-decoration: none;
+            .thumbnail-title {
+                display: block;
+                padding-top: 12px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+        }
+    }
+}
+
+
+.criteria-description {
+    color: $button-seconday !important;
+}

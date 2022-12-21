@@ -1,0 +1,55 @@
+<!-- Commented this for Demo, but once API will get ready, uncomment these checks -->
+  <div class="border my-3"></div>
+  <p-dropdown class="dropdown" [options]="searchAndVerifyList" optionLabel="title" optionValue="title"
+    (onChange)='onSelection($event)'>
+  </p-dropdown>
+
+  <div [ngClass]="{'card__body__content-area': !recentContacts?.length, 'content-area-child': recentContacts?.length }">
+    <div *ngIf="!recentContacts?.length">
+      <div class="content">
+        <span>{{ cardContent?.application_use_case?.name }}</span>
+        <br>
+        <span>{{ selectedItem?.subTitle }}</span>
+        <br>
+        <span>{{ selectedItem?.description }}</span>
+        <p>Launch your first job</p>
+        <button *ngIf="cardContent?.application_use_case?.name !== 'Search & Verify'">
+          {{ cardContent?.application_use_case?.name }}
+        </button>
+        <button (click)="navigateToSearchPage(currentPageUrl)">
+          Start a {{cardContent?.application_use_case?.name}}
+        </button>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-6" (click)="toggleRightSideBar()">
+          <div class="video-thumbnails">
+            <img src="assets/icons/question-circle.svg" pTooltip="UseCase Info" alt="" />
+          </div>
+        </div>
+
+        <div class="p-col-6" (click)="openVideoModalPopup()">
+          <div class="video-thumbnails">
+            <img src="assets/icons/youtube.svg" pTooltip="Introduction Video" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div [ngSwitch]="currentActiveCard" *ngIf="recentContacts?.length">
+      <app-recent-contacts-and-accounts *ngSwitchCase="useCaseDropDownOptions.recentContactsAndAccounts"
+        [recentContacts]='recentContacts' [recentAccounts]='recentAccounts' [items]="items" (showAccountSideBar)="openAccountSideBar($event)"
+        (showContactSideBar)="openContactSideBar($event)">
+      </app-recent-contacts-and-accounts>
+
+      <app-recent-search-criteria *ngSwitchCase="useCaseDropDownOptions.recentSearchCriteria"
+        [recentSearchedContacts]="recentSearchedContacts" [recentSearchedAccounts]="recentSearchedAccount"
+        (showRecentlySearchedContactsSideBar)="openRecentlySearchedContactSideBar($event)"
+        (showRecentlySearchedAccountsSideBar)="openRecentlySearchedAccountSideBar($event)">
+      </app-recent-search-criteria>
+
+      <app-saved-search-criteria *ngSwitchCase="useCaseDropDownOptions.savedSearchCriteria"
+      [personaList]="personaList" [savedSearchAccount]="savedSearchAccounts" [allSavedSearches]='allSavedSearches'>
+      </app-saved-search-criteria>
+    </div>
+  </div>
+<span class="see-all-title" *ngIf="recentContacts?.length">View All</span>

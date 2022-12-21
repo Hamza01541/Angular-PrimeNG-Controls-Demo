@@ -1,0 +1,30 @@
+<div class="option-box">
+  <div class="chips" *ngIf="isShowChips">
+    <!-- This shows chips only for selected options -->
+    <div *ngFor="let selectedOption of options; let i = index">
+      <div class="chip-item" *ngIf="selectedOption.isSelected">
+        <div class="custom-txt">{{selectedOption.name}}</div>
+        <i class="pi pi-times close-icon" (click)="onDeselect(i, selectedOption)"></i>
+      </div>
+    </div>
+  </div>
+  <div class="input-search">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input type="search" #keywordSearch pInputText [(ngModel)]="keyword" placeholder="Search {{type}}"
+        (keyup)="onSearchEvent(keywordSearch.value)" (search)="onClearSearchEvent()">
+    </span>
+  </div>
+  <div class="option-section scroll" *ngIf="options.length">
+    <div class="option-item" [ngClass]="option.isSelected ? 'selected': ''"
+      *ngFor="let option of options; let i = index">
+      <span>{{option.name}}</span>
+      <div *ngIf="option.isSelected" class="action selected" (click)="onDeselect(i, option)">
+        <i class="pi pi-check"></i>
+      </div>
+      <div *ngIf="!option.isSelected" class="action deselected" (click)="onSelect(i, option)">
+        <i class="pi pi-plus"></i>
+      </div>
+    </div>
+  </div>
+</div>

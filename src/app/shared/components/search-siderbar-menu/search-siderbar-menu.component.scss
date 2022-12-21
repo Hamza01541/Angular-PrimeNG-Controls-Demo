@@ -1,0 +1,252 @@
+@import "src/variables.scss";
+
+// collapsible sidebar
+.sidebar {
+  position: fixed;
+  z-index: 1;
+  height: 100vh;
+  overflow-y: auto;
+  top: 0;
+  right: 0;
+  background: $bg-light;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+  overflow-x: hidden;
+  transition: 0.5s;
+  .header {
+    padding: 20px 25px;
+    background: $bg-light;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+    .title {
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 21px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: $text-dark-gray;
+
+    }
+    .close {
+      cursor: pointer;
+    }
+  }
+  .profile-container {
+    padding: 10px 25px;
+    height: calc(100vh - 180px);
+    overflow-y: auto;
+
+    .company-content {
+      .title {
+        display: flex;
+        align-items: center;
+        height: 39px;
+
+        h4 {
+          margin: 0;
+          font-style: italic;
+          font-weight: normal;
+          font-size: 14px;
+          color: $text-dark-gray;
+        }
+      }
+
+        .search-field {
+          border: 0.5px solid $border-dark;
+          box-shadow: inset 0px 0px 10px $shadow-light;
+          background: $bg-light;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 20px;
+          color: $text-dark-gray;
+          box-sizing: border-box;
+          border-radius: 4px;
+          padding: 10px;
+          input {
+            width: 100%;
+            border: 0;
+            outline: none;
+          }
+          input::placeholder {
+            color: $text-dark-gray;
+            opacity: 0.5;
+            font-size: 14px;
+            line-height: 20px;
+          }
+        }
+        label {
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 17px;
+          color: $text-black;
+        }
+        .checkbox-wrapper {
+          display: block;
+          position: relative;
+          margin-left: 12px;
+          height: 18px;
+        }
+        .checkbox {
+          position: relative;
+          opacity: 0;
+          cursor: pointer;
+          height: 20px;
+          width: 20px;
+          top: 0;
+          left: -9px;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 18px;
+          height: 18px;
+          background: $bg-extra-light;
+          box-sizing: border-box;
+          border-radius: 4px;
+          z-index: -1;
+        }
+        /* When the checkbox is checked, add a blue background */
+        .checkbox-wrapper input:checked ~ .checkmark {
+          background: $bg-active;
+        }
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the checkmark when checked */
+        input:checked ~ .checkmark:after {
+          display: block;
+        }
+        .checkmark:after {
+          left: 6px;
+          top: 1px;
+          width: 3px;
+          height: 9px;
+          border-radius: 1px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+
+        .count-num {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          background: $bg-extra-light;
+          border-radius: 50px;
+
+          span {
+            display: block;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 15px;
+            color: $text-dark-gray;
+          }
+        }
+      }
+
+
+    .default-button-wrapper{
+      position: fixed;
+      width: 100%;
+      margin-left: -25px;
+      margin-right: -25px;
+      bottom: 0;
+      padding: 30px;
+      background: $bg-light-dark;
+      border: 1px solid #EEEEEE;
+      box-sizing: border-box;
+
+      button{
+        height: 42px;
+        max-width: 180px;
+        width: 100%;
+        background: #FFFFFF;
+        border: 0.5px solid $bg-active;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: $bg-active;
+              }
+    }
+  }
+}
+
+.open-sidebar {
+  width: 600px;
+}
+
+.close-sidebar {
+  width: 0;
+  padding: 20px 0;
+}
+
+// collapsible sidebar end
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+      0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-preview .tab-drag {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 20px;
+  background: $bg-secondary !important;
+  border: 1px solid $border-extra-light;
+  border-radius: 4px;
+  border-bottom: 0;
+  color: $text-dark-gray;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.cdk-drag-preview .images-wrapper img:first-child {
+  margin-right: 20px !important;
+}
+
+// style on card drag
+.cdk-drag-preview .card-drag {
+  background: $bg-light;
+  border: 1px solid $border-active;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 6px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+.inner {
+  cursor: move;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

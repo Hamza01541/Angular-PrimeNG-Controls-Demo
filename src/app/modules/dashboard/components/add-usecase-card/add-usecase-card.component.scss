@@ -1,0 +1,113 @@
+@import 'src/variables.scss';
+:host::ng-deep {
+    .dropdown {
+        .p-dropdown {
+            width: 100%;
+            background: $bg-light;
+            border: 1px solid rgba(25, 145, 235, 0.5);
+            box-sizing: border-box;
+            border-radius: 6px;
+            width: 100%;
+            padding: 10px 18px 10px 30px;
+        }
+        .p-dropdown .p-dropdown-label {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+            color: $text-dark-gray;
+        }
+    }
+}
+
+.add-use-case {
+    max-width: 100% !important;
+    position: relative;
+    min-height: 632px;
+    margin-bottom: 10px;
+    background: linear-gradient(0deg, rgba(150, 152, 214, 0.1), rgba(150, 152, 214, 0.1)), $bg-light;
+    border: 1px dashed $border-secondary;
+    box-sizing: border-box;
+    border-radius: 6px;
+    .close-icon {
+        position: absolute;
+        right: 25px;
+        top: 25px;
+        cursor: pointer;
+    }
+    .ellipse {
+        text-align: center;
+        >div {
+            position: relative;
+        }
+        .plus-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+    }
+    .ellipse-title {
+        font-weight: 800;
+        font-size: 14px;
+        line-height: 21px;
+        /* identical to box height, or 150% */
+        text-align: center;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        /* Icon Bg */
+        color: $text-light-dark;
+    }
+}
+
+//use case setup
+.use-case-wrapper {
+    background: $bg-light-dark;
+    border: 1px solid $border-dim-light;
+    border-radius: 6px;
+    .uses-case-setup {
+        padding: 20px 25px;
+        height: 538px;
+        overflow-y: auto;
+        h5 {
+            font-style: normal;
+            font-weight: 800;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: $text-dark-gray;
+            margin: 0;
+        }
+        .select-case {
+            padding-top: 50px;
+            p {
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 21px;
+                color: $text-dark-gray;
+            }
+        }
+    }
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 24px;
+        width: 100%;
+        button {
+            max-width: 180px;
+            width: 100%;
+            height: 42px;
+            background: $bg-extra-light;
+            border: 1px solid $border-dim-light;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+            text-align: center;
+            color: $text-light;
+        }
+    }
+}

@@ -1,0 +1,64 @@
+<!-- use cases container -->
+
+<div class="use-case-container">
+  <div class="use-case-setup">
+    <h5>SETUP YOUR USE CASE</h5>
+    <div class="select-case">
+      <p>Use Cases</p>
+      <p-dropdown class="dropdown"  [filter]="true" filterBy="name"
+        optionLabel="name" optionValue="code"></p-dropdown>
+    </div>
+  </div>
+  <div class="p-dialog-footer footer p-my-4">
+    <button pButton type="button" label="Cancel" (click)="decline()" class="p-mr-3"></button>
+    <button pButton label="Add Widget" (click)="accept()"></button>
+  </div>
+</div>
+
+<!-- drag able dashboard card container-->
+<div class="use-case-container">
+  <div class="card flex-column align-items-stretch">
+    <div class="card__header p-d-flex">
+      <div class="card__header__headings">
+        <span>use case</span>
+        <p>Search & Verify from DS database</p>
+      </div>
+      <div class="p-text-right card__header__icons">
+        <img src="assets/icons/sub-menu.svg" alt="">
+        <img src="assets/icons/sigma.svg" alt="">
+        <img src="assets/icons/percentage.svg" alt="">
+        <img src="assets/icons/menu.svg" alt="">
+      </div>
+    </div>
+
+    <div class="border my-3"></div>
+    <div class="card__body">
+      <div class="content">
+        <span>Search & Verify from DS database</span>
+        <p>Launch your first job</p>
+        <button>
+          Search & Verify
+        </button>
+      </div>
+
+      <div class="p-grid">
+        <div class="p-col-6">
+          <div class="video-thumbnails">
+            <img src="assets/icons/question-circle.svg" alt="">
+          </div>
+        </div>
+
+        <div class="p-col-6">
+          <div class="video-thumbnails">
+            <img src="assets/icons/youtube.svg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="p-dialog-footer footer p-my-4">
+    <button pButton type="button" label="Cancel" (click)="decline()" class="p-mr-3"></button>
+    <button pButton label="Add Widget" (click)="accept()"></button>
+  </div>
+</div>

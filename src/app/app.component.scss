@@ -1,0 +1,14 @@
+@import 'src/variables.scss';
+
+.show-nav {
+  width: calc(100% - 240px);
+  margin-left: auto;
+  transition: 0.5s;
+  box-shadow: 0px 4px 4px 0px $shadow-black;
+}
+
+.sidebar-toggle {
+  width: calc(100% - 80px);
+  margin-left: auto;
+  transition: 0.5s;
+}

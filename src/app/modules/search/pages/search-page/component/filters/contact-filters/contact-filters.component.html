@@ -1,0 +1,332 @@
+<div>
+  <div class="p-col filter-section">
+    <i class="far fa-filter"></i>
+    <span>FILTERS</span>
+    <i class="far fa-save"></i>
+  </div>
+  <filter-saved-persona-searches-list (onApplySavedPersonaCriteria)="onApplySavedPersonaCriteria($event)">
+  </filter-saved-persona-searches-list>
+</div>
+
+<!-- Accordion sections for other filters -->
+<div class="other-filter">
+  <p-accordion expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+    <!-- Companies Filters -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-building filter-icon"></i>
+        <div class="tab-head">
+          <div>Companies</div>
+          <div class="tab-chips sub-tab" *ngIf="isCompanyCriteriaSelected()">1</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="company-filter">
+          <p-dropdown [options]="companyFilters" [(ngModel)]="selectedCompanyTypeFilter" optionLabel="name"
+            dropdownIcon="fas fa-caret-down" (onChange)="onSelectedCompanyFilter(selectedCompanyTypeFilter)"
+            placeholder="Select Company Criteria Type">
+          </p-dropdown>
+          <!-- Showing common component for search and select options -->
+          <div class="option-list" *ngIf="selectedCompanyTypeFilter.id === 'filter_company_by_name'">
+            <select-option-list [options]="companyNameList" [type]="'company'"
+              (onSelectedOptions)="onSelectedCompaniesByName($event)" [isShowChips]="true">
+            </select-option-list>
+          </div>
+          <!-- Company Criteria filters -->
+          <p-accordion expandIcon="pi pi-plus" collapseIcon="pi pi-minus"
+            *ngIf="selectedCompanyTypeFilter.id === 'filter_company_by_criteria'">
+            <!-- Company Location -->
+            <p-accordionTab>
+              <ng-template pTemplate="header">
+                <div class="tab-head">
+                  <div>Company Location</div>
+                  <div class="tab-chips sub-tab" *ngIf="selectedCompanyLocations && selectedCompanyLocations.length">
+                    {{selectedCompanyLocations.length}}</div>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="content">
+                <div class="option-list">
+                  <select-option-list [options]="locations" [type]="'Locations'"
+                    (onSelectedOptions)="onSelectedCompanyLocations($event)" [isShowChips]="true">
+                  </select-option-list>
+                </div>
+              </ng-template>
+            </p-accordionTab>
+            <!-- Employee Range -->
+            <p-accordionTab>
+              <ng-template pTemplate="header">
+                <div class="tab-head">
+                  <div>Employee Range</div>
+                  <div class="tab-chips sub-tab" *ngIf="selectedEmployeeRanges && selectedEmployeeRanges.length">
+                    {{selectedEmployeeRanges.length}}</div>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="content">
+                <div class="option-list">
+                  <select-option-list [options]="employeeRanges" [type]="'Employee Range'"
+                    (onSelectedOptions)="onSelectedEmployeeRanges($event)" [isShowChips]="true">
+                  </select-option-list>
+                </div>
+              </ng-template>
+            </p-accordionTab>
+            <!-- Industry -->
+            <p-accordionTab>
+              <ng-template pTemplate="header">
+                <div class="tab-head">
+                  <div>Industry</div>
+                  <div class="tab-chips sub-tab" *ngIf="selectedCompanyIndustries && selectedCompanyIndustries.length">
+                    {{selectedCompanyIndustries.length}}</div>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="content">
+                <div class="option-list">
+                  <select-option-list [options]="industries" [type]="'Industries'"
+                    (onSelectedOptions)="onSelectedCompanyIndustries($event)" [isShowChips]="true">
+                  </select-option-list>
+                </div>
+              </ng-template>
+            </p-accordionTab>
+            <div class="limit-slider">
+              <div class="label">
+                <p>Account Limit</p>
+                <p>Max. <span class="custom-txt"><input  type="number" [(ngModel)]="numberOfAccounts"></span></p>
+              </div>
+              <p-slider [(ngModel)]="numberOfAccounts" [min]="10" [max]="10000" (onSlideEnd)="onMaxCompanies($event)"></p-slider>
+              <div class="label-bottom">
+                <span>
+                  10
+                </span>
+                <span>
+                  5000
+                </span>
+                <span>
+                  10000
+                </span>
+              </div>
+            </div>
+          </p-accordion>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- Seniority Level -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-medal filter-icon"></i>
+        <div class="tab-head">
+          <div>Seniority Level</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedSeniorities && selectedSeniorities.length">
+            {{selectedSeniorities.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list">
+          <select-option-list [options]="seniorities" [type]="'Seniorities'"
+            (onSelectedOptions)="onSelectedSeniorities($event)" [isShowChips]="true">
+          </select-option-list>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- Job Function -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-suitcase filter-icon"></i>
+        <div class="tab-head">
+          <div>Job Function</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedJobFunctions && selectedJobFunctions.length">
+            {{selectedJobFunctions.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list">
+          <select-option-list [options]="jobFunctions" [type]="'Job Functions'"
+            (onSelectedOptions)="onSelectedJobFunctions($event)" [isShowChips]="true">
+          </select-option-list>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- Skills -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-wrench filter-icon"></i>
+        <div class="tab-head">
+          <div>Skills</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedSkills && selectedSkills.length">
+            {{selectedSkills.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list" *ngIf="!hideSkills">
+          <select-option-list [options]="skills" [type]="'Skills'" (onSelectedOptions)="onSelectedSkills($event)"
+            [isShowChips]="true">
+          </select-option-list>
+        </div>
+        <div class="tenure-info" *ngIf="hideSkills">
+          <span>
+            You’ve already used
+            Profile Keywords (which contain skills)
+            in Persona Keywords section
+          </span>
+          <div class="close-btn">
+            <button pButton type="button" label="Clear Profile Keywords"
+              class="p-button-secondary p-button-sm p-button-outlined" (click)="clearProfileKeywords()"></button>
+          </div>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- More Filters -->
+    <div *ngIf="showMoreFilters">
+      <!-- Profile Keywords -->
+      <p-accordionTab>
+        <ng-template pTemplate="header"><i class="fas fa-fingerprint filter-icon"></i>
+          <div class="tab-head">
+            <div>Profile Keywords</div>
+            <div class="tab-chips sub-tab" *ngIf="selectedProfileKeyword && selectedProfileKeyword.length">
+              {{selectedProfileKeyword.length}}</div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="option-list" *ngIf="!hideProfileKeywords">
+            <select-option-list [options]="profileKeywords" [type]="'Profile Keywords'"
+              (onSelectedOptions)="onSelectedProfileKeywords($event)" [isShowChips]="true">
+            </select-option-list>
+          </div>
+          <div class="tenure-info" *ngIf="hideProfileKeywords">
+            <span>
+              You’ve already used
+              Skills (which contain skills)
+              in Persona Keywords section
+            </span>
+            <div class="close-btn">
+              <button pButton type="button" label="Clear Skills"
+                class="p-button-secondary p-button-sm p-button-outlined" (click)="clearSkills()"></button>
+            </div>
+          </div>
+        </ng-template>
+      </p-accordionTab>
+      <!-- Contact location -->
+      <p-accordionTab>
+        <ng-template pTemplate="header"><i class="fal fa-map-marker-alt filter-icon"></i>
+          <div class="tab-head">
+            <div>Contact Location</div>
+            <div class="tab-chips sub-tab" *ngIf="selectedContactLocations && selectedContactLocations.length">
+              {{selectedContactLocations.length}}</div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="option-list">
+            <select-option-list [options]="contactLocations" [type]="'Contact Locations'"
+              (onSelectedOptions)="onSelectedContactLocations($event)" [isShowChips]="true">
+            </select-option-list>
+          </div>
+        </ng-template>
+      </p-accordionTab>
+      <!-- Tenure -->
+      <p-accordionTab>
+        <ng-template pTemplate="header"><i class="fas fa-hourglass-half filter-icon"></i>
+          <div class="tab-head">
+            <div>Tenure</div>
+            <div class="tab-chips sub-tab" *ngIf="hideCompanyTenures && selectedPositionTenure">
+              {{selectedPositionTenure.length}}</div>
+            <div class="tab-chips sub-tab" *ngIf="hidePositionTenures && selectedCompanyTenure">
+              {{selectedCompanyTenure.length}}</div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <p-accordion expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+            <!-- Company Tenure -->
+            <p-accordionTab>
+              <ng-template pTemplate="header">
+                <div class="tab-head">
+                  <div>Company Tenure</div>
+                  <div class="tab-chips sub-tab" *ngIf="selectedCompanyTenure && selectedCompanyTenure.length">
+                    {{selectedCompanyTenure.length}}
+                    <!-- <i class="pi pi-times close-icon"></i> -->
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="content">
+                <div class="option-list" *ngIf="!hideCompanyTenures">
+                  <select-option-list [options]="companyTenure" [type]="'Company Tenure'"
+                    (onSelectedOptions)="onSelectedCompanyTenure($event)" [isShowChips]="true">
+                  </select-option-list>
+                </div>
+                <div class="tenure-info" *ngIf="hideCompanyTenures">
+                  <span>
+                    You’ve Selected Years in Current Position
+                    which cannot be used with
+                    Years at Current Company
+                  </span>
+                  <div class="close-btn">
+                    <button pButton type="button" label="Clear Position Tenure"
+                      class="p-button-secondary p-button-sm p-button-outlined" (click)="clearPositionTenure()"></button>
+                  </div>
+                </div>
+              </ng-template>
+            </p-accordionTab>
+            <!-- Position Tenure -->
+            <p-accordionTab>
+              <ng-template pTemplate="header">
+                <div class="tab-head">
+                  <div>Position Tenure</div>
+                  <div class="tab-chips sub-tab" *ngIf="selectedPositionTenure && selectedPositionTenure.length">
+                    {{selectedPositionTenure.length}}</div>
+                </div>
+              </ng-template>
+              <ng-template pTemplate="content">
+                <div class="option-list" *ngIf="!hidePositionTenures">
+                  <select-option-list [options]="positionTenure" [type]="'Position Tenure'"
+                    (onSelectedOptions)="onSelectedPositionTenure($event)" [isShowChips]="true">
+                  </select-option-list>
+                </div>
+                <div class="tenure-info" *ngIf="hidePositionTenures">
+                  <span>
+                    You’ve Selected Years at Current Company
+                    which cannot be used with
+                    Years in Current Position
+                  </span>
+                  <div class="close-btn">
+                    <button pButton type="button" label="Clear Company Tenure"
+                      class="p-button-secondary p-button-sm p-button-outlined" (click)="clearCompanyTenure()"></button>
+                  </div>
+                </div>
+              </ng-template>
+            </p-accordionTab>
+          </p-accordion>
+        </ng-template>
+      </p-accordionTab>
+      <!-- Contact Info -->
+      <p-accordionTab>
+        <ng-template pTemplate="header"><i class="far fa-satellite-dish filter-icon"></i>
+          <div class="tab-head">
+            <div>Contact Info</div>
+            <div class="tab-chips sub-tab" *ngIf="getSettingCount()">
+              {{getSettingCount()}}</div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="contact-settings-filter">
+            <ul>
+              <li>
+                <div class="">Has Email Address?</div>
+                <p-inputSwitch (onChange)="onHasEmailAddress()" [(ngModel)]="hasEmailAddress"></p-inputSwitch>
+              </li>
+              <li>
+                <div class="">Has Verified Email Address?</div>
+                <p-inputSwitch (onChange)="onHasVerifiedEmailAddress()" [(ngModel)]="hasVerifiedEmailAddress">
+                </p-inputSwitch>
+              </li>
+              <li>
+                <div class="">Has Phone Number?</div>
+                <p-inputSwitch (onChange)="onHasPhoneNumber()" [(ngModel)]="hasPhoneNumber"></p-inputSwitch>
+              </li>
+              <li>
+                <div class="">Has a Social Profile?</div>
+                <p-inputSwitch (onChange)="onHasSocialProfile()" [(ngModel)]="hasSocialProfile"></p-inputSwitch>
+              </li>
+            </ul>
+          </div>
+        </ng-template>
+      </p-accordionTab>
+    </div>
+    <div class="more-filters" [ngClass]="{'effect': showMoreFilters}" (click)="toggleMore()">
+      <i class="pi pi-sliders-v"></i>
+      <span>{{showMoreFilters ? 'Less Filters' : 'More Filters'}}</span>
+    </div>
+  </p-accordion>
+</div>

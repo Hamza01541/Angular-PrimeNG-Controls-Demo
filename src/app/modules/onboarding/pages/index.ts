@@ -1,0 +1,1 @@
+export * from '@app/modules/onboarding/pages/onboarding/onboarding.component';

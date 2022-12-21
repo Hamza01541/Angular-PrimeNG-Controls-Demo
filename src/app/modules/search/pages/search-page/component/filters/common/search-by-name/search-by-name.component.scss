@@ -1,0 +1,210 @@
+@import "src/variables.scss";
+
+.contact-widget {
+  position: absolute;
+  z-index: 1000;
+  width: 91%;
+  box-shadow: 0px 10px 20px $shadow-black;
+  border-radius: 5px;
+  background: $bg-light;
+  border: 0.5px solid $border-dark;
+  margin-top: 1px;
+  .contact-list {
+    padding-top: 10px;
+    border-top: 0;
+    .contact-card {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 0.5px solid $bg-extra-light;
+      margin-left: 5px;
+      margin-right: 5px;
+      .icon-color {
+        color: $bg-parrot-green;
+      }
+      &:hover {
+        background: $bg-hover;
+        cursor: pointer;
+      }
+      img {
+        border-radius: 50px;
+        height: 42px;
+        width: 42px;
+        margin-right: 10px;
+      }
+      .contact-body {
+        flex-grow: 1;
+        width: 70%;
+        p {
+          margin: 0;
+          line-height: 20px;
+          border-radius: 5px;
+          &.headline {
+            font-size: 14px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 2px 0;
+            width: 95%;
+          }
+          &.name {
+            color: $bg-primary;
+            font-size: 14px;
+            font-weight: 700;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+          &.old {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            background: $bg-light-orange;
+            color: $bg-orange;
+            i {
+              margin-right: 5px;
+              font-weight: 700;
+            }
+            span {
+              font-weight: 600;
+              padding-left: 10px;
+            }
+          }
+          &.fresh {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            background: $bg-light-green;
+            color: $bg-dark-green;
+            i {
+              margin-right: 5px;
+              font-weight: 700;
+            }
+            span {
+              font-weight: 600;
+              padding-left: 10px;
+            }
+          }
+
+          &.outdated {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            background: $bg-light-red;
+            color: $text-red;
+            i {
+              margin-right: 5px;
+              font-weight: 700;
+            }
+            span {
+              font-weight: 600;
+              padding-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.scroll {
+  overflow-y: auto;
+  max-height: 350px;
+}
+
+.close-btn {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  font-size: 12px;
+  height: 35px;
+}
+
+.no-result {
+  font-size: 12px;
+  justify-content: center;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+  .no-txt {
+    padding: 25px;
+    font-size: 14px;
+    color: $text-light-gray;
+  }
+  .search-more-btn {
+    padding: 25px;
+  }
+
+  .close-more {
+    text-align: right;
+  }
+}
+
+.input-search {
+  width: 100%;
+  display: flex;
+  .p-input-icon-left,
+  .p-inputtext {
+    width: 100%;
+    font-size: 14px;
+    height: 37px;
+    color: $text-light-gray;
+  }
+  ::placeholder {
+    color: $text-light-gray;
+  }
+}
+
+:host ::ng-deep {
+  .p-button.p-button-icon-only .p-button-icon-left,
+  .p-button.p-button-icon-only .p-button-icon-right {
+    font-weight: 600;
+  }
+
+  .p-button:focus {
+    box-shadow: none;
+  }
+
+  .p-button.p-button-text:enabled:hover {
+    background: transparent;
+  }
+
+  .close-btn {
+    .p-button-label {
+      font-size: 12px;
+      color: $border-dark-gray;
+    }
+  }
+
+  .search-more-btn {
+    .p-button-label {
+      color: white;
+      font-size: 12px;
+    }
+    .p-button.p-button-secondary.p-button-outlined {
+      height: 32px;
+    }
+  }
+
+  .p-button.p-button-secondary.p-button-outlined {
+    color: $border-dark;
+  }
+
+  .close-more {
+    .p-button.p-button-secondary.p-button-outlined {
+      height: 24px;
+    }
+  }
+
+  .p-button.p-button-secondary:enabled:focus {
+    box-shadow: none;
+  }
+
+  .p-button.p-button-secondary.p-button-outlined:enabled:hover {
+    color: $border-dark;
+  }
+}

@@ -1,0 +1,229 @@
+@import "src/variables.scss";
+
+:host ::ng-deep {
+    .p-progressbar {
+        background: $bg-light-blue;
+        border: 1px solid $text-light;
+        border-radius: 5px;
+        height: 8px;
+    }
+    .p-progressbar-determinate .p-progressbar-label {
+        opacity: 0;
+    }
+    .p-progressbar .p-progressbar-value {
+        background: $border-light;
+        border-radius: 5px;
+    }
+}
+
+// collapsible sidebar
+.sidebar {
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+    overflow-y: auto;
+    top: 0;
+    width: 430px;
+    right: 0;
+    background: $bg-light;
+    box-shadow: 0px 4px 20px $shadow-dark;
+    overflow-x: hidden;
+    transition: 0.5s;
+    .header {
+        padding: 17px 23px;
+        background-image: url("../../../../assets/images/quick-start-header.svg");
+        height: 185px;
+        background-size: 100%;
+
+        .arrows {
+            width: 18px;
+        }
+        .close {
+            width: 13px;
+            cursor: pointer;
+        }
+        .header-content {
+            img {
+                width: 40px;
+                margin-right: 10px;
+            }
+            .title {
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 21px;
+                color: $text-light;
+                margin: 0;
+            }
+            span {
+                font-weight: 600;
+                font-size: 10px;
+                line-height: 21px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: $text-light;
+            }
+        }
+    }
+    .progess-bar {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+//body
+.container {
+    padding: 0 15px;
+
+    .content-wrapper {
+        margin-top: -10px;
+        padding: 15px;
+        background: $bg-light;
+        border-radius: 4px;
+        .database-content {
+            img {
+                width: 40px;
+                margin-right: 10px;
+            }
+            .title {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 17px;
+                display: flex;
+                align-items: center;
+                color: $text-dark-gray;
+                margin: 0;
+            }
+            span {
+                font-weight: 600;
+                font-size: 10px;
+                line-height: 12px;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                color: $text-dark-gray;
+            }
+            .earn-credits {
+                .title-num {
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: $text-dark-gray;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .video-wrapper {
+        padding: 20px;
+        background: $bg-dark-blue;
+        border-radius: 4px;
+        height: 170px;
+
+        h3 {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            color: $text-light;
+            margin: 0;
+        }
+        .project-logo {
+            img {
+                width: 120px;
+            }
+        }
+    }
+    .video-content {
+        .description {
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 21px;
+            color: $text-dark;
+            padding: 0;
+        }
+        .button-wrapper {
+            button {
+                max-width: 120px;
+                width: 100%;
+                padding: 10px 0;
+                text-align: center;
+                background: $bg-light;
+                border: 1px solid $border-dark;
+                box-sizing: border-box;
+                box-shadow: 0px 0px 10px $shadow-light;
+                border-radius: 4px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                color: $text-dark-gray;
+
+                &.active {
+                    background: $button-primary;
+                    border: 1px solid $button-primary;
+                    color: $text-light;
+                    border-radius: 4px;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+    .content-list {
+        ul {
+            padding: 0 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 17px;
+                display: flex;
+                align-items: center;
+                color: $text-dark-gray;
+                color: $text-dark-gray;
+            }
+            .icon-active {
+                background-image: url('../../../../assets/icons/verify-active.svg');
+            }
+            .credits-count {
+                border-left: 1px solid $border-dim-light;
+                padding: 0 10px;
+                height: 35px;
+
+                h4 {
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: $text-dark-gray;
+                    margin: 0;
+                }
+                span {
+                    font-weight: 600;
+                    white-space: nowrap;
+                    font-size: 10px;
+                    line-height: 4px;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                    color: $text-dark-gray;
+                }
+            }
+        }
+    }
+
+    //open close sidebar
+    .open-sidebar {
+        width: 430px;
+    }
+
+    .close-sidebar {
+        width: 0;
+        padding: 20px 0;
+    }
+}

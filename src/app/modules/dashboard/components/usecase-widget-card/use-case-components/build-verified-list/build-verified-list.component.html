@@ -1,0 +1,44 @@
+<!-- Commented this for Demo, but once API will get ready, uncomment these checks -->
+<div class="border my-3"></div>
+<p-dropdown class="dropdown" [options]="buildVerifiedList" optionLabel="title" optionValue="title" (onChange)='onSelection($event)'>
+</p-dropdown>
+
+<div [ngClass]="{'card__body__content-area': !recentVerifiedContacts?.length, 'content-area-child': recentVerifiedContacts?.length }">
+  <div *ngIf="!recentVerifiedContacts?.length">
+    <div class="content">
+      <span>{{ cardContent?.application_use_case?.name }}</span>
+      <br>
+      <span>{{ selectedItem?.subTitle }}</span>
+      <br>
+      <span>{{ selectedItem?.description }}</span>
+      <p>Launch your first job</p>
+      <button *ngIf="cardContent?.application_use_case?.name !== 'Build Verified Prospect Lists'">
+        {{ cardContent?.application_use_case?.name }}
+      </button>
+      <button (click)="navigateToSearchPage(currentPageUrl)">
+        Start a {{cardContent?.application_use_case?.name}}
+      </button>
+    </div>
+
+    <div class="p-grid">
+      <div class="p-col-6" (click)="toggleRightSideBar()">
+        <div class="video-thumbnails">
+          <img src="assets/icons/question-circle.svg" pTooltip="UseCase Info" alt="" />
+        </div>
+      </div>
+
+      <div class="p-col-6" (click)="openVideoModalPopup()">
+        <div class="video-thumbnails">
+          <img src="assets/icons/youtube.svg" pTooltip="Introduction Video" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [ngSwitch]="currentActiveCard" *ngIf="recentVerifiedContacts?.length">
+    <app-recently-verified-contacts-and-account-list *ngSwitchCase="useCaseDropDownOptions.verifiedLists"
+    [recentVerifiedContacts]="recentVerifiedContacts" [recentVerifiedAccounts]="recentVerifiedAccounts">
+    </app-recently-verified-contacts-and-account-list>
+
+  </div>
+</div>
+<span class="see-all-title" *ngIf="recentVerifiedContacts?.length">View All</span>

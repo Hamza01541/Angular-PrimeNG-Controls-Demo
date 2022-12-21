@@ -1,0 +1,175 @@
+<div class="profile-detail">
+  <p-tabView>
+    <p-tabPanel header="Contact Info" [selected]="true">
+      <div class="contact-info-tab">
+        <div class="info-section">
+          <div class="info-section-header">
+            <span class="first-label">Phones</span>
+            <span class="second-label">Status</span>
+            <span class="last-label">Actions</span>
+          </div>
+          <ul class="info-section-list">
+            <!-- Work Phone -->
+            <li class="section-list-item">
+              <div class="item-type-n-info">
+                <div class="type">
+                  <i class="pi pi-phone mr-2"></i> <span>Work</span>
+                </div>
+                <div class="info {{profileStatus?.corp_phone?.class_name}}">
+                  <i class="{{profileStatus?.corp_phone?.icon_class}} mr-2"></i>
+                  <span>{{profileStatus?.corp_phone?.value ? profileStatus?.corp_phone?.value : '-'}}</span>
+                </div>
+              </div>
+              <div class="item-status {{profileStatus?.corp_phone?.class_name}}">
+                <i class="{{profileStatus?.corp_phone?.icon_class}} mr-2"></i>
+                <span>{{profileStatus?.corp_phone?.process_status}}</span>
+                <span class="pl-2" *ngIf="profileStatus?.corp_phone?.process_status === 'Verifying...'">ETA -
+                  2hrs</span>
+                <span class="pl-2"
+                  *ngIf="profileStatus?.corp_phone?.process_status === 'Verification'">Completed</span>
+              </div>
+              <div class="item-action"><i class="pi pi-ellipsis-v"></i></div>
+            </li>
+            <!-- Direct Phone -->
+            <li class="section-list-item">
+              <div class="item-type-n-info">
+                <div class="type">
+                  <i class="far fa-phone-office mr-2"></i> <span>Direct </span>
+                </div>
+                <div class="info {{profileStatus?.direct_phone?.class_name}}">
+                  <i class="{{profileStatus?.direct_phone?.icon_class}} mr-2"></i>
+                  <span>{{profileStatus?.direct_phone?.value ? profileStatus?.direct_phone?.value : '-'}}</span>
+                </div>
+              </div>
+              <div class="item-status {{profileStatus?.direct_phone?.class_name}}">
+                <i class="{{profileStatus?.direct_phone?.icon_class}} mr-2"></i>
+                <span>{{profileStatus?.direct_phone?.process_status}}</span>
+                <span class="pl-2" *ngIf="profileStatus?.direct_phone?.process_status === 'Verifying...'">ETA -
+                  2hrs</span>
+                <span class="pl-2"
+                  *ngIf="profileStatus?.direct_phone?.process_status === 'Verification'">Completed</span>
+              </div>
+              <div class="item-action"><i class="pi pi-ellipsis-v"></i></div>
+            </li>
+            <!-- Mobile Phone -->
+            <li class="section-list-item">
+              <div class="item-type-n-info">
+                <div class="type">
+                  <i class="fal fa-mobile mr-3"></i><span>Mobile </span>
+                </div>
+                <div class="info {{profileStatus?.mobile_phone?.class_name}}">
+                  <i class="{{profileStatus?.mobile_phone?.icon_class}} mr-2"></i>
+                  <span *ngIf="contact.phone;else empty_number">{{contact.phone}}</span>
+                  <ng-template #empty_number>
+                    <span>{{profileStatus?.mobile_phone?.value ? profileStatus?.mobile_phone?.value : '-'}}</span>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="item-status {{profileStatus?.mobile_phone?.class_name}}">
+                <i class="{{profileStatus?.mobile_phone?.icon_class}} mr-2"></i>
+                <span>{{profileStatus?.mobile_phone?.process_status}}</span>
+                <span class="pl-2" *ngIf="profileStatus?.mobile_phone?.process_status === 'Verifying...'">ETA -
+                  2hrs</span>
+                <span class="pl-2"
+                  *ngIf="profileStatus?.mobile_phone?.process_status === 'Verification'">Completed</span>
+              </div>
+              <div class="item-action"><i class="pi pi-ellipsis-v"></i></div>
+            </li>
+          </ul>
+        </div>
+        <div class="info-section">
+          <div class="info-section-header">
+            <span class="first-label">Emails</span>
+          </div>
+          <ul class="info-section-list">
+            <!-- Work Email -->
+            <li class="section-list-item">
+              <div class="item-type-n-info">
+                <div class="type">
+                  <i class="far fa-envelope mr-2"></i> <span>Work</span>
+                </div>
+                <div class="info {{profileStatus?.work_email?.class_name}}">
+                  <i class="{{profileStatus?.work_email?.icon_class}} mr-2"></i>
+                  <span class="links">{{profileStatus?.work_email?.value ? profileStatus?.work_email?.value :
+                    '-'}}</span>
+                </div>
+              </div>
+              <div class="item-status {{profileStatus?.work_email?.class_name}}">
+                <i class="{{profileStatus?.work_email?.icon_class}} mr-2"></i>
+                <span>{{profileStatus?.work_email?.process_status}}</span>
+                <span class="pl-2" *ngIf="profileStatus?.work_email?.process_status === 'Verifying...'">ETA -
+                  2hrs</span>
+                <span class="pl-2"
+                  *ngIf="profileStatus?.work_email?.process_status === 'Verification'">Completed</span>
+              </div>
+              <div class="item-action"><i class="pi pi-ellipsis-v"></i></div>
+            </li>
+            <!-- Personal Email -->
+            <li class="section-list-item">
+              <div class="item-type-n-info">
+                <div class="type">
+                  <i class="far fa-envelope mr-2"></i> <span>Personal</span>
+                </div>
+                <div class="info {{profileStatus?.personal_email?.class_name}}">
+                  <i class="{{profileStatus?.personal_email?.icon_class}} mr-2"></i>
+                  <span>{{profileStatus?.personal_email?.value ? profileStatus?.personal_email?.value : '-'}}</span>
+                </div>
+              </div>
+              <div class="item-status {{profileStatus?.personal_email?.class_name}}">
+                <i class="{{profileStatus?.personal_email?.icon_class}} mr-2"></i>
+                <span>{{profileStatus?.personal_email?.process_status}}</span>
+                <span class="pl-2" *ngIf="profileStatus?.personal_email?.process_status === 'Verifying...'">ETA -
+                  2hrs</span>
+                <span class="pl-2"
+                  *ngIf="profileStatus?.personal_email?.process_status === 'Verification'">Completed</span>
+              </div>
+              <div class="item-action"><i class="pi pi-ellipsis-v"></i></div>
+            </li>
+          </ul>
+        </div>
+        <div class="info-section" *ngIf="contact?.facebook_url || contact?.linkedin_url || contact?.twitter_url">
+          <div class="info-section-header">
+            <span class="first-label">Social Profiles</span>
+          </div>
+          <ul class="info-section-list">
+            <!-- Facebook -->
+            <li class="section-list-item" *ngIf="contact.facebook_url">
+              <div class="item-type-n-info">
+                <div class="">
+                  <i class="pi pi-facebook mr-3 links"></i>
+                  <span class="links" (click)="goToLink(contact.facebook_url)">{{contact.facebook_url}}</span>
+                </div>
+              </div>
+            </li>
+            <!-- Linkedin -->
+            <li class="section-list-item" *ngIf="contact.linkedin_url">
+              <div class="item-type-n-info">
+                <div class="">
+                  <i class="fab fa-linkedin mr-3 links"></i>
+                  <span class="links" (click)="goToLink(contact.linkedin_url)">{{contact.linkedin_url}}</span>
+                </div>
+              </div>
+            </li>
+            <!-- Twitter -->
+            <li class="section-list-item" *ngIf="contact.twitter_url">
+              <div class="item-type-n-info">
+                <div class="">
+                  <i class="fab fa-twitter-square mr-3 links"></i>
+                  <span class="links" (click)="goToLink(contact.twitter_url)">{{contact.twitter_url}}</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Work Experience" [disabled]="true">
+    </p-tabPanel>
+    <p-tabPanel header="Education" [disabled]="true">
+    </p-tabPanel>
+    <p-tabPanel header="Social Posts" [disabled]="true">
+    </p-tabPanel>
+    <p-tabPanel header="News" [disabled]="true">
+    </p-tabPanel>
+  </p-tabView>
+</div>

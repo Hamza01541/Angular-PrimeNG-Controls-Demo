@@ -1,0 +1,101 @@
+@import "src/variables.scss";
+
+.option-box {
+  .input-search {
+    width: 100%;
+    display: flex;
+    padding-bottom: 1px;
+    .p-input-icon-left,
+    .p-inputtext {
+      width: 100%;
+      font-size: 14px;
+      height: 37px;
+    }
+
+    ::placeholder {
+      color: $bg-dark-gray;
+    }
+  }
+  .option-section {
+    color: $bg-dark-gray;
+    border-radius: 5px;
+    border: 1px solid $border-lighter;
+    box-shadow: 0px 10px 20px $shadow-black;
+    overflow-y: overlay;
+    .option-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      height: 37px;
+      span {
+        margin-left: 10px;
+        width: 250px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      &:hover {
+        background: $bg-light-primary;
+        cursor: pointer;
+        border-radius: 0px;
+      }
+
+      .action {
+        color: $bg-primary;
+        i {
+          margin-right: 10px;
+          font-size: 14px;
+        }
+        &.selected {
+          color: $bg-active;
+        }
+      }
+      &.selected {
+        background: $bg-light-primary;
+        border-bottom: 0.5px solid $bg-light;
+        border-radius: 0px;
+      }
+    }
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  .chip-item {
+    display: flex;
+    padding: 5px;
+    background: $bg-dark-gray;
+    color: white;
+    border-radius: 2px;
+    font-size: 12px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    transition: 0.5s;
+    i {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .custom-txt {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 100px;
+    }
+    .close-icon {
+      font-size: 10px;
+      text-align: left;
+      padding-top: 3px;
+      cursor: pointer;
+    }
+  }
+}
+
+.scroll {
+  max-height: 200px;
+  &:hover {
+    overflow-y: overlay;
+  }
+}

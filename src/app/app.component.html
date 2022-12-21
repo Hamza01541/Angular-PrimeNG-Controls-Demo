@@ -1,0 +1,18 @@
+<!-- Toastr -->
+<p-toast position="top-right"></p-toast>
+
+<!-- Header -->
+<div [ngClass]="{'show-nav': !isHideNavBar, 'sidebar-toggle': isSideNavBarToggled && !isHideNavBar}">
+<app-header [currentUserDetail]="currentUserDetail" [isShowHeader]="!isHideNavBar" [currentPageUrl]="currentPageUrl"></app-header>
+</div>
+
+<!-- Side menu -->
+<app-sidebar-menu [isShowNavBar]="!isHideNavBar" [isSideNavBarToggled]="isSideNavBarToggled" [currentPageUrl]="currentPageUrl" (onToggleSideBar)='onToggleSideBar()' ></app-sidebar-menu>
+
+<!-- Router-outlet -->
+<div [ngClass]="{'show-nav': !isHideNavBar, 'pt-3': !isHideNavBar, 'sidebar-toggle': isSideNavBarToggled && !isHideNavBar}">
+<router-outlet></router-outlet>
+</div>
+
+<!-- Loader -->
+<app-loader></app-loader>

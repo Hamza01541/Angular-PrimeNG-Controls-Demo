@@ -1,0 +1,27 @@
+<div class="add-use-case flex justify-content-center align-items-center" *ngIf="!isAdded">
+  <img  src="assets/icons/close.svg" pTooltip='Remove Use Case' class="close-icon" alt="" (click)="removeCard()">
+  <div  class="ellipse" (click)="addedUseCase()">
+    <div pTooltip='Add Use Case'>
+      <img class="circle-icon" src="assets/icons/ellipse.svg" alt="">
+      <img class="plus-icon" src="assets/icons/plus.svg" alt="">
+    </div>
+    <p class="ellipse-title mt-4">Add Use Case</p>
+  </div>
+
+</div>
+
+
+<div class="add-use-case mt-4 use-case-wrapper flex flex-column justify-content-center" *ngIf="isAdded">
+  <img src="assets/icons/close.svg" class="close-icon" alt="" (click)="removeCard()">
+  <div class="uses-case-setup">
+    <h5>SETUP YOUR USE CASE</h5>
+
+    <div class="select-case">
+      <p>Use Cases</p>
+      <p-dropdown class="dropdown" placeholder="Choose a Use Case" [options]="useCaseList" [(ngModel)]="selectedUseCase"
+        [filter]="true" filterBy="title" (onChange)="selectUseCase()" optionLabel="title" optionValue="id">
+      </p-dropdown>
+    </div>
+  </div>
+</div>
+<p-toast position="top-right"></p-toast>

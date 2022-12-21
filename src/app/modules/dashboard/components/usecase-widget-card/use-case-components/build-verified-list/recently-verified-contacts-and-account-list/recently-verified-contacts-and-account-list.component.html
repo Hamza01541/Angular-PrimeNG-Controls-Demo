@@ -1,0 +1,85 @@
+<div class="search-verify-wrapper">
+  <div>
+    <p-tabView>
+      <p-tabPanel header="Verified Contact List" tooltip="Verified Account List">
+        <!-- recent contact list new design -->
+        <div class="search-verify-panel">
+          <!-- ceo profile -->
+          <div>
+            <div class="p-grid p-ai-center search-verify-card p-mt-3 cursor-pointer" *ngFor="let verifiedContacts of recentVerifiedContacts">
+              <div class="col-2 search-verify-card__image">
+                <img src="assets/icons/people-secondary.svg" alt="" />
+                <!-- <img src="assets/icons/peoples-group.svg" alt="" /> -->
+              </div>
+              <div class="col-8 profile-info p-pl-2">
+                <div class="profile-title p-d-flex">
+                  <h4 class="m-0" pTooltip="">{{verifiedContacts.name}}</h4>
+                </div>
+
+                <div class="p-pt-1 p-d-flex social-icons">
+                  <div class="p-d-flex p-ai-center">
+                    <span class="employes pr-2" pTooltip=". employees"> .
+                      1 hour ago • Result</span>
+                  </div>
+                </div>
+
+                <div class="p-d-flex">
+                  <div class="p-d-flex p-ai-center activity-info" [ngClass]="helperService.getStatusClass(verifiedContacts?.overall_verification_status)">
+                    <img [src]="getStatusIconImage(verifiedContacts?.overall_verification_status)" alt="" />
+                    <span>{{verifiedContacts.overall_verification_status}}</span>
+                    <!-- <span> ...<b>ETA : 15mins</b> </span> -->
+                  </div>
+                  <!-- <div class="p-d-flex p-ai-center estimated-time primary">
+                    <img src="assets/icons/alarm-primary.svg" alt="">
+                  </div> -->
+                </div>
+              </div>
+
+              <div class="col-1">
+                <img src="assets/icons/seen-eye.svg" pTooltip="Verified Contact Lists" alt="" />
+              </div>
+              <div class="col-1 p-text-center">
+                <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg" alt="" /></span>
+                <p-menu #menu [popup]="true" [model]=""></p-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- second tab -->
+      <p-tabPanel tooltip="Verified Account List" header="Verified Account List">
+        <!-- recent accpunt list -->
+        <div class="search-verify-panel">
+          <!-- ceo profile -->
+          <div>
+            <div class="p-grid p-ai-center search-verify-card p-mt-3 cursor-pointer">
+              <div class="col-2 search-verify-card__image">
+                <img src="assets/icons/peoples-group.svg" alt="" />
+              </div>
+              <div class="col-8 profile-info p-pl-2">
+                <div class="profile-title p-d-flex">
+                  <h4 class="m-0" pTooltip=""></h4>
+                </div>
+
+                <div class="p-pt-1 p-d-flex social-icons">
+                  <div class="p-d-flex p-ai-center">
+                    <span class="employes pr-2" pTooltip=". employees"> .
+                      1 hour ago •Result</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1">
+                <img src="assets/icons/seen-eye.svg" pTooltip="Recent Account Search" alt="" />
+              </div>
+              <div class="col-1 p-text-center">
+                <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg" alt="" /></span>
+                <p-menu #menu [popup]="true" [model]=""></p-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

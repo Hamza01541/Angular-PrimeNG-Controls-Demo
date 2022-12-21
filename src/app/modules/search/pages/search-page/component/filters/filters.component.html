@@ -1,0 +1,15 @@
+<div class="filter">
+  <p-tabView (onChange)="onTabChange($event)">
+    <p-tabPanel leftIcon="pi pi-users" header="Contacts" [selected]="isContactSelected">
+      <search-by-name-filters [type]="'Contacts'" *ngIf="isContactSelected"></search-by-name-filters>
+    </p-tabPanel>
+    <p-tabPanel leftIcon="fas fa-building" header="Accounts" [selected]="isAccountSelected">
+      <search-by-name-filters [type]="'Accounts'" *ngIf="isAccountSelected"></search-by-name-filters>
+    </p-tabPanel>
+  </p-tabView>
+
+  <!-- Start of Filter section -->
+  <p-divider></p-divider>
+  <contact-filters *ngIf="isContactSelected" (onEmitContactCriteria)="applySelectedContactCriteria($event)"></contact-filters>
+  <company-filters *ngIf="isAccountSelected" (onEmitCompanyCriteria)="applySelectedCompanyCriteria($event)"></company-filters>
+</div>

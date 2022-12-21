@@ -1,0 +1,222 @@
+<div class="boarding-container p-p-3 flex align-items-start justify-content-center h-screen overflow-auto">
+
+  <!-- Introduction Tab -->
+  <div *ngIf="step === 0" class="card justify-content-start px-0 p-py-3 card-step-0">
+    <b class="back-link p-px-3 cursor-pointer" (click)="redirectTo(appRoutes.login)"><i
+        class="fas fa-arrow-left mr-2 ml-3"></i>Back</b>
+    <div class="pt-1">
+      <h5 class="mt-0 p-px-3 p-text-center">Onboarding Dealsignal</h5>
+
+      <div class="dealSignal-experience my-6">
+        <div class="personalize-screen">
+          <img src="assets/images/personalize-screen.svg" alt="" />
+        </div>
+        <div class="dealSignal-experience-content">
+          <div>
+            <h4 class="my-0">Personalize My DealSignal Experience</h4>
+            <p> At DealSignal, our mission is to provide you with <strong> Verified B2B Data </strong> that
+              delivers the most comprehensive global coverage, precision targeting and highest accuracy.
+              To personalize your experience, select your Team, Role & Use Cases and we’ll provide some
+              free credits along the way! </p>
+            <ul class="mt-5">
+              <li>
+                <img src="assets/icons/correct.svg" alt="correct" />
+                <span>Select your Team & Role ( <b>Earn 5 credits</b> )</span>
+              </li>
+
+              <li>
+                <img src="assets/icons/correct.svg" alt="correct" />
+                <span>Select your Use Cases by priority (
+                  <b>Earn 5 credits</b> )</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-field p-col-12 start-boarding mt-5">
+            <button pButton (click)="nextStep()" type="button" pTooltip="Start Onboarding" label="Start Onboarding"
+              class="p-button-info"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-content-center xl:justify-content-end w-full" *ngIf="step === 1">
+    <div class="card p-2 sm:p-3 mr-0">
+      <div>
+        <a class="back-link p-px-3" pTooltip="Back" (click)="openPrev()"><i class="fas fa-arrow-left mr-2"></i>Back</a>
+        <div class="p-text-center p-p-1">
+          <h5 class="mt-1 mb-3" pTooltip={{tabTitle}}>{{tabTitle}}</h5>
+          <span class="index-count">{{ currentTabindex + 1 }} / 3</span>
+        </div>
+
+        <p-tabView [(activeIndex)]="currentTabindex">
+          <!-- Team & Role Tab -->
+          <p-tabPanel [disabled]="true" header="Step 1">
+            <div class="p-col-10 p-offset-1 select-team" *ngFor='let question of questions'>
+              <div
+                *ngIf='question.dependedQuestion ==="" || (questions[question.dependedQuestion].answers && questions[question.dependedQuestion].answers.identifier === question.dependedAnswer)'>
+                <h2 pTooltip={{question.title}}>{{question.title}}</h2>
+                <div class="p-fluid p-formgrid p-grid p-py-3">
+                  <div class="col-12 md:col-4" *ngFor='let answer of question.answerQuestions'
+                    pTooltip={{answer.title}}>
+                    <label class="label" disabled>
+                      <input type="radio" (change)='selectedAnswer(question,answer);' [value]="answer"
+                        [(ngModel)]='question.answers'
+                        [disabled]="answer.identifier=== 'a_team_marketing' || answer.identifier === 'a_team_other'"
+                        name="answer-{{question.identifier}}" id="answer-{{answers}}" />
+                      <span class="checkmark"></span>
+                      <p>{{answer.title}}</p>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="p-col-10 p-offset-1 select-role" *ngIf='isShowCustomInput'>
+              <div class="enter-role">
+                <input type="text" name="custom_answer" [(ngModel)]='custom_answer' (change)='otherTextValue()'
+                  placeholder="Enter your role">
+              </div>
+            </div>
+            <div class="more-roles p-text-center cursor-pointer" *ngIf="checkLength" pTooltip="More Role">
+              <a (click)="toggleRole()">{{isSaletoggled ? '': 'More Role...'}}</a>
+            </div>
+          </p-tabPanel>
+
+          <!-- Use cases tab -->
+          <p-tabPanel [disabled]="true" header="Step 2">
+            <div class="col-12 col-offset-0 md:col-10 md:col-offset-1">
+              <h6 class="m-0 pl-6">Select Your Use Cases & Priorities</h6>
+              <div class="p-fluid p-formgrid p-grid length-count-label pl-3">
+                <div class="p-col-12 p-pt-2">
+                  <span class="pl-5">Please select 1 or more Use Cases to personalize your
+                    experience</span>
+                </div>
+              </div>
+              <div class="p-fluid p-formgrid p-grid p-py-3 use-cases-list">
+                <div class="p-field p-col-12">
+                  <div class="p-fluid p-formgrid p-grid ml-2">
+                    <div class="col-6 md:col-8">
+                      <span class="usecase-title pl-5">Use Cases selected: <span
+                          class="text-blue-500 font-semibold pl-2">
+                          ({{currentCase.answers?.length || 0}})</span></span>
+                    </div>
+                    <div class="col-6 md:col-4 pl-2 sm:pl-0">
+                      <span class="usecase-title">Priority</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div *ngIf='currentCase.dependedQuestion ===""'>
+                      <p-orderList [value]="currentCase.answerQuestions" [dragdrop]="true"
+                        [listStyle]="{ height: 'auto' }" (onReorder)="reOrderUseCasePriority()">
+                        <ng-template let-answerQuestion let-index='index' pTemplate="item">
+                          <div class="p-fluid p-formgrid p-grid usecase-names">
+                            <div class="flex align-items-start col-6 md:col-8">
+                              <p-checkbox pTooltip="CheckBox" [binary]="true" name="{{answerQuestion.identifier}}"
+                                [(ngModel)]='answerQuestion.selected' (onChange)="onCheckboxChange(answerQuestion)">
+                              </p-checkbox>
+                              <label class="active">{{ answerQuestion.title }}</label>
+                            </div>
+                            <div class="col-3 md:col-2 align-self-center p-text-center">
+                              <label class="active">{{getCurrentSequence(answerQuestion)}}</label>
+                            </div>
+                            <div class="col-3 md:col-2 align-self-center p-text-center">
+                              <img src="assets/icons/sort.svg" alt="">
+                            </div>
+                          </div>
+                        </ng-template>
+                      </p-orderList>
+                    </div>
+                    <div class="more-cases pl-6">
+                      <a (click)="toggleUseCases()" class="active">
+                        {{isUseCasestoggled ? !currentCase.answers?.length ? 'Show Less' : '' : 'Show more UseCases'}}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+
+          <!-- Where to select Tab -->
+          <p-tabPanel [disabled]="true" header="Step 3">
+            <div class="p-col-11 p-offset-1" *ngFor='let third of thirdQuestion'>
+              <h3 class="p-text-center">{{third.title}}</h3>
+              <div class="p-fluid p-formgrid p-grid p-pt-6">
+                <div class="p-field col-12 lg:col-4" *ngFor='let thirdAns of third.answerQuestions'>
+                  <div class="select-card">
+                    <div class="p-text-center p-pt-6">
+                      <div class="experience-image">
+                        <img [src]="getImage(thirdAns.identifier)" alt="" />
+                      </div>
+                      <p pTooltip={{thirdAns.title}}>{{thirdAns.title}}</p>
+                    </div>
+                    <button type="button" class="primary-button" (click)="finishOnBoarding(thirdAns)"
+                      pTooltip="Start Here">Start
+                      here</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+
+      <!-- Footer Buttons -->
+      <div class="p-fluid p-grid p-col-10 p-offset-1 team-menu-buttons" *ngIf="currentTabindex < 2">
+        <div class="col-12 sm:col-6">
+          <button pButton class="button-skip" type="button" pTooltip="Skip" label="Skip"></button>
+        </div>
+        <div class="col-12 sm:col-6">
+          <button pButton class="button-next next-boarding" [ngClass]="{'primary-button': isFormValid()}" type="button"
+            label="Next Step" pTooltip="Next Step" (click)="openNext()"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side-dashboad -->
+    <div class="dashboard-container">
+      <div class="dealSignal-experience">
+        <div class="flex justify-content-between dashboard-header">
+          <img src="assets/images/personalize-screen.svg" alt="" width="56" />
+          <div class="credits">
+            <p>{{credits || 0}}</p>
+            <span>Credits</span>
+          </div>
+        </div>
+        <div class="dealSignal-experience-content">
+          <div>
+            <h4 class="mt-4 mb-0">Personalize My Dashboard</h4>
+            <p class="second-state m-0 mt-2">
+              Your selections will personalize your experience, and we will provide some free credits to
+              get started.
+            </p>
+
+            <div class="choices my-6 ">
+              <div class="progress-bars">
+                <span class="circle"
+                  [ngClass]="{'': firstQestionProgress === 0 ,'half': firstQestionProgress === 1 ,'notcheck': firstQestionProgress === 2  ,'full': firstQestionProgress === 3}"></span>
+                <div>
+                  <label for="" pTooltip="Name, Team & Role">Name, Team & Role</label>
+                  <p *ngIf='firstQestionProgress === 3'>5 credits</p>
+                </div>
+              </div>
+              <div class="progress-bars">
+                <span class="circle"
+                  [ngClass]="{'': secondQuestionProgress === 0 ,'notcheck': secondQuestionProgress === 1,'full': secondQuestionProgress === 2}"></span>
+                <div>
+                  <label for="" pTooltip="Name, Team & Role">Choose Use Cases</label>
+                  <p *ngIf='secondQuestionProgress === 2'>5 credits</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Background Component -->
+<app-background></app-background>

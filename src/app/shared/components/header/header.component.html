@@ -1,0 +1,61 @@
+<header class="header" *ngIf="isShowHeader">
+  <div class="header__collapse-btn">
+    <span pTooltip='{{currentPageUrl | titlecase }}'>{{currentPageUrl | titlecase }}</span>
+  </div>
+
+
+  <ul class="header__nav-links px-0 md:px-4 cursor-pointer p-5">
+    <li>
+      <img src="assets/icons/question.svg" (click)="openshperedModal()" alt="">
+    </li>
+    <div class="flex" id="headers" (click)="openSubscriptionModel()">
+
+      <li>
+        <a>
+          <img src="assets/icons/coins.svg" alt="">
+        </a>
+      </li>
+
+      <li>
+        <span pTooltip='User Credits' class="flex justify-content-between w-7 credit-count">
+          {{currentUserDetail?.remaining_contact_company_credits}}
+        </span>
+        <p class="total-credits">Total Credits</p>
+      </li>
+    </div>
+
+    <div class="flex align-items-center">
+      <!-- <li>
+                <a href="">
+                    <img src="assets/icons/degree.svg" alt="">
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    <img src="assets/icons/circle.svg" alt="">
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    <img src="assets/icons/question.svg" alt="">
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    <img src="assets/icons/ring.svg" alt="">
+                </a>
+            </li> -->
+
+      <li id='loginId'>
+        <img pTooltip='User Profile Menu' src="assets/icons/person.svg"
+          (click)="dashBoardUserProfileMenu.toggle($event)" alt="">
+        <p-menu #dashBoardUserProfileMenu [popup]="true" [model]='dashBoardUserProfile'></p-menu>
+
+      </li>
+
+    </div>
+  </ul>
+</header>

@@ -1,0 +1,924 @@
+<div class="profile-detail" *ngIf="company">
+  <p-tabView>
+    <p-tabPanel header="Company Profile" [selected]="true">
+      <div class="company-profile-tab">
+        <!-- company-profile-content tab 1-->
+
+        <div class="description">
+          <span class="description__title">Description</span>
+          <div class="description__content">
+            <span>{{company?.description}}
+            </span>
+            <b>..More</b>
+          </div>
+        </div>
+
+        <div class="detail-list">
+          <div class="p-grid">
+            <div class="p-col-6">
+              <div class="p-grid profile-details">
+                <!-- header -->
+
+                <div class="p-col-6 px-0 header-title title-right">
+                  <span>Business profile</span>
+                </div>
+
+                <div class="p-col-6 px-0">
+                  <div class="p-d-flex p-ai-center activity-info success">
+                    <img src="assets/icons/correct-circle.svg" alt="" />
+                    <span>Verified</span>
+                    <span> <b>24h ago</b> </span>
+                  </div>
+                </div>
+
+                <!-- content -->
+
+                <div class="p-grid w-full content p-m-0">
+                  <div class="p-col-6 title">
+                    <span>Ownership:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>Public Company</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Founded:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.date_founded}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Industry</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.industry}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Industry Tags</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>SIC Code</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.sic_codes}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>SIC Description</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-col-6">
+              <div class="p-grid profile-details headquarters pl-4">
+                <!-- header -->
+
+                <div class="p-col-6 header-title">
+                  <span>Headquarters</span>
+                </div>
+
+                <div class="p-col-6 px-0">
+                  <div class="p-d-flex p-ai-center activity-info success">
+                    <img src="assets/icons/correct-circle.svg" alt="" />
+                    <span>Verified</span>
+                    <span> <b>24h ago</b> </span>
+                  </div>
+                </div>
+
+                <!-- content -->
+
+                <div class="p-grid w-full content">
+                  <div class="p-col-6 title">
+                    <span>Address:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.street_address}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>City: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.city_name}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>State:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.state_name}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Zip: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.zip_code}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Country:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.country_name}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Phone:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.phone}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Email:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <!-- company size tab 2 -->
+
+    <p-tabPanel header="Company Size" [disabled]="false">
+      <div class="company-profile-tab">
+        <!-- company-size-content -->
+
+        <div class="detail-list p-pt-0">
+          <div class="p-grid">
+            <div class="p-col-6">
+              <!-- right-section -->
+              <div class="p-grid profile-details">
+                <!-- header -->
+                <div class="p-col-6 px-0 header-title title-right">
+                  <span>Employees</span>
+                </div>
+
+                <div class="p-col-6 px-0">
+                  <div class="p-d-flex p-ai-center activity-info success">
+                    <img src="assets/icons/correct-circle.svg" alt="" />
+                    <span>Verified</span>
+                    <span> <b>24h ago</b> </span>
+                  </div>
+                </div>
+
+                <!-- content -->
+
+                <div class="p-grid w-full content p-m-0">
+                  <div class="p-col-6 title">
+                    <span>Employees:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>203,688</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Employee Range:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.employee_range}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="p-grid profile-details">
+                <!-- header -->
+
+                <div class="p-col-6 px-0 header-title title-right">
+                  <span>Financials</span>
+                </div>
+
+                <div class="p-col-6 px-0">
+                  <div class="p-d-flex p-ai-center activity-info success">
+                    <img src="assets/icons/correct-circle.svg" alt="" />
+                    <span>Verified</span>
+                    <span> <b>24h ago</b> </span>
+                  </div>
+                </div>
+
+                <!-- content -->
+
+                <div class="p-grid w-full content p-m-0">
+                  <div class="p-col-6 title">
+                    <span>Ticker: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.ticker}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Annual Revenue: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Revenue Range: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.revenue}}</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Annual Cost of Revenue: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>${{company.annual_cost_of_revenue}}M </span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Annual Gross Profit:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>${{company.annual_gross_profit}}M </span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Annual Operating Income: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>${{company.annual_operating_income}}M </span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Annual Net Income: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>${{company.annual_net_income}}1M </span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Fiscal Year: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>{{company.fiscal_year}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- left-section -->
+
+            <div class="p-col-6">
+              <div class="p-grid profile-details headquarters pl-4">
+                <!-- header -->
+
+                <div class="p-col-6 header-title">
+                  <span>Funding</span>
+                </div>
+
+                <div class="p-col-6 px-0">
+                  <div class="p-d-flex p-ai-center activity-info primary">
+                    <img src="assets/icons/verify-loading.svg" alt="" />
+                    <span>Verifying </span>
+                    <span> ...<b>ETA : 15mins</b> </span>
+                  </div>
+                </div>
+
+                <!-- content -->
+
+                <div class="p-grid w-full content">
+                  <div class="p-col-6 title">
+                    <span>Total Funding:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Number of Rounds: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Last Funding Amount: </span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Last Funding Date:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Last Funding Name:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Last Funding Lead Investor:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Last Funding Number Of Investors:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Estimated Revenue Range:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+
+                  <div class="p-col-6 title">
+                    <span>Founders:</span>
+                  </div>
+                  <div class="p-col-6 info">
+                    <span>-</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <!-- tab 3 web and social profiles -->
+
+    <p-tabPanel header="Web & Social Profiles" [disabled]="false">
+      <div class="company-profile-tab">
+        <div class="social-links-title">
+          <span>social links</span>
+        </div>
+
+        <!-- social media link cards -->
+        <div class="social-links-wrapper">
+          <!-- content -->
+          <!-- facebook card -->
+          <div class="content-card p-grid w-full content">
+            <div class="p-col-5 social-url-link p-d-flex p-ai-center">
+              <img class="pr-3" src="assets/icons/fb-sequre.svg" alt="" />
+              <span>http://www.facebook.com/in/microsoft</span>
+            </div>
+            <div class="p-col-3"></div>
+            <div class="p-col-4 p-d-flex p-jc-between">
+              <div class="p-d-flex p-ai-center activity-info primary">
+                <img src="assets/icons/verify-loading.svg" alt="" />
+                <span>Verifying </span>
+                <span> ...<b>ETA : 15mins</b> </span>
+              </div>
+              <!-- image  -->
+              <img class="pl-3 action-image" src="assets/icons/menu-muted.svg" alt="" />
+            </div>
+          </div>
+
+          <!-- linkdin card -->
+          <div class="content-card p-grid w-full content">
+            <div class="p-col-5 social-url-link p-d-flex p-ai-center">
+              <img class="pr-3" src="assets/icons/linkdin.svg" alt="" />
+              <span>http://www.linkedin.com/in/microsoft</span>
+            </div>
+            <div class="p-col-3"></div>
+            <div class="p-col-4 p-d-flex p-jc-between">
+              <div class="p-d-flex p-ai-center activity-info success">
+                <img src="assets/icons/correct-circle.svg" alt="" />
+                <span>Verified </span>
+                <span>24h ago </span>
+              </div>
+              <!-- image  -->
+              <img class="pl-3 action-image" src="assets/icons/edit.svg" alt="" />
+            </div>
+          </div>
+
+          <!-- twitter card -->
+          <div class="content-card p-grid w-full content">
+            <div class="p-col-5 social-url-link p-d-flex p-ai-center">
+              <img class="pr-3" src="assets/icons/twitter-borderd.svg" alt="" />
+              <span>http://www.twitter.com/in/micosoft</span>
+            </div>
+            <div class="p-col-3"></div>
+            <div class="p-col-4 p-d-flex p-jc-between">
+              <div class="p-d-flex p-ai-center activity-info primary">
+                <img src="assets/icons/verify-loading.svg" alt="" />
+                <span>Verifying </span>
+                <span> ...<b>ETA : 15mins</b> </span>
+              </div>
+              <!-- image  -->
+              <img class="pl-3 action-image" src="assets/icons/edit.svg" alt="" />
+            </div>
+          </div>
+
+          <!-- youtube card -->
+          <div class="content-card p-grid w-full content">
+            <div class="p-col-5 social-url-link p-d-flex p-ai-center">
+              <img class="pr-3" src="assets/icons/youtube.svg" alt="" />
+              <span>http://www.youtube.com/in/microsoft</span>
+            </div>
+            <div class="p-col-3"></div>
+            <div class="p-col-4 p-d-flex p-jc-between">
+              <div class="p-d-flex p-ai-center activity-info primary">
+                <img src="assets/icons/verify-loading.svg" alt="" />
+                <span>Verifying </span>
+                <span> ...<b>ETA : 15mins</b> </span>
+              </div>
+              <!-- image  -->
+              <img class="pl-3 action-image" src="assets/icons/edit.svg" alt="" />
+            </div>
+          </div>
+
+          <!-- play store card -->
+          <div class="content-card p-grid w-full content">
+            <div class="p-col-5 social-url-link p-d-flex p-ai-center">
+              <img class="pr-3" src="assets/icons/play-store.svg" alt="" />
+              <span>http://www.playstore.com/in/microsoft</span>
+            </div>
+            <div class="p-col-3"></div>
+            <div class="p-col-4 p-d-flex p-jc-between">
+              <div class="p-d-flex p-ai-center activity-info primary">
+                <img src="assets/icons/verify-loading.svg" alt="" />
+                <span>Verifying </span>
+                <span> ...<b>ETA : 15mins</b> </span>
+              </div>
+              <!-- image  -->
+              <img class="pl-3 action-image" src="assets/icons/edit.svg" alt="" />
+            </div>
+          </div>
+
+          <!-- apple store card -->
+          <div class="content-card p-grid w-full content">
+            <div class="p-col-5 social-url-link p-d-flex p-ai-center">
+              <img class="pr-3" src="assets/icons/apple.svg" alt="" />
+              <span>http://www.appstore.com/in/microsoft</span>
+            </div>
+            <div class="p-col-3"></div>
+            <div class="p-col-4 p-d-flex p-jc-between">
+              <div class="p-d-flex p-ai-center activity-info primary">
+                <img src="assets/icons/verify-loading.svg" alt="" />
+                <span>Verifying </span>
+                <span> ...<b>ETA : 15mins</b> </span>
+              </div>
+              <!-- image  -->
+              <img class="pl-3 action-image" src="assets/icons/edit.svg" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <!-- card section ends here -->
+
+        <!-- keywords section -->
+        <div class="p-d-flex p-jc-between p-my-3">
+          <span class="keywords-title">Website Traffic & Keywords</span>
+          <div class="p-d-flex p-ai-center activity-info success">
+            <img src="assets/icons/correct-circle.svg" alt="" />
+            <span>Verified </span>
+            <span>24h ago </span>
+          </div>
+        </div>
+
+        <div class="p-grid keywords-wrapper">
+          <div class="p-col-5 p-grid">
+            <div class="p-col-6 keyword-name">
+              <span>Alexa Rank:</span>
+            </div>
+            <div class="p-col-6 keyword-rating">
+              <span>203,688</span>
+            </div>
+
+            <div class="p-col-6 keyword-name">
+              <span>Alexa Page View Per Million: </span>
+            </div>
+            <div class="p-col-6 keyword-rating">
+              <span>25970</span>
+            </div>
+
+            <div class="p-col-6 keyword-name">
+              <span>Alexa Links In: </span>
+            </div>
+            <div class="p-col-6 keyword-rating">
+              <span>235680</span>
+            </div>
+
+            <div class="p-col-6 keyword-name">
+              <span>Alexa Page View Per Million: </span>
+            </div>
+            <div class="p-col-6 keyword-rating">
+              <span>1979</span>
+            </div>
+          </div>
+
+          <div class="p-col-7 keyword-content">
+            <span class="p-pb-2">Alexa Keywords:</span>
+            <div class="p-d-flex p-flex-wrap">
+              <p class="keyword-tag">
+                Business And Economy/Computers And Internet
+              </p>
+              <p class="keyword-tag">Betriebssysteme/Microsoft Windows</p>
+              <p class="keyword-tag">Tin Học/Công Ty</p>
+            </div>
+            <span class="p-py-2">SEO Keywords:</span>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <!-- tab 4 Technologies -->
+
+    <p-tabPanel header="Technologies" [disabled]="false">
+      <!-- keywords section -->
+      <div class="company-profile-tab">
+        <div class="p-d-flex p-jc-between p-my-3">
+          <span class="keywords-title">Website Traffic & Keywords</span>
+          <div class="p-d-flex p-ai-center activity-info success">
+            <img src="assets/icons/correct-circle.svg" alt="" />
+            <span>Verified </span>
+            <span>24h ago </span>
+          </div>
+        </div>
+
+        <div class="p-grid keywords-wrapper">
+          <div class="p-d-flex p-flex-wrap keyword-content">
+            <p class="keyword-tag">
+              Business And Economy/Computers And Internet
+            </p>
+            <p class="keyword-tag">It Professional</p>
+            <p class="keyword-tag">Gaming</p>
+
+            <p class="keyword-tag">Virtual Reality</p>
+            <p class="keyword-tag">Mixed Reality</p>
+            <p class="keyword-tag">Laptops</p>
+            <p class="keyword-tag">Machine Learning</p>
+            <p class="keyword-tag">Artificial Intelligence</p>
+            <p class="keyword-tag">Productivity</p>
+            <p class="keyword-tag">Future Of Work</p>
+            <p class="keyword-tag">Quantum Computing</p>
+            <p class="keyword-tag">Storage</p>
+            <p class="keyword-tag">Electronics</p>
+            <p class="keyword-tag">Enterprise Service</p>
+            <p class="keyword-tag">Scientific</p>
+            <p class="keyword-tag">Certification</p>
+            <p class="keyword-tag">Armed Forces</p>
+            <p class="keyword-tag">Repair And Maintenance</p>
+            <p class="keyword-tag">Microsoft Office 365</p>
+            <p class="keyword-tag">Microsoft Office 365</p>
+            <p class="keyword-tag">Certification</p>
+            <p class="keyword-tag">Certification</p>
+            <p class="keyword-tag">Scientific</p>
+            <p class="keyword-tag">Microsoft Office 365</p>
+            <p class="keyword-tag">Electronics</p>
+            <p class="keyword-tag">Repair And Maintenance</p>
+            <p class="keyword-tag">Enterprise Service</p>
+            <p class="keyword-tag">Future Of Work</p>
+          </div>
+        </div>
+
+        <!-- technologies -->
+
+        <div class="p-d-flex p-jc-between p-my-3">
+          <span class="keywords-title">Technographics</span>
+          <div class="p-d-flex p-ai-center activity-info success">
+            <img src="assets/icons/correct-circle.svg" alt="" />
+            <span>Verified </span>
+            <span>24h ago </span>
+          </div>
+        </div>
+
+        <div class="p-grid keywords-wrapper">
+          <div class="p-d-flex p-flex-wrap keyword-content">
+            <p class="keyword-tag">
+              Business And Economy/Computers And Internet
+            </p>
+            <p class="keyword-tag">It Professional</p>
+            <p class="keyword-tag">Gaming</p>
+
+            <p class="keyword-tag">Virtual Reality</p>
+            <p class="keyword-tag">Adobe ColdFusion</p>
+            <p class="keyword-tag">IPhone / Mobile Compatible</p>
+            <p class="keyword-tag">Akamai Hosted</p>
+            <p class="keyword-tag">Akamai Global Host</p>
+            <p class="keyword-tag">Apache Traffic Server</p>
+            <p class="keyword-tag">Mixed Reality</p>
+            <p class="keyword-tag">El Salvadorian Spanish HREF LANG</p>
+            <p class="keyword-tag">Pound Sterling</p>
+            <p class="keyword-tag">Microsoft Personal Web Server</p>
+            <p class="keyword-tag">Google Web Server</p>
+            <p class="keyword-tag">Adobe ColdFusion</p>
+            <p class="keyword-tag">El Salvadorian Spanish HREF LANG</p>
+            <p class="keyword-tag">Pound Sterling</p>
+            <p class="keyword-tag">Mixed Reality</p>
+            <p class="keyword-tag">El Salvadorian Spanish HREF LANG</p>
+            <p class="keyword-tag">Apache Traffic Server</p>
+            <p class="keyword-tag">Mixed Reality</p>
+            <p class="keyword-tag">Akamai Global Host</p>
+            <p class="keyword-tag">IPhone / Mobile Compatible</p>
+            <p class="keyword-tag">Microsoft Personal Web Server</p>
+            <p class="keyword-tag">Akamai Global Host</p>
+            <p class="keyword-tag">Microsoft Personal Web Server</p>
+            <p class="keyword-tag">Adobe ColdFusion</p>
+            <p class="keyword-tag">Mixed Reality</p>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+
+    <!-- tab 5 New and social post -->
+    <p-tabPanel header="News & Social Posts" [disabled]="false">
+      <!-- News cards section -->
+      <div class="company-profile-tab">
+        <div class="news-title">
+          <span>news</span>
+        </div>
+
+        <!-- social media link cards -->
+        <div class="social-links-wrapper news-cards-wrapper">
+          <!-- content -->
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper">
+                <img class="pr-3" src="assets/icons/post.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>Microsoft announces one of the largest wind deals in the
+                  Nethe..</span>
+                <p>
+                  Note to editors: For more information, news and perspectives
+                  from ...
+                </p>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>Markets Insider • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper">
+                <img class="pr-3" src="assets/icons/post.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>Microsoft announces one of the largest wind deals in the
+                  Nethe..</span>
+                <p>
+                  Note to editors: For more information, news and perspectives
+                  from ...
+                </p>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>Markets Insider • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper">
+                <img class="pr-3" src="assets/icons/post.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>Microsoft announces one of the largest wind deals in the
+                  Nethe..</span>
+                <p>
+                  Note to editors: For more information, news and perspectives
+                  from ...
+                </p>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>Markets Insider • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper">
+                <img class="pr-3" src="assets/icons/post.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>Microsoft announces one of the largest wind deals in the
+                  Nethe..</span>
+                <p>
+                  Note to editors: For more information, news and perspectives
+                  from ...
+                </p>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>Markets Insider • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper">
+                <img class="pr-3" src="assets/icons/post.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>Microsoft announces one of the largest wind deals in the
+                  Nethe..</span>
+                <p>
+                  Note to editors: For more information, news and perspectives
+                  from ...
+                </p>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>Markets Insider • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper">
+                <img class="pr-3" src="assets/icons/post.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>Microsoft announces one of the largest wind deals in the
+                  Nethe..</span>
+                <p>
+                  Note to editors: For more information, news and perspectives
+                  from ...
+                </p>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>Markets Insider • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="load-more p-py-2">
+          <span>LOAD MORE</span>
+        </div>
+
+        <!-- social-posts -->
+        <!-- social media link cards -->
+
+        <div class="news-title">
+          <span>Social Posts</span>
+        </div>
+
+
+        <div class="social-links-wrapper news-cards-wrapper">
+          <!-- content -->
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper image-wrapper-twitter">
+                <img class="pr-3" src="assets/icons/twitter-borderd.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>@choker_mp3 😂</span>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>twitter • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper image-wrapper-twitter">
+                <img class="pr-3" src="assets/icons/twitter-borderd.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>@GarcevicAmar 🙌</span>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>twitter • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- content card -->
+          <div class="content-card p-py-0 news-card p-grid w-full content">
+            <div class="p-col-8 social-url-link p-d-flex p-ai-center">
+              <div class="image-wrapper image-wrapper-twitter">
+                <img class="pr-3" src="assets/icons/twitter-borderd.svg" alt="" />
+              </div>
+              <div class="description">
+                <span>@AtifGujjar00 We think so, too.</span>
+              </div>
+            </div>
+
+            <!-- section-right -->
+
+            <div class="p-d-flex p-flex-column p-ai-end p-col-4 content-detail">
+              <div>
+                <img class="p-pr-3" src="assets/icons/inbox-muted.svg" alt="" />
+                <img src="assets/icons/upper-arrow.svg" alt="" />
+              </div>
+              <div class="date">
+                <span>twitter • Nov 2, 2017</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+</div>

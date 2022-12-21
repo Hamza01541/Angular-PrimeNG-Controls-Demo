@@ -1,0 +1,78 @@
+@import 'src/variables.scss';
+
+.card {
+    .forgot-pass {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: center;
+        text-decoration-line: underline;
+        color: $text-primary;
+    }
+    .signin-text {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: $text-secondary;
+    }
+    .signup-google-btn {
+        background: $bg-light;
+        border: 0.5px solid rgba(129, 129, 165, 0.4);
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: $text-primary;
+    }
+}
+
+.form-wrapper {
+    max-width: 420px;
+    width: 100%;
+    margin: auto;
+    form {
+        label {
+            color: $text-dark;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 21px;
+        }
+        input {
+            background: $bg-light;
+            border: 0.5px solid rgba(129, 129, 165, 0.4);
+            box-sizing: border-box;
+            box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.03);
+            border-radius: 4px;
+            height: 42px;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            color: $text-light-dark;
+        }
+        button {
+            font-family: Montserrat;
+            background: $button-primary;
+            border: 1px solid $bg-primary;
+            border-radius: 4px;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            height: 42px;
+            text-align: center;
+            color: $text-light;
+        }
+    }
+}
+
+.login-text {
+    color: $text-dark;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+}

@@ -1,0 +1,34 @@
+<div class="result-section">
+  <p-tabView>
+    <p-tabPanel header="Total Result ( {{count}} )" [headerStyle]="{'padding-left':'20px'}">
+      <search-result-page (onTotalResult)="getTotalResultCount($event)"></search-result-page>
+    </p-tabPanel>
+    <p-tabPanel header="Recent Activity">
+      <!-- Grid -->
+      <app-recent-activity-grid
+        [totalRecords]="totalRecords" (onRowClick)="handleRowClick($event)" (onSortChange)="handleSortChange($event)"
+        (onFilterChange)="handleFilterChange($event)"
+        (onPageChange)="handleServerSideEventPagination($event)"
+        (onServerSideEventChange)="handleServerSideEventChange($event)"
+        [recentContacts]="recentContacts" [recentAccounts]="recentAccounts" [recentSearches]="recentSearches">
+      </app-recent-activity-grid>
+    </p-tabPanel>
+    <p-tabPanel header="Saved Criteria" >
+     <app-saved-criteria-grid
+     [totalRecords]="totalRecords" (onRowClick)="handleRowClick($event)" (onSortChange)="handleSortChange($event)"
+     (onFilterChange)="handleFilterChange($event)"
+     (onPageChange)="handleServerSideEventPagination($event)"
+     (onServerSideEventChange)="handleServerSideEventChange($event)"
+     [savedSearches]="savedSearches" [personaCriterias]="personaCriterias" [accountCriterias]="accountCriterias"
+
+     ></app-saved-criteria-grid>
+      <!-- Content 3 -->
+    </p-tabPanel>
+    <p-tabPanel header="Verified Lists" [disabled]="true">
+      <!-- Content 4 -->
+    </p-tabPanel>
+    <p-tabPanel header="Saved Lists" [disabled]="true">
+      <!-- Content 5 -->
+    </p-tabPanel>
+  </p-tabView>
+</div>

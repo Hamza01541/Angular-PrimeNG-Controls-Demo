@@ -1,0 +1,57 @@
+<!-- collapsible sidebar -->
+<div class="sidebar"[ngClass]="sidebar ? 'open-sidebar' : 'close-sidebar'">
+  <div class="p-d-flex p-jc-between header">
+      <h4 class="title m-0">Choose which columns to see</h4>
+      <img src="assets/icons/close.svg" class="close" (click)="closeRightSideBar()" alt="">
+  </div>
+
+  <div class="profile-container p-mt-3">
+
+    <div class="p-grid company-content">
+      <div class="col-6">
+        <div class="p-d-flex p-ai-center search-field">
+          <input type="search" [(ngModel)]="searchText" pInput (keyup)="onSearch($event)" (search)="onClearSearch($event)"  name="search" id="search" placeholder="Search">
+          <img src="assets/icons/search-light.svg" alt="">
+      </div>
+    </div>
+
+      <div class="p-col-6">
+        <div class="title">
+          <h4>Click and Drag to reorder</h4>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="p-grid company-content" cdkDropListGroup>
+        <ng-container *ngFor="let grid of selectedColumns; let i=index;">
+      <div class="p-col-6 p-d-flex p-jc-between p-ai-center p-mt-4" [cdkDropListData]="{item:grid,index:i}" cdkDropList  cdkDropListOrientation="horizontal"  (cdkDropListDropped)="drop1($event)">
+        <div class="p-d-flex p-ai-center inner" cdkDrag>
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+        <img src="assets/icons/frame.svg" alt="">
+        <div class="checkbox-wrapper">
+        <input class="checkbox" [(ngModel)]="grid.selected" type="checkbox" name="{{grid?.header}}" id="{{grid?.field}}">
+        <span class="checkmark"></span>
+      </div>
+        <label class="p-pl-3">{{grid.header}}</label>
+      </div>
+
+        <div class="count-num">
+          <span>{{i+1}}</span>
+        </div>
+      </div>
+      </ng-container>
+
+      </div>
+      <div class="text-center" *ngIf="!selectedColumns?.length">Not found.</div>
+
+
+
+
+     <!-- set default button -->
+
+    <div class="default-button-wrapper">
+      <button  (click)="saveDefaultColumns()">Save as Default</button>
+    </div>
+  </div>
+</div>

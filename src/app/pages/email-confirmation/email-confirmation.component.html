@@ -1,0 +1,49 @@
+<div class="form-container p-p-3 flex justify-content-start h-screen overflow-auto">
+    <div class="card p-3">
+        <a (click)="redirectTo(appRoutes.signup)" class="back-link cursor-pointer"><i class="fas fa-arrow-left mr-2"></i>Back</a>
+        <div class="col-8 lg:col-8 col-offset-2">
+            <h3 class="mb-2">Please confirm your email</h3>
+            <div class="p-fluid p-formgrid p-grid">
+                <form class="w-full" (ngSubmit)="confirmationForm.form.valid && verifyEmail()" #confirmationForm='ngForm'>
+                    <div class="p-col-12 mb-4">
+                        <p class="sent-email">
+                            You’re almost there! We sent an email to <br>
+                            <b class="text-blue-500"> {{email}}</b>
+                        </p>
+                    </div>
+                    <div class="email-template">
+                        <img src="assets/images/vector-1.svg" alt="">
+                        <div class="content">
+                            <img src="assets/images/deal-signal-logo.svg" alt="" width="120">
+                            <p>
+                                Click on the link in that email to complete your signup. If you don’t see the email,
+                                please check your spam folder
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-text-center my-4 find-email">
+                        <span>Still can’t find the email?</span>
+                    </div>
+
+                    <div class="p-grid">
+                        <div class="p-field p-col-12 p-lg-6">
+                            <button pButton type="submit" class="bg-white text-500 border-500 p-2 white-space-nowrap"
+                                label="Skip & Verify Later" (click)='skipConfirmatation()'></button>
+                        </div>
+
+                        <div class="p-field p-col-12 p-lg-6">
+                            <button pButton type="submit" label="Resend Email"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-col-12 p-text-center mb-3 need-help">
+                        <span>Need help? <a><b class="text-blue-500 contact">Contact Us</b></a></span>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-background></app-background>

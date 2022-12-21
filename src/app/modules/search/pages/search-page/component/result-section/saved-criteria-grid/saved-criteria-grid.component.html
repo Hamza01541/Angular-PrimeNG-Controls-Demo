@@ -1,0 +1,47 @@
+<p> Start by searching deal signal database or uploading your own contact lists</p>
+<div class="search-verify-wrapper">
+  <div>
+    <p-tabView>
+      <p-tabPanel header="Saved Searches ({{savedSearchesRows.length}})" tooltip="Saved Searches  ({{savedSearchesRows.length}})">
+        <!-- Grid -->
+        <app-grid [rows]="savedSearchesRows" [columns]="savedSearchesColumns" [allowSelection]='true' [filtering]='true'
+          [currentGrid]="'savedSearches'" [allowExportToExcel]="true" [allowExportToPdf]="true"
+          [totalRecords]="totalRecords" [pagination]="true" [dataKey]='"LastUpdated"' [rowHover]="true" [defaultRows]="10"
+          [lookupFilters]="true" [allowColumnToggle]="true" [showCurrentPageReport]="true"
+          [columnActions]="savedSearchesColumnActions" [selectedRows]="selectedRows" [scrollHeight]="'400px'" [scrollable]='true'
+          [useServerSideEvents]="true" (onRowClick)="handleRowClick($event)" (onSortChange)="handleSortChange($event)"
+          (onFilterChange)="handleFilterChange($event)" (onPageChange)="handleServerSideEventPagination($event)"
+          (onServerSideEventChange)="handleServerSideEventChange($event)">
+        </app-grid>
+      </p-tabPanel>
+
+      <!-- second tab -->
+      <p-tabPanel tooltip="Persona Criteria({{savedPersonaRows.length}})" header="Persona Criteria ({{savedPersonaRows.length}})">
+        <!-- Grid -->
+        <app-grid [rows]="savedPersonaRows" [columns]="savedPersonaColumns" [allowSelection]='true' [filtering]='true'
+          [currentGrid]="'savedPersonaCriteria'" [allowExportToExcel]="true" [allowExportToPdf]="true"
+          [totalRecords]="totalRecords" [pagination]="true" [dataKey]='"LastUpdated"' [rowHover]="true" [defaultRows]="10"
+          [lookupFilters]="true" [allowColumnToggle]="true" [showCurrentPageReport]="true"
+          [columnActions]="savedPersonaActions" [selectedRows]="selectedRows" [scrollHeight]="'400px'" [scrollable]='true'
+          [useServerSideEvents]="true" (onRowClick)="handleRowClick($event)" (onSortChange)="handleSortChange($event)"
+          (onFilterChange)="handleFilterChange($event)" (onPageChange)="handleServerSideEventPagination($event)"
+          (onServerSideEventChange)="handleServerSideEventChange($event)">
+        </app-grid>
+      </p-tabPanel>
+
+      <!-- third tab -->
+      <p-tabPanel tooltip="Accont Criteria({{accountCriteriaRows.length}})" header="Accont Criteria ({{accountCriteriaRows.length}})">
+        <!-- Grid -->
+        <app-grid [rows]="accountCriteriaRows" [columns]="accountCriteriaColumns" [allowSelection]='true' [filtering]='true'
+          [currentGrid]="'accountCriteria'" [allowExportToExcel]="true" [allowExportToPdf]="true"
+          [totalRecords]="totalRecords" [pagination]="true" [dataKey]='"LastUpdated"' [rowHover]="true" [defaultRows]="10"
+          [lookupFilters]="true" [allowColumnToggle]="true" [showCurrentPageReport]="true"
+          [columnActions]="accountCriteriaColumnsActions" [selectedRows]="selectedRows" [scrollHeight]="'400px'" [scrollable]='true'
+          [useServerSideEvents]="true" (onRowClick)="handleRowClick($event)" (onSortChange)="handleSortChange($event)"
+          (onFilterChange)="handleFilterChange($event)" (onPageChange)="handleServerSideEventPagination($event)"
+          (onServerSideEventChange)="handleServerSideEventChange($event)">
+        </app-grid>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

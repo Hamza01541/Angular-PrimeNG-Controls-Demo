@@ -1,0 +1,118 @@
+<div class="search-verify-wrapper">
+  <div>
+    <p-tabView>
+      <p-tabPanel header="Saved Search Criteria" tooltip="Saved Search Criteria">
+        <!-- recent contact list new design -->
+        <div class="search-verify-panel">
+          <!-- ceo profile -->
+          <div>
+            <div class="p-grid p-ai-center search-verify-card p-mt-3 cursor-pointer" *ngFor="let savedSearch of allSavedSearches">
+              <div class="col-2 search-verify-card__image">
+                <img src="assets/icons/peoples-group.svg" alt="" />
+              </div>
+              <div class="col-8 profile-info p-pl-2">
+                <div class="profile-title p-d-flex">
+                  <h4 class="m-0" pTooltip="">{{savedSearch?.name}}</h4>
+                </div>
+
+                <div class="p-pt-1 p-d-flex social-icons">
+                  <div class="p-d-flex p-ai-center">
+                    <span class="employes pr-2"
+                      pTooltip=". employees"> .
+                      {{savedSearch?.created_at}}  • {{savedSearch.no_of_records}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <img src="assets/icons/seen-eye.svg" (click)="openSavedSearchCriteria()" pTooltip=""
+                 alt="" />
+              </div>
+              <div class="col-1 p-text-center">
+                <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg"
+                    alt="" /></span>
+                <p-menu #menu [popup]="true" [model]=""></p-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- second tab -->
+      <p-tabPanel tooltip="Saved Persona Criteria" header="Saved Persona Criteria">
+       <!-- recent contact list new design -->
+       <div class="search-verify-panel">
+        <!-- ceo profile -->
+        <div>
+          <div class="p-grid p-ai-center search-verify-card p-mt-3 cursor-pointer" *ngFor="let persona of personaList">
+            <div class="col-2 search-verify-card__image">
+              <img src="assets/icons/peoples-group.svg" alt="" />
+            </div>
+            <div class="col-8 profile-info p-pl-2">
+              <div class="profile-title p-d-flex">
+              <h4 class="m-0" pTooltip="">{{persona?.name}}</h4>
+              </div>
+
+              <div class="p-pt-1 p-d-flex social-icons">
+                <div class="p-d-flex p-ai-center">
+                  <span class="employes pr-2"
+                    pTooltip=". employees"> .
+                    {{persona.created_at}}  • {{persona?.id}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-1">
+              <img src="assets/icons/seen-eye.svg" pTooltip="Recently Viewed Accounts Details"
+               alt="" />
+            </div>
+            <div class="col-1 p-text-center">
+              <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg"
+                  alt="" /></span>
+              <p-menu #menu [popup]="true" [model]=""></p-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+      </p-tabPanel>
+
+      <!-- third tab -->
+      <p-tabPanel tooltip="Saved Account Criteria" header="Saved Account Criteria">
+        <!-- recent contact list new design -->
+        <div class="search-verify-panel">
+          <!-- ceo profile -->
+          <div>
+            <div class="p-grid p-ai-center search-verify-card p-mt-3cursor-pointer" *ngFor="let savedAccount  of savedSearchAccounts">
+              <div class="col-2 search-verify-card__image">
+                <img src="assets/icons/peoples-group.svg" alt="" />
+              </div>
+              <div class="col-8 profile-info p-pl-2">
+                <div class="profile-title p-d-flex">
+                  <h4 class="m-0" pTooltip="">{{savedAccount?.name}}</h4>
+                </div>
+
+                <div class="p-pt-1 p-d-flex social-icons">
+                  <div class="p-d-flex p-ai-center">
+                    <span class="employes pr-2"
+                      pTooltip=". employees"> .
+                      {{savedAccount?.created_at}}  • {{savedAccount?.id}}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <img src="assets/icons/seen-eye.svg" pTooltip="Recently Viewed Accounts Details"
+                 alt="" />
+              </div>
+              <div class="col-1 p-text-center">
+                <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg"
+                    alt="" /></span>
+                <p-menu #menu [popup]="true" [model]=""></p-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

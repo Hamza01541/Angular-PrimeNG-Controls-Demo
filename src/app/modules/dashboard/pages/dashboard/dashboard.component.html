@@ -1,0 +1,139 @@
+<!-- Right-Side Help menu  -->
+<app-right-sidebar-menu *ngIf="isShowRightSideBar" [isShowMenu]="true" [cardContent]="seletedUseCardWidget"
+  (closedSideBar)='closeSideBar($event)'></app-right-sidebar-menu>
+
+<div class="flex justify-content-end px-7 header-buttons">
+  <button pButton class="mr-3" type="button" label="Download Chrome Extension">
+    <img class="pr-2" src="assets/icons/chrome.svg" alt="" />
+  </button>
+
+  <button pButton type="button" label="Create New">
+  </button>
+</div>
+
+<!-- Tabs -->
+<div class="tabs-wrapper" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop1($event)">
+  <div class="header" *ngFor="let tab of tabs, index as i" cdkDrag>
+    <div class="header__tabs active tab-drag" (click)="selectedEditingTab.id !== tab.id && setActiveTab(tab)"
+      [ngClass]="{'active': tab.id === selectedTab.id}">
+      <div class="p-d-flex p-jc-between w-full">
+        <div class="w-full" *ngIf='selectedEditingTab.id !== tab.id'>{{tab.name}}</div>
+
+        <div class="p-d-flex w-full">
+          <div class="flex align-items-center ml-auto images-wrapper" *ngIf='selectedEditingTab.id !== tab.id'>
+            <img pTooltip='Remove Tab' class="cursor-pointer" *ngIf="tab.id !== selectedTab.id && tabs.length > 1"
+              src="assets/icons/close.svg" (click)="removeTabItem(tab)" alt="">
+            <img pTooltip='Edit Tab' class="cursor-pointer" *ngIf="tab.id === selectedTab.id"
+              src="assets/icons/edit.svg" contentEditable="true" (click)="editTabItem(tab)" alt="">
+          </div>
+
+          <div class="p-d-flex align-items-center px-2 add-button w-full" *ngIf='selectedEditingTab.id === tab.id'>
+            <!-- <form > -->
+            <div class="form-group p-d-flex p-jc-between input-wrapper">
+              <input type="text" placeholder="update Tab Title" [(ngModel)]="tab.name" name="value" required />
+              <img class="cursor-pointer" src="assets/icons/save.svg" alt="" (click)="updateTab()">
+            </div>
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Tab -->
+  <div class="p-d-flex align-items-center px-2 add-button w-full new-add-btn">
+    <img class="cursor-pointer" src="assets/icons/plus-button.svg" pTooltip='Create new Tab' (click)="toggleAddNewTab()"
+      alt="" *ngIf='!isAddNewTabToggled && tabs.length < 3'>
+    <form class="show-form" *ngIf='isAddNewTabToggled'>
+      <div class="form-group p-d-flex p-jc-between input-wrapper">
+        <input type="text" placeholder="Type a name for Dashboard {{tabs.length + 1}}" [(ngModel)]="newTab.name"
+          name="value" required />
+        <img src="assets/icons/save.svg" alt="" (click)="addNewTab()">
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="tabcontent active ">
+
+  <!-- Grid for cards -->
+  <div class="flex justify-content-end align-items-center my-3 ">
+    <div class="grid-selection cursor-pointer">
+      <div class="tabs-icon">
+        <img pTooltip='Card Grid Settings' src="assets/icons/tabshead.svg" (click)="cardGridSettingMenu.toggle($event)"
+          class="pr-4" alt="">
+      </div>
+      <p-menu #cardGridSettingMenu [popup]="true" [model]='dashBoardGrid'></p-menu>
+    </div>
+  </div>
+
+<!-- Criteria widget cards -->
+  <div class="col-12 flex">
+  <div class="col-4" *ngFor="let card of criteriaWidgetCards">
+    <app-criteria-widget-card [item]="card"></app-criteria-widget-card>
+  </div>
+</div>
+
+  <!-- Cards -->
+  <div #contenedor class="categories" cdkDropListGroup>
+
+    <ng-container *ngFor="let card of  selectedTab?.use_case_widgets; let i=index;">
+      <div class="categories-item p-md-4 p-12" [style.width]="selectedGrid" cdkDropList
+        cdkDropListOrientation="horizontal" [cdkDropListData]="{item:card,index:i}"
+        (cdkDropListDropped)="drop2($event)">
+
+        <div class="inner" cdkDrag>
+          <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+
+          <div class="card-drag">
+            <div class="align-items-stretch" *ngIf="card.id">
+              <app-usecase-widget-card (showRightSideBar)="showRightSideBar($event)"
+                (showContactSideBar)="showContactSideBar($event)" (showAccountSideBar)="showAccountSideBar($event)"
+                [cardContent]='card' [recentAccounts]='recentAccounts' [recentContacts]='recentContacts'
+                [personaList]="personaList" [savedSearchAccount]="savedSearchAccount"
+                [recentVerifiedContacts]="recentVerifiedContacts"
+                [recentSearchedContacts]="recentSearchedContacts" [recentSearchedAccounts]="recentSearchedAccounts"
+                (loadRecentlySearchedContactsAndAccounts)="loadRecentlySearchedContactsAndAccounts()"
+                (loadRecentContatsAndAccounts)="loadRecentContactsAndAccounts()"
+                (loadSavedSearchCriterias)="loadSavedSearchCriterias()"
+                [recentVerifiedContacts]="recentVerifiedContacts"
+                (loadRecentVerifiedList)="loadRecentVerifiedLists()"
+                [recentSearchedContacts]="recentSearchedContacts"
+                [allSavedSearches]="allSavedSearches"
+                (showRecentlySearchedContactsSideBar)="showRecentlySearchedContactSideBar($event)"
+                (showRecentlySearchedAccountsSideBar)="showRecentlySearchedAccountSideBar($event)"
+                (showSavedSearchCriteriaSideBar)="showSavedSearchCriteriaSideBar($event)">
+              </app-usecase-widget-card>
+            </div>
+
+            <div *ngIf="!card.id">
+              <app-add-usecase-card [cardIndex]="i" (createNewCard)="newCardItem($event)" [useCaseList]='useCaseList'
+                (deleteCard)="openDeleteWidgetModal($event)">
+              </app-add-usecase-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="footer-fixed-button" *ngIf="!isShowQuickStartSideMenu">
+    <button type="button" (click)="showQuickStartSideMenu()">
+      <img src="assets/icons/graduate.svg" alt="">
+      Quick Start
+      <img src="assets/icons/close-white.svg" alt="">
+    </button>
+  </div>
+
+  <app-quick-start-sidemenu *ngIf="isShowQuickStartSideMenu" (hideQucikStartMenu)="hideQucikStartMenu($event)">
+  </app-quick-start-sidemenu>
+</div>
+
+<!-- Quick detail view sidemenu -->
+<p-sidebar [(visible)]="isSideBar" position="right" [showCloseIcon]='true' [dismissible]="true">
+  <profile-quick-view [selectedAccount]='selectedAccount' [selectedContact]='selectedContact'
+  [selectedRecentlySearhedContant]="selectedRecentlySearhedContant"
+  [selectedRecentlySearhedAccount]="selectedRecentlySearhedAccount"
+  >
+  </profile-quick-view>
+</p-sidebar>

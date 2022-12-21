@@ -1,0 +1,117 @@
+@import "src/variables.scss";
+
+:host ::ng-deep {
+  .filter .p-tabview .p-tabview-nav li {
+    width: 50%;
+  }
+
+  .filter .p-tabview-title {
+    font-size: 14px;
+    line-height: 0;
+  }
+
+  .filter .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    font-weight: 500;
+  }
+
+  .filter .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    color: $bg-active;
+    border-color: $bg-active;
+    font-weight: 600;
+  }
+
+  .filter .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: none;
+  }
+
+  .filter .p-tabview .p-tabview-panels {
+    padding-top: 21px;
+  }
+
+  .other-filter .p-accordion .p-accordion-tab .p-accordion-toggle-icon {
+    order: 1;
+    margin-left: auto;
+    transition: transform 0.2s;
+    font-size: 14px;
+    color: $bg-active;
+  }
+
+  .other-filter .p-accordion {
+    font-size: 14px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: none;
+  }
+
+  .other-filter .p-accordion .p-accordion-header .p-accordion-header-link {
+    background: none;
+    border: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 3px;
+    padding-left: 8px;
+    color: $bg-dark-gray;
+  }
+
+  .other-filter .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+    box-shadow: none;
+  }
+
+  .other-filter .p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:hover {
+    background: none;
+    color: $bg-dark-gray;
+  }
+
+  .other-filter .p-accordion .p-accordiontab .p-accordion-content {
+    border: none;
+  }
+
+  .other-filter .p-accordion .p-accordion-content {
+    padding: 0px;
+    padding-right: 0px;
+    padding-left: 8px;
+    border: none;
+  }
+
+  .company-filter .p-dropdown .p-dropdown-label {
+    font-size: 14px;
+    width: 273px;
+    color: $bg-dark-gray;
+  }
+
+  .company-filter .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    font-size: 14px;
+  }
+
+  .company-filter .p-dropdown .p-dropdown-trigger {
+    font-size: 14px;
+  }
+
+  .contact-settings-filter .p-inputswitch {
+    height: 26px;
+    .p-inputswitch-slider:before {
+      width: 20px;
+      height: 20px;
+    }
+    .p-inputswitch-checked .p-inputswitch-slider {
+      background-color: $bg-active;
+    }
+  }
+
+  .contact-settings-filter .p-inputswitch.p-focus .p-inputswitch-slider {
+    box-shadow: none;
+  }
+
+  .p-button:focus {
+    box-shadow: none;
+  }
+
+  .p-button-label {
+    font-size: 12px;
+    color: $border-dark-gray;
+  }
+
+  .p-button.p-button-secondary.p-button-outlined {
+    color: $border-dark;
+  }
+}

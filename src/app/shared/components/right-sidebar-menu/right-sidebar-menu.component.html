@@ -1,0 +1,67 @@
+<!-- collapsible sidebar -->
+<div class="sidebar"[ngClass]="sidebar ? 'open-sidebar' : 'close-sidebar'">
+    <div class="p-d-flex p-jc-between header">
+        <h4 class="title m-0">How it works</h4>
+        <img src="assets/icons/close.svg" class="close" (click)="closeRightSideBar()" alt="">
+    </div>
+
+    <div class="body p-mt-3">
+        <div class="p-d-flex p-ai-center search-field">
+            <img src="assets/icons/search.svg" alt="">
+            <input type="search" name="search" id="search" placeholder="Search">
+        </div>
+
+        <div class="p-d-flex p-flex-column p-jc-between content">
+            <div class="wallet">
+                <div class="p-d-flex">
+                    <img src="assets/icons/wallet.svg" alt="">
+                    <div class="p-d-flex p-flex-column p-pl-2">
+                        <span class="text">Topic</span>
+                        <h4 class="title">{{cardContent?.application_use_case?.title}}</h4>
+                    </div>
+                </div>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet, tadipiscing elit, sed do eiusmod tempor incididunt Lorem ipsum dolor sit amet, tadipiscing elit, sed do eiusmod tempor incididunt
+                    </p>
+                </div>
+
+                <div class="topic-list">
+                    <ul>
+                        <div class="p-d-flex p-pt-3">
+                            <div class="p-pt-1">
+                                <img src="assets/icons/correct.svg" alt="">
+                            </div>
+                            <li>Lorem ipsum dolor sit amet</li>
+                        </div>
+
+                        <div class="p-d-flex p-pt-3">
+                            <div class="p-pt-1">
+                                <img src="assets/icons/correct.svg" alt="">
+                            </div>
+                            <li>Lorem ipsum dolor sit amet</li>
+                        </div>
+
+                        <div class="p-d-flex p-pt-3">
+                            <div class="p-pt-1">
+                                <img src="assets/icons/correct.svg" alt="">
+                            </div>
+                            <li>Lorem ipsum dolor sit amet </li>
+                        </div>
+
+                        <div class="p-d-flex p-pt-3">
+                            <div class="p-pt-1">
+                                <img src="assets/icons/correct.svg" alt="">
+                            </div>
+                            <li>Lorem ipsum dolor sit amet </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="thumnail p-text-center p-mt-4">
+                <img src="assets/images/youtube-tutorial.svg" alt="">
+            </div>
+
+        </div>
+    </div>
+</div>

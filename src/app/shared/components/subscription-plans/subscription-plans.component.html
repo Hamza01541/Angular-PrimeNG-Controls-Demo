@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="body content-wrapper">
+    <div class="p-d-flex p-jc-center">
+      <p-tabView class="plan-section">
+        <p-tabPanel header="Yearly">
+          <div class="p-d-flex">
+            <!-- basic plan -->
+            <div class="plan basic-plan  p-text-center" *ngFor="let plan of annualPricing"
+              [ngClass]="{'active': plan.name === activePlan}">
+              <div class="content">
+                <h4 class="title">{{plan?.name}}</h4>
+                <span class="text">credits</span>
+                <span class="numbers">{{plan?.credits}} / yr</span>
+                <div class="border-bottom"></div>
+
+                <span class="text">concierge</span>
+                <span class="numbers">{{plan?.concierge}}</span>
+                <div class="border-bottom"></div>
+
+                <span class="text">support</span>
+                <span class="numbers">{{plan?.support}}</span>
+                <div class="border-bottom"></div>
+
+                <button type="button" class="price-btn basic-btn" (click)="subscribeCurrentPlan(plan)">
+                  {{plan.name === activePlan ? 'Current plan' : plan?.price }}</button>
+                  <span *ngIf="plan.name === activePlan" class="p-py-2 plan-date">Expires: {{currentUserData?.current_subscription_data?.end_date | date: 'MM/dd/yy' }}</span>
+              </div>
+            </div>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+@import 'src/variables.scss';
+
+.result-section {
+  padding-top: 2px;
+}
+
+:host ::ng-deep {
+  .result-section .p-tabview .p-tabview-nav {
+    border-color: $tab-view-border;
+  }
+
+  .result-section .p-tabview-title {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .result-section .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    border-bottom: none;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-color: $tab-view-border;
+    color: $bg-dark-gray;
+  }
+
+  .result-section .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: none;
+  }
+
+  .result-section .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+    font-weight: 500;
+    border: none;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+}

@@ -1,0 +1,139 @@
+<div>
+  <div class="p-col filter-section">
+    <i class="far fa-filter"></i>
+    <span>FILTERS</span>
+    <i class="far fa-save"></i>
+  </div>
+</div>
+
+<!-- Accordion sections for company filters -->
+<div class="other-filter">
+  <p-accordion expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+    <!-- Industries -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-industry filter-icon"></i>
+        <div class="tab-head">
+          <div>Industries</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedIndustries && selectedIndustries.length">
+            {{selectedIndustries.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list">
+          <select-option-list [options]="industries" (onSelectedOptions)="onSelectedIndustries($event)"
+            [isShowChips]="true">
+          </select-option-list>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- Employee Sizes -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-users-class filter-icon"></i>
+        <div class="tab-head">
+          <div>Employee Sizes</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedEmployeeRanges && selectedEmployeeRanges.length">
+            {{selectedEmployeeRanges.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list">
+          <select-option-list [options]="employeeRanges" [type]="'Employee Range'"
+            (onSelectedOptions)="onSelectedEmployeeRanges($event)" [isShowChips]="true">
+          </select-option-list>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- Estimated Revenue -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-funnel-dollar filter-icon"></i>
+        <div class="tab-head">
+          <div>Estimated Revenues</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedRevenueRanges && selectedRevenueRanges.length">
+            {{selectedRevenueRanges.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list">
+          <select-option-list [options]="revenueRanges" [type]="'Revenue Range'"
+            (onSelectedOptions)="onSelectedRevenueRanges($event)" [isShowChips]="true">
+          </select-option-list>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- Locations -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-search-location filter-icon"></i>
+        <div class="tab-head">
+          <div>Locations</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedLocations && selectedLocations.length">
+            {{selectedLocations.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list">
+          <select-option-list [options]="locations" [type]="'Locations'"
+            (onSelectedOptions)="onSelectedLocations($event)" [isShowChips]="true">
+          </select-option-list>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- Company Type -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-building filter-icon"></i>
+        <div class="tab-head">
+          <div>Company Type</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedCompanyTypes && selectedCompanyTypes.length">
+            {{selectedCompanyTypes.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list">
+          <select-option-list [options]="companyTypes" [type]="'Company Type'"
+            (onSelectedOptions)="onSelectedCompanyTypes($event)" [isShowChips]="true">
+          </select-option-list>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- Technologies -->
+    <p-accordionTab>
+      <ng-template pTemplate="header"><i class="far fa-microchip filter-icon"></i>
+        <div class="tab-head">
+          <div>Technologies</div>
+          <div class="tab-chips sub-tab" *ngIf="selectedTechnologies && selectedTechnologies.length">
+            {{selectedTechnologies.length}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="option-list">
+          <select-option-list [options]="technologies" [type]="'Technologies'"
+            (onSelectedOptions)="ontSelectedTechnologies($event)" [isShowChips]="true">
+          </select-option-list>
+        </div>
+      </ng-template>
+    </p-accordionTab>
+    <!-- More Filters -->
+    <div class="hidden-filter" [ngClass]="showMoreFilters ? 'show': 'hide'">
+      <!-- Keywords -->
+      <p-accordionTab>
+        <ng-template pTemplate="header"><i class="fas fa-fingerprint filter-icon"></i>
+          <div class="tab-head">
+            <div>Keywords</div>
+            <div class="tab-chips sub-tab" *ngIf="selectedKeywords && selectedKeywords.length">
+              {{selectedKeywords.length}}</div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="option-list">
+            <select-option-list [options]="companyKeywords" [type]="'Keywords'"
+              (onSelectedOptions)="onSelectedKeywords($event)" [isShowChips]="true">
+            </select-option-list>
+          </div>
+        </ng-template>
+      </p-accordionTab>
+    </div>
+    <div class="more-filters" (click)="toggleMore()">
+      <i class="pi pi-sliders-v"></i>
+      <span>{{showMoreFilters ? 'Less Filters' : 'More Filters'}}</span>
+    </div>
+  </p-accordion>
+</div>

@@ -1,0 +1,26 @@
+@import 'src/variables.scss';
+
+form {
+    .need-help {
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        color: $text-dark;
+    }
+    .welcome-text {
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        /* or 150% */
+        text-align: center;
+        /* Deep Blue */
+        color: $text-dark;
+    }
+    button {
+        height: 42px;
+    }
+    .contact {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}

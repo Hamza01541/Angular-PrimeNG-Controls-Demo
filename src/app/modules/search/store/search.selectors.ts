@@ -1,0 +1,22 @@
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { SearchState } from "@app/modules/search/store/search.state";
+
+export const searchFeatureSelector = createFeatureSelector<SearchState>('search');
+export const getContactListSelector = createSelector(searchFeatureSelector,(state) => state.contactSearchByNameResp);
+export const getContactSelector = createSelector(searchFeatureSelector,(state) => state.contact);
+export const getCompanyListSelector = createSelector(searchFeatureSelector,(state) => state.companySearchByNameResp);
+export const getCompanySelector = createSelector(searchFeatureSelector,(state) => state.company);
+export const getPickedProfile = createSelector(searchFeatureSelector,(state) => state.payload);
+export const getProfileTypeOnSearchPage = createSelector(searchFeatureSelector,(state) => state.searchTabType);
+export const onClearSearchByNameSuggestions = createSelector(searchFeatureSelector,(state) => state.clearResult);
+export const onContactAdvSearchSelector = createSelector(searchFeatureSelector,(state) => state.contactCriteriaSearchResult);
+export const getCompanyNameList = createSelector(searchFeatureSelector,(state) => state.companyNameList);
+export const getJobFunctions = createSelector(searchFeatureSelector,(state) => state.jobFunctions);
+export const getSeniorities = createSelector(searchFeatureSelector,(state) => state.seniorities);
+export const getSkills = createSelector(searchFeatureSelector,(state) => state.skills);
+export const getLocations = createSelector(searchFeatureSelector,(state) => state.locations);
+export const getIndustries = createSelector(searchFeatureSelector,(state) => state.industries);
+export const getTechnologies = createSelector(searchFeatureSelector,(state) => state.technologies);
+export const onCompanyAdvSearchSelector = createSelector(searchFeatureSelector,(state) => state.companyCriteriaSearchResult);
+export const getContactTpSearchSelector = createSelector(searchFeatureSelector,(state) => state.contactTpSearchByNameResp);
+export const onContactTpSearchError = createSelector(searchFeatureSelector,(state) => state.contactTpSearchError);

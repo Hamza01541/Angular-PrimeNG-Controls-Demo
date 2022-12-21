@@ -1,0 +1,758 @@
+@import "src/variables.scss";
+
+/**  horizontal drag and drop */
+.tabs-wrapper {
+    display: flex;
+    margin-left: 65px;
+    .header {
+        min-height: 60px;
+        display: flex;
+        flex-direction: row;
+        background: white;
+        border-radius: 4px;
+        position: relative;
+        bottom: -1px;
+        &__tabs {
+            width: 300px;
+            padding: 20px 10px;
+            color: $text-dark-gray;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            box-sizing: border-box;
+            cursor: move;
+            background: $bg-secondary;
+            font-size: 16px;
+            font-weight: 600;
+            flex-grow: 1;
+            flex-basis: 0;
+            text-transform: capitalize;
+            border: 1px solid $border-dark;
+            border-radius: 4px;
+            margin: 0 1px;
+            input {
+                width: 100%;
+                font-size: 14px;
+                border: none;
+                outline: none;
+            }
+            img {
+                padding: 0 10px;
+            }
+        }
+        &__tabs.active {
+            border: 1px solid $border-dark;
+            background: $bg-light;
+            border-bottom: 0;
+            border-radius: 5px 5px 0 0;
+        }
+    }
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    height: calc(100vh - 197px);
+    overflow-y: auto;
+    width: 100%;
+    h3 {
+        margin: 0;
+    }
+}
+
+.tabcontent.active {
+    background: $bg-secondary;
+    display: block;
+}
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-preview .tab-drag {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 20px;
+    background: $bg-secondary !important;
+    border: 1px solid $border-extra-light;
+    border-radius: 4px;
+    border-bottom: 0;
+    color: $text-dark-gray;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.cdk-drag-preview .images-wrapper img:first-child {
+    margin-right: 20px !important;
+}
+
+// style on card drag
+.cdk-drag-preview .card-drag {
+    background: $bg-light;
+    border: 1px solid $border-active;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+    border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+//
+
+/** Grid */
+
+.categories {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* NEW */
+    width: 100%;
+}
+
+.inner {
+    cursor: move;
+}
+
+.categories-item {
+    background-color: transparent;
+}
+
+.placeholder {
+    flex: 1 0 80px;
+    /* NEW */
+    margin: 5px;
+    /* NEW */
+    background-color: white;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    border: 1px;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.dashboard-content.show-side-nav {
+    width: calc(100% - 262px);
+    margin-left: auto;
+    transition: margin-left 0.5s;
+}
+
+.dashboard-content {
+    width: 100%;
+    margin-left: auto;
+    button {
+        max-width: 300px;
+        height: 42px;
+        padding: 10px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 28px;
+        color: $text-primary;
+        background: $bg-light;
+        border: 1px solid rgba(129, 129, 165, 0.4);
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+    }
+    .dashboard-tabs-content {
+        &__header {
+            img {
+                padding-right: 25px;
+            }
+        }
+        &__body {
+            .card {
+                display: flex;
+                justify-content: space-between;
+                padding: 32px;
+                margin-top: 8px;
+                align-items: center;
+                min-height: 100px;
+                height: 100%;
+                background: $bg-light;
+                border: 1px solid rgba(129, 129, 165, 0.4);
+                box-sizing: border-box;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+                border-radius: 6px;
+                &__content {
+                    text-align: center;
+                    span,
+                    p {
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 21px;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        color: $text-dark-gray;
+                    }
+                    p {
+                        margin: 0;
+                        color: $text-primary;
+                    }
+                }
+                &__header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-grow: 1;
+                    padding: 0 15px;
+                    &__headings {
+                        padding-right: 20px;
+                        span {
+                            font-weight: 600;
+                            font-size: 12px;
+                            line-height: 21px;
+                            /* identical to box height, or 175% */
+                            letter-spacing: 1px;
+                            text-transform: uppercase;
+                            /* Sub TT Color */
+                            color: $text-dark-gray;
+                            opacity: 0.5;
+                        }
+                        p {
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 21px;
+                            /* identical to box height, or 131% */
+                            /* Sub TT Color */
+                            color: $text-dark-gray;
+                            margin: 0;
+                        }
+                    }
+                    &__icons {
+                        img {
+                            padding-left: 15px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .border {
+                    margin-left: -24px;
+                    margin-right: -24px;
+                    border-bottom: 1px solid rgba(129, 129, 165, 0.2);
+                }
+                &__body {
+                    min-height: 500px;
+                    padding: 15px 45px;
+                    background: $bg-secondary;
+                    border: 1px dashed $border-secondary;
+                    border-radius: 3px;
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-direction: column;
+                    .content {
+                        text-align: center;
+                        span {
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 21px;
+                            text-align: center;
+                            color: $text-dark-gray;
+                        }
+                        p {
+                            font-size: 14px;
+                            line-height: 21px;
+                            text-align: center;
+                            color: $text-dark-gray;
+                        }
+                        button {
+                            margin: 50px 0 70px 0;
+                            color: $text-dark-gray;
+                            background: $bg-light;
+                            border: 1px solid rgba(129, 129, 165, 0.4);
+                            height: 40px;
+                            max-width: 220px;
+                            width: 100%;
+                            /* Primary 2 */
+                            border-radius: 4px;
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 21px;
+                            /* identical to box height, or 131% */
+                            text-align: center;
+                            cursor: pointer;
+                            /* White */
+                        }
+                        button.active {
+                            background: $bg-primary;
+                            border: 1px solid $bg-primary;
+                            color: $text-light;
+                            box-sizing: border-box;
+                            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+                        }
+                    }
+                    .video-thumbnails {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background: $bg-extra-light;
+                        border-radius: 4px;
+                        min-height: 105px;
+                        img {
+                            cursor: pointer;
+                        }
+                    }
+                    a {
+                        text-decoration: none;
+                        .thumbnail-title {
+                            display: block;
+                            padding-top: 12px;
+                            font-weight: 600;
+                            font-size: 14px;
+                            line-height: 21px;
+                            text-align: center;
+                            color: $text-dark-gray;
+                        }
+                    }
+                }
+            }
+
+            .footer-fixed-button button {
+                position: fixed;
+                bottom: 20px;
+                right: 30px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                max-width: 240px;
+                width: 100%;
+                height: 50px;
+                background: $bg-parrot-green;
+                border: 1px solid $bg-parrot-green;
+                box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+                border-radius: 30px;
+                font-weight: 600;
+                font-size: 18px;
+                line-height: 21px;
+                color: $text-light;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+//working css
+.header-buttons {
+    button {
+        max-width: 300px;
+        height: 42px;
+        padding: 10px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 28px;
+        color: $text-primary;
+        background: $bg-light;
+        border: 1px solid rgba(129, 129, 165, 0.4);
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+    }
+}
+
+.show-form {
+    width: 100%;
+}
+.add-button {
+    margin-bottom: -1px;
+    .input-wrapper {
+        border: 1px solid $border-extra-light;
+        background: $bg-light;
+        padding: 10px 5px;
+        border: 0.5px solid $border-active;
+        box-sizing: border-box;
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+        padding: 10px;
+        color: $text-dark-gray;
+        margin-left: 5px;
+        margin: 0;
+        font-style: italic;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        color: $text-gray;
+
+        input::placeholder {
+            font-style: italic;
+        }
+    }
+}
+
+.new-add-btn{
+    width: 300px !important
+}
+
+.content-header {
+    img {
+        padding-right: 25px;
+    }
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+    margin-top: 8px;
+    align-items: center;
+    max-width: 100% !important;
+    margin: 0px 0px 30px !important;
+    min-height: 100px;
+    height: auto;
+    background: $bg-light;
+    border: 1px solid rgba(129, 129, 165, 0.4);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    &.criteria {
+        height: 107px !important;
+    }
+    &__content {
+        text-align: center;
+        span,
+        p {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: $text-dark-gray;
+        }
+        p {
+            margin: 0;
+            color: $text-primary;
+        }
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+        padding: 0 15px;
+        height: 62px !important;
+        &__headings {
+            padding-right: 20px;
+            span {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 21px;
+                /* identical to box height, or 175% */
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                /* Sub TT Color */
+                color: $text-dark-gray;
+                opacity: 0.5;
+            }
+            p {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                /* identical to box height, or 131% */
+                /* Sub TT Color */
+                color: $text-dark-gray;
+                margin: 0;
+            }
+        }
+        &__icons {
+            display: flex;
+            img {
+                padding-left: 15px;
+                cursor: pointer;
+            }
+        }
+    }
+    .border {
+        margin-left: -24px;
+        margin-right: -24px;
+        border-bottom: 1px solid rgba(129, 129, 165, 0.2);
+    }
+    &__body {
+        min-height: 500px;
+        padding: 15px 45px;
+        background: $bg-secondary;
+        border: 1px dashed $border-secondary;
+        border-radius: 3px;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        .content {
+            text-align: center;
+            span {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+            p {
+                font-size: 14px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+            button {
+                margin: 50px 0 70px 0;
+                color: $text-dark-gray;
+                background: $bg-light;
+                border: 1px solid rgba(129, 129, 165, 0.4);
+                height: 40px;
+                max-width: 220px;
+                width: 100%;
+                /* Primary 2 */
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                /* identical to box height, or 131% */
+                text-align: center;
+                cursor: pointer;
+                /* White */
+            }
+            button.active {
+                background: $bg-primary;
+                border: 1px solid $bg-primary;
+                color: $text-light;
+                box-sizing: border-box;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+            }
+        }
+        .video-thumbnails {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $bg-extra-light;
+            border-radius: 4px;
+            min-height: 105px;
+            img {
+                cursor: pointer;
+            }
+        }
+        a {
+            text-decoration: none;
+            .thumbnail-title {
+                display: block;
+                padding-top: 12px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+        }
+    }
+}
+
+.footer-fixed-button button {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 240px;
+    width: 100%;
+    height: 50px;
+    background: $bg-parrot-green;
+    border: 1px solid $bg-parrot-green;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    color: $text-light;
+    cursor: pointer;
+}
+
+:host {
+    ::ng-deep {
+
+        // Quick detail view sidemenu width
+        .p-sidebar-right{
+            width: 50%;
+        }
+
+        // p-menu custom style
+        .p-menu.p-menu-overlay {
+            width: 235px;
+            max-height: 235px;
+            margin-top: 5px;
+        }
+        .p-menu ul {
+            padding: 10px 5px !important;
+        }
+        .p-menu .p-submenu-header {
+            display: none;
+        }
+        .p-menu .p-menuitem-link .p-menuitem-text {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            display: flex;
+            align-items: center;
+            color: $text-dark-gray !important;
+        }
+        .p-menu .p-menuitem.active {
+            background: $bg-secondary;
+            border-radius: 4px;
+        }
+        .p-menu .p-menuitem.active .p-menuitem-link .p-menuitem-text {
+            display: flex;
+            align-items: center;
+            color: $text-active !important;
+        }
+    }
+
+    //dashboard header tabs changes
+    .dashboard-content .p-tabview .p-tabview-nav {
+        padding: 0 64px !important;
+    }
+
+    .dashboard-content .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+        position: relative;
+        border-color: $border-light !important;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 21px;
+        color: $text-dark-gray !important;
+        width: 310px;
+        height: 58px;
+        padding: 20px;
+        border: 1px solid $border-light-dark !important;
+        border-bottom: 0 !important;
+        &::after {
+            content: "";
+            width: 20px;
+            height: 30px;
+            // background-image: url('../src/assets/icons/menu.png');
+            top: 20px;
+            right: 10px;
+            position: absolute;
+            display: inline-block;
+            background-repeat: no-repeat;
+        }
+    }
+
+    .dashboard-content .p-tabview .p-tabview-nav li {
+        border-radius: 5px 5px 0px 0px;
+        width: 310px;
+    }
+
+    .dashboard-content .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border: 0 !important;
+    }
+
+    .dashboard-content .p-tabview .p-tabview-nav {
+        display: flex;
+        flex-wrap: nowrap;
+        border-width: 0 0 1px 0 !important;
+        margin-top: -30px;
+        padding: 0 55px;
+    }
+
+    // tab content changes
+    .dashboard-content .p-tabview .p-tabview-panels {
+        height: calc(100vh - 138px);
+        overflow-y: auto;
+        background: $bg-secondary !important;
+        border-radius: 0px;
+        padding-bottom: 70px;
+    }
+    .p-tabview .p-tabview-nav li.p-disabled {
+        opacity: 1;
+    }
+
+    //delete dashboard popup header
+    .p-dialog .p-dialog-header {
+        color: $text-dark-gray !important;
+        border-radius: 6px 6px 0 0;
+    }
+
+    //delete dashboard popup
+    .p-dialog {
+        min-height: 440px;
+    }
+
+    .p-dialog .p-dialog-content {
+        border-radius: 0 0 6px 6px !important;
+        overflow-y: auto !important;
+    }
+
+    //p-dropdown using on delete dashboard popup
+    .p-dropdown-panel {
+        max-width: 450px;
+        width: 100%;
+    }
+
+    .p-dropdown-items-wrapper {
+        max-height: 300px !important;
+    }
+
+    .p-dropdown-items {
+        padding: 20px 10px !important;
+        background: $bg-light;
+        /* Sub TT Color */
+        border: 0.5px solid $border-dark-gray;
+        box-shadow: 0px 10px 20px $shadow-dark;
+        border-radius: 6px;
+    }
+
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: $text-dark-gray !important;
+        padding: 15px !important;
+        &:hover {
+            background: $bg-light-dark !important;
+        }
+    }
+
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+        background: $bg-light-dark !important;
+        border-radius: 4px;
+    }
+
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight::after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 7px;
+        width: 17px;
+        border-radius: 3px;
+        border: 4px solid $border-dark-gray;
+        border-top: 0;
+        border-right: 0;
+        transform: rotate(-45deg) !important;
+        right: 15px;
+        top: 33%;
+    }
+}

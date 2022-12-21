@@ -1,0 +1,39 @@
+<div *ngIf="isShowNavBar" class="side-nav" [ngClass]="isSideNavBarToggled ? 'hide-nav': 'side-nav'">
+	<div class="side-nav__header">
+
+		<!-- Toggle button -->
+		<div pTooltip='Toggle Side Bar' class="side-nav__header__icon" (click)="sideBarShow()">
+			<svg id="sidebar-hamburger" viewBox="0 0 33 33" width="30" height="30" fill="none" stroke="#ffffff"
+				stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+				<path d="M4 8 L28 8 M4 16 L28 16 M4 24 L28 24" />
+			</svg>
+		</div>
+
+        <div class="header__logo header__logo">
+            <img class="pl-5 h-2rem" src="assets/images/deal-signal-logo.svg" alt="">
+        </div>
+    </div>
+
+    <div class="p-d-flex p-flex-column p-jc-between list-wrapper">
+    <div class="flex flex-column justify-content-between">
+        <ul>
+            <li *ngFor="let sidebar of sideBarItems" (click)='redirectTo(sidebar.route)'
+                [ngClass]="{'active': currentPageUrl === sidebar.route}">
+                <span> <img class="item-icon" [src]="getImage(sidebar.icon)" alt=""></span>
+                <span class="item-label"> {{!isSideNavBarToggled ? sidebar.displayName: ''}}</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex flex-column justify-content-between mt-7">
+        <ul>
+            <li *ngFor="let sidebar of sideBarSettingItems" (click)='redirectTo(sidebar.route)'
+                [ngClass]="{'active': currentPageUrl === sidebar.route}">
+                <span> <img class="item-icon" [src]="getImage(sidebar.icon)" alt=""></span>
+                <span class="item-label"> {{!isSideNavBarToggled ? sidebar.displayName: ''}}</span>
+            </li>
+        </ul>
+    </div>
+  </div>
+
+</div>

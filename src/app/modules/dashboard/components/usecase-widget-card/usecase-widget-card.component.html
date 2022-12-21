@@ -1,0 +1,30 @@
+<!-- Commented this for Demo, but once API will get ready, uncomment these checks -->
+<div class="card flex-column align-items-stretch">
+  <!-- <div class="card flex-column align-items-stretch"> -->
+  <div class="card__header p-d-flex">
+    <div class="card__header__headings">
+      <span>use case</span>
+      <p>{{ cardContent?.application_use_case?.title }}</p>
+    </div>
+
+    <div class="p-text-right card__header__icons white-space-nowrap">
+      <img src="assets/icons/menu.svg" alt="" />
+    </div>
+  </div>
+  <app-search-and-verify *ngIf="cardContent?.application_use_case?.name === 'Search & Verify'"
+    [cardContent]="cardContent" [recentContacts]="recentContacts" [recentAccounts]="recentAccounts" [allSavedSearches]="allSavedSearches"
+    [recentSearchedContacts]="recentSearchedContacts" [recentSearchedAccounts]="recentSearchedAccounts" [personaList]="personaList"
+    [savedSearchAccount]="savedSearchAccount" [recentSearchedContacts]="recentSearchedContacts"
+    (loadRecentContatsAndAccounts)="loadRecentContatsAndAccount()" (loadSavedSearchCriteria)="loadSavedSearchCriteria()"
+    (showRecentlySearchedAccountsSideBar)="openRecentlySearchedAccountSideBar($event)"
+    (showRecentlySearchedContactsSideBar)="openRecentlySearchedContactSideBar($event)"
+    (showContactSideBar)="openContactSideBar($event)" (loadSavedSearchCriterias)="loadSavedSearchCriteria()"
+    (loadRecentlySearchedContactsAndAccounts)="loadRecentlySearchedContactsAndAccount()"
+    (showRightSideBar)="toggleRightSideBar()" (showAccountSideBar)="openAccountSideBar($event)">
+  </app-search-and-verify>
+
+  <app-build-verified-list *ngIf="cardContent?.application_use_case?.name === 'Build Verified Prospect Lists'"
+    [cardContent]="cardContent" (showRightSideBar)="toggleRightSideBar()"
+    [recentVerifiedContacts]="recentVerifiedContacts" [recentVerifiedAccounts]="recentVerifiedAccounts"
+    (loadRecentVerifiedList)="loadRecentVerifiedLists()">
+  </app-build-verified-list>

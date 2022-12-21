@@ -1,0 +1,22 @@
+<p-toast position="top-right"></p-toast>
+<div class="p-grid search-grid">
+  <div class="p-col-fixed filter-bar" [ngClass]="isFilterBarToggled ? 'hide-filter-bar': 'show-filter-bar'">
+    <span class="filter-bar-arrow" [ngClass]="isFilterBarToggled ? 'closed': ''" (click)="filterBarToggle(isFilterBarToggled)"></span>
+    <div class="filter-area" [ngClass]="isFilterBarToggled ? 'hide-filter-area': ''">
+      <search-filters 
+      (onEmitContactSearchCriteria)="applyContactSearchCriteria($event)"
+      (onEmitCompanySearchCriteria)="applyCompanySearchCriteria($event)"
+      (setSelectedSearchTab)="getSelectedSearchTab($event)"
+        ></search-filters>
+      <div class="filter-footer-btn p-col">
+        <p-button label="Clear All Criteria" styleClass="p-button-outlined p-button-secondary"></p-button>
+        <div class="search-btn">
+          <p-button label="Search" icon="pi pi-search" iconPos="left" (click)="isCompanyTab ? companyAdvanceSearch() : advanceSearch()" ></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-col result-page">
+    <result-section></result-section>
+  </div>
+</div>

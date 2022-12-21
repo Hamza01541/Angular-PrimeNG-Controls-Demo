@@ -1,0 +1,287 @@
+<!-- Contact -->
+<div *ngIf="contacts && contacts.length && isContacts">
+	<p-table #dt [value]="contacts" [(selection)]="selectedContacts" dataKey="id" styleClass="p-datatable-customers"
+		[rowHover]="true" [rows]="10" [scrollable]="true" scrollDirection="both" scrollHeight="calc(100vh - 200px)"
+		[showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+		currentPageReportTemplate="{first} - {last} of {totalRecords}" [filterDelay]="0" [globalFilterFields]="['name']">
+		<ng-template pTemplate="header">
+			<tr>
+				<th class="w-50">
+					<p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+				</th>
+				<th class="w-250">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Contact Name
+					</div>
+				</th>
+				<th class="w-200" pSortableColumn="company.name">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Company
+						<p-sortIcon field="company.name"></p-sortIcon>
+					</div>
+				</th>
+				<th class="text-center w-120">
+					<div class="p-d-flex p-jc-between p-ai-center p-text-center">
+						Contact Info
+					</div>
+				</th>
+				<th class="w-100">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Email
+					</div>
+				</th>
+				<th class="w-100">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Phone
+					</div>
+				</th>
+				<th class="w-200" pSortableColumn="li_updated_at">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Verification Status
+						<p-sortIcon field="li_updated_at"></p-sortIcon>
+					</div>
+				</th>
+				<th class="w-120">
+					<div class="p-d-flex p-jc-between p-ai-center p-text-center">
+						Persona Score
+					</div>
+				</th>
+				<th class="w-100">
+					<div class="p-d-flex p-jc-between p-ai-center p-text-center">
+						Accuracy Grade
+					</div>
+				</th>
+				<th class="w-120">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Verify Action
+					</div>
+				</th>
+				<th class="w-120">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						More Actions
+					</div>
+				</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-contact>
+			<tr class="p-selectable-row">
+				<td class="w-50">
+					<p-tableCheckbox [value]="contact"></p-tableCheckbox>
+				</td>
+				<td class="w-250">
+					<div class="contact-card">
+						<img [src]="contact.logo_url || defaultImage.contactImage" class="" />
+						<div class="contact-body">
+							<p class="name"><strong>{{contact?.first_name}} {{contact?.last_name}}</strong></p>
+							<p class="headline">{{contact.headline}}</p>
+						</div>
+					</div>
+				</td>
+				<td class="w-200">
+					<div class="contact-card">
+						<img [src]="contact.company.logo_url || defaultImage.companyImage" class="" />
+						<div class="contact-body">
+							<p class="company-name"><strong>{{contact?.company?.name}}</strong></p>
+						</div>
+					</div>
+				</td>
+				<td class="w-120">
+					<div class="pl-2">
+						<div class="refresh-status-container">
+							<img src="assets/icons/contact-profile-status.svg" alt="">
+							<div class='refresh-status' [ngClass]="[contact.is_fresh ? 'fresh' : 'outdated']"></div>
+						</div>
+					</div>
+				</td>
+				<td class="w-100">
+					<div class="refresh-status-container">
+						<img src="assets/icons/email-status.svg" alt="">
+						<div class='refresh-status' [ngClass]="[getEmailStatus(contact)]"></div>
+					</div>
+				</td>
+				<td class="w-100">
+					<div class="refresh-status-container">
+						<img src="assets/icons/phone-status.svg" alt="">
+						<div class='refresh-status outdated' [ngClass]="[getPhoneStatus(contact)]"></div>
+					</div>
+				</td>
+				<td class="w-200">
+					<div class="last-update-body ">
+						<p class="{{getLastUpdatedStatus(contact).class}}">
+							<i class="{{getLastUpdatedStatus(contact).icon_class}}"></i>
+							{{getLastUpdatedStatus(contact).text}}
+							<span class="status-text"> {{getLastUpdatedStatus(contact).time_span}} </span>
+						</p>
+					</div>
+				</td>
+				<td class="w-120">
+					<div class="circle-progress">
+						<app-circular-progress [percentage]="95" [isResponsive]="true"></app-circular-progress>
+					</div>
+				</td>
+				<td class="w-100">
+					<div class="accuracy-grade">
+						<h4>A+</h4>
+					</div>
+				</td>
+				<td class="w-120">
+					<div class="">
+						<button pButton type="button" label="Verify" icon="fal fa-shield-check"
+							class="p-button-sm p-button-outlined"></button>
+					</div>
+				</td>
+				<td class="w-120">
+					<div class="">
+						<div class="more-action">
+							<div (click)="showQuickView(contact.id)"><i class="pi pi-eye"></i></div>
+							<div class="side-icons"><i class="pi pi-save"></i></div>
+							<div class="side-icons"><i class="pi pi-ellipsis-v"></i></div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</div>
+<!-- Company -->
+<div *ngIf="companies && companies.length && isAccounts">
+	<p-table #dt [value]="companies" [(selection)]="selectedContacts" dataKey="id" styleClass="p-datatable-customers"
+		[rowHover]="true" [rows]="10" [scrollable]="true" scrollDirection="both" scrollHeight="calc(100vh - 200px)"
+		[showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+		currentPageReportTemplate="{first} - {last} of {totalRecords}" [filterDelay]="0" [globalFilterFields]="['name']">
+		<ng-template pTemplate="header">
+			<tr>
+				<th class="w-50">
+					<p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+				</th>
+				<th class="w-250" pSortableColumn="name">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Account Name
+						<p-sortIcon field="name"></p-sortIcon>
+					</div>
+				</th>
+				<th class="w-250" pSortableColumn="industry">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						industry
+						<p-sortIcon field="industry"></p-sortIcon>
+					</div>
+				</th>
+				<th class="w-250">
+					<div class="p-d-flex p-jc-between p-ai-center f-13">
+						Location
+					</div>
+				</th>
+				<th class="w-150">
+					<div class="p-d-flex p-jc-between p-ai-center f-13">
+						# of Employees
+					</div>
+				</th>
+				<th class="w-200" pSortableColumn="li_updated_at">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Verification Status
+						<p-sortIcon field="li_updated_at"></p-sortIcon>
+					</div>
+				</th>
+				<th class="w-120 pl-5">
+					<div class="p-d-flex p-jc-between p-ai-center p-text-center just-center">
+						ICP Score
+					</div>
+				</th>
+				<th class="w-100">
+					<div class="p-d-flex p-jc-between p-ai-center p-text-center">
+						Accuracy Grade
+					</div>
+				</th>
+				<th class="w-120">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						Verify Action
+					</div>
+				</th>
+				<th class="w-120">
+					<div class="p-d-flex p-jc-between p-ai-center">
+						More Actions
+					</div>
+				</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-company>
+			<tr class="p-selectable-row">
+				<td class="w-50">
+					<p-tableCheckbox [value]="company"></p-tableCheckbox>
+				</td>
+				<td class="w-250">
+					<div class="contact-card">
+						<img [src]="company.logo_url || defaultImage.companyImage" class="" />
+						<div class="contact-body">
+							<p class="name"><strong>{{company.name}}</strong></p>
+							<!-- <p class="headline">{{company.industry}}</p> -->
+						</div>
+					</div>
+				</td>
+				<td class="w-250">
+					<div class="f-13">
+						<p *ngIf="company.industry">{{company.industry}}</p>
+						<p *ngIf="!company.industry">-</p>
+					</div>
+				</td>
+				<td class="w-250">
+					<div class="f-13">
+						<p *ngIf="company.location_area">{{company.location_area}}</p>
+						<p *ngIf="!company.location_area">-</p>
+					</div>
+				</td>
+				<td class="w-150">
+					<div class="emp-count f-13">
+						<img src="assets/icons/contact-lite.svg" alt="">
+						<p *ngIf="company.employees_linkedin">{{company.employees_linkedin | number:''}}</p>
+						<p *ngIf="!company.employees_linkedin">-</p>
+					</div>
+				</td>
+				<td class="w-200">
+					<div class="last-update-body ">
+						<p class="{{getLastUpdatedStatus(company).class}}">
+							<i class="{{getLastUpdatedStatus(company).icon_class}}"></i>
+							{{getLastUpdatedStatus(company).text}}
+							<span class="status-text"> {{getLastUpdatedStatus(company).time_span}} </span>
+						</p>
+					</div>
+				</td>
+				<td class="w-120">
+					<div class="circle-progress">
+						<app-circular-progress [percentage]="95" [isResponsive]="true"></app-circular-progress>
+					</div>
+				</td>
+				<td class="w-100">
+					<div class="accuracy-grade">
+						<h4>A+</h4>
+					</div>
+				</td>
+				<td class="w-120">
+					<div class="">
+						<button pButton type="button" label="Verify" icon="fal fa-shield-check"
+							class="p-button-sm p-button-outlined"></button>
+					</div>
+				</td>
+				<td class="w-120">
+					<div class="">
+						<div class="more-action">
+							<div (click)="showQuickView(company.id)"><i class="pi pi-eye"></i></div>
+							<div class="side-icons"><i class="pi pi-save"></i></div>
+							<div class="side-icons"><i class="pi pi-ellipsis-v"></i></div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</div>
+
+<div *ngIf="(!companies || companies && companies.length == 0) || (!contacts || contacts && contacts.length === 0)"
+	class="no-result">
+	<img src="assets/icons/empty-search.svg" alt="">
+	<h3>Result Page</h3>
+</div>
+
+<p-sidebar [(visible)]="isQuickView" position="right" [showCloseIcon]='false' [dismissible]="true">
+	<profile-quick-view (onCloseView)="closeQuickView()"></profile-quick-view>
+</p-sidebar>

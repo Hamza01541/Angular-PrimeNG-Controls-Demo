@@ -1,0 +1,284 @@
+@import 'src/variables.scss';
+
+:host::ng-deep {
+    .dropdown {
+        .p-dropdown {
+            width: 100%;
+            background: $bg-light;
+            border: 1px solid rgba(231, 0, 76, 0.2);
+            box-sizing: border-box;
+            border-radius: 6px;
+            width: 100%;
+            padding: 10px 18px 10px 30px;
+        }
+        .p-dropdown .p-dropdown-label {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 21px;
+            color: $text-dark-gray;
+        }
+    }
+}
+
+.container {
+    padding: 40px 50px;
+    .remove-dashboard-image {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            /* identical to box height, or 150% */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            /* Sub TT Color */
+            color: $text-dark-gray;
+        }
+        img {
+            max-width: 260px;
+            width: 100%;
+        }
+    }
+    .approval-content {
+        min-height: 300px;
+        h4 {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 21px;
+            color: $text-dark-gray;
+        }
+        p {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            color: $text-dark-gray;
+            strong {
+                color: $text-active;
+            }
+        }
+    }
+}
+
+//footer buttons
+.footer {
+    padding: 0;
+    width: 100%;
+    button {
+        background: $bg-light;
+        max-width: 160px;
+        width: 100%;
+        height: 32px;
+        border: 0.5px solid $border-dark;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 10px $shadow-light;
+        border-radius: 4px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 21px;
+        color: $text-dark-gray;
+    }
+    button:nth-child(2) {
+        background: $bg-active;
+        border: 1px solid $border-active;
+        color: $text-light;
+    }
+}
+
+//use cases container
+.use-case-container {
+    padding: 35px 90px 40px;
+    .use-case-setup {
+        padding: 30px 25px;
+        background: $bg-light-dark;
+        border-radius: 0px 0px 6px 6px;
+        height: 620px;
+        overflow-y: auto;
+        h5 {
+            font-style: normal;
+            font-weight: 800;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: $text-dark-gray;
+            margin: 0;
+        }
+        .select-case {
+            padding-top: 70px;
+            p {
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 21px;
+                color: $text-dark-gray;
+            }
+        }
+    }
+}
+
+// drag able dashboard card
+.card {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+    margin-top: 8px;
+    align-items: center;
+    max-width: 100% !important;
+    margin: 0px 0px 30px !important;
+    min-height: 100px;
+    height: auto;
+    background: $bg-light;
+    border: 1px solid rgba(129, 129, 165, 0.4);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    &.criteria {
+        height: 107px !important;
+    }
+    &__content {
+        text-align: center;
+        span,
+        p {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: $text-dark-gray;
+        }
+        p {
+            margin: 0;
+            color: $text-primary;
+        }
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+        padding: 0 15px;
+        height: 62px !important;
+        &__headings {
+            padding-right: 20px;
+            span {
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 21px;
+                /* identical to box height, or 175% */
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                /* Sub TT Color */
+                color: $text-dark-gray;
+                opacity: 0.5;
+            }
+            p {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                /* identical to box height, or 131% */
+                /* Sub TT Color */
+                color: $text-dark-gray;
+                margin: 0;
+            }
+        }
+        &__icons {
+            display: flex;
+            img {
+                padding-left: 15px;
+                cursor: pointer;
+            }
+        }
+    }
+    .border {
+        margin-left: -24px;
+        margin-right: -24px;
+        border-bottom: 1px solid rgba(129, 129, 165, 0.2);
+    }
+    &__body {
+        min-height: 500px;
+        padding: 15px 45px;
+        background: $bg-secondary;
+        border: 1px dashed $border-secondary;
+        border-radius: 3px;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        .content {
+            text-align: center;
+            span {
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+            p {
+                font-size: 14px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+            button {
+                margin: 50px 0 70px 0;
+                color: $text-dark-gray;
+                background: $bg-light;
+                border: 1px solid rgba(129, 129, 165, 0.4);
+                height: 40px;
+                max-width: 220px;
+                width: 100%;
+                /* Primary 2 */
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 21px;
+                /* identical to box height, or 131% */
+                text-align: center;
+                cursor: pointer;
+                /* White */
+            }
+            button.active {
+                background: $bg-primary;
+                border: 1px solid $bg-primary;
+                color: $text-light;
+                box-sizing: border-box;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+            }
+        }
+        .video-thumbnails {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $bg-extra-light;
+            border-radius: 4px;
+            min-height: 105px;
+            img {
+                cursor: pointer;
+            }
+        }
+        a {
+            text-decoration: none;
+            .thumbnail-title {
+                display: block;
+                padding-top: 12px;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 21px;
+                text-align: center;
+                color: $text-dark-gray;
+            }
+        }
+    }
+}

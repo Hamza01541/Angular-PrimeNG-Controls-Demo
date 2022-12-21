@@ -1,0 +1,45 @@
+<p> Start by searching deal signal database or uploading your own contact lists</p>
+<div class="search-verify-wrapper">
+  <div>
+    <p-tabView>
+      <p-tabPanel header="Recent Searches ({{recentSearchesRows.length}})" tooltip="Recent Searches ({{recentSearchesRows.length}})">
+        <app-grid [rows]="recentSearchesRows" [columns]="recentSearchesColumns" [allowSelection]='true' [filtering]='true' [currentGrid]="'recentSearches'"
+        [allowExportToExcel]="true" [allowExportToPdf]="true" [totalRecords]="totalRecords" [pagination]="true"
+        [dataKey]='"LastActivity"' [rowHover]="true" [defaultRows]="10" [lookupFilters]="true" [allowColumnToggle]="true"
+        [showCurrentPageReport]="true" [columnActions]="recentSearchesColumnActions" [selectedRows]="selectedRows"
+        [scrollHeight]="'calc(100vh - 430px)'" [scrollable]='true' [useServerSideEvents]="true"
+        (onRowClick)="handleRowClick($event)" (onSortChange)="handleSortChange($event)"
+        (onFilterChange)="handleFilterChange($event)" (onPageChange)="handleServerSideEventPagination($event)"
+        (onServerSideEventChange)="handleServerSideEventChange($event)">
+      </app-grid>
+      </p-tabPanel>
+
+      <!-- second tab -->
+      <p-tabPanel tooltip="Recent Contacts({{recentContactsRows.length}})" header="Recent Contacts ({{recentContactsRows.length}})">
+        <app-grid [rows]="recentContactsRows" [columns]="recentContactsColumns" [allowSelection]='true' [filtering]='true' [currentGrid]="'recentContacts'"
+        [allowExportToExcel]="true" [allowExportToPdf]="true" [totalRecords]="totalRecords" [pagination]="true"
+        [dataKey]='"LastActivity"' [rowHover]="true" [defaultRows]="10" [lookupFilters]="true" [allowColumnToggle]="true"
+        [showCurrentPageReport]="true" [columnActions]="recentContactsColumnActions" [selectedRows]="selectedRows"
+        [scrollHeight]="'calc(100vh - 430px)'" [scrollable]='true' [useServerSideEvents]="true"
+        (onRowClick)="handleRowClick($event)" (onSortChange)="handleSortChange($event)"
+        (onFilterChange)="handleFilterChange($event)" (onPageChange)="handleServerSideEventPagination($event)"
+        (onServerSideEventChange)="handleServerSideEventChange($event)">
+      </app-grid>
+      </p-tabPanel>
+
+      <!-- third tab -->
+      <p-tabPanel tooltip="Recent Accounts ({{recentAccountsRows.length}})" header="Recent Accounts ({{recentAccountsRows.length}})">
+        <!-- Grid -->
+        <app-grid [rows]="recentAccountsRows" [columns]="recentAccountsColumns" [allowSelection]='true' [filtering]='true' [currentGrid]="'recentAccounts'"
+          [allowExportToExcel]="true" [allowExportToPdf]="true" [totalRecords]="totalRecords" [pagination]="true"
+          [dataKey]='"Employees"' [rowHover]="true" [defaultRows]="10" [lookupFilters]="true" [allowColumnToggle]="true"
+          [showCurrentPageReport]="true" [columnActions]="recentAccountsColumnActions" [selectedRows]="selectedRows"
+          [scrollHeight]="'calc(100vh - 430px)'" [scrollable]='true' [useServerSideEvents]="true"
+          (onRowClick)="handleRowClick($event)" (onSortChange)="handleSortChange($event)"
+          (onFilterChange)="handleFilterChange($event)" (onPageChange)="handleServerSideEventPagination($event)"
+          (onServerSideEventChange)="handleServerSideEventChange($event)" >
+        </app-grid>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

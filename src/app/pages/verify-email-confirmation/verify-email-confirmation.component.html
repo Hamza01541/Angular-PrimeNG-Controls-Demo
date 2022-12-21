@@ -1,0 +1,28 @@
+<div class="form-container p-p-3 flex justify-content-start h-screen overflow-auto">
+    <div class="card p-3">
+        <div class="col-12 lg:col-7 lg:col-offset-2">
+            <h3 class="mt-5 mb-2 p-text-center">Welcome to DealSignal</h3>
+            <div class="p-fluid p-formgrid p-grid">
+                <form class="w-full" (ngSubmit)='verificationForm.form.valid && verifyEmailToken(token)' #verificationForm='ngForm'>
+                    <div class="p-col-12 mb-6">
+                        <p class="welcome-text">
+                            Your Email has been confirmed and your DealSignal account has been approved. Let’s get started to personalize your experience. </p>
+                    </div>
+                    <div class="p-text-center">
+                        <img src="assets/images/email-approved.svg" alt="" width="250">
+                    </div>
+
+                    <div class="p-field p-col-6 col-offset-3 my-4">
+                        <button pButton (click)='redirectToOnBoarding()' label="Get Started"></button>
+                    </div>
+
+                    <div class="p-col-12 p-text-center mt-5 mb-3 need-help">
+                        <span>Need help? <a><b class="text-blue-500 cursor-pointer contact">Contact Us</b></a></span>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-background></app-background>

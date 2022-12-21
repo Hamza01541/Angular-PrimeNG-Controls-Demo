@@ -1,0 +1,37 @@
+@import 'src/variables.scss';
+
+.icon-rectangle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 40px;
+    background-image: url('../../../../../assets/icons/icon-rectangle.svg');
+}
+.container{
+    height: calc(100vh - 122px);
+    overflow-y: auto;
+.video-wrapper{
+    background: $text-black;
+    max-width: 1260px;
+    width: 100%;
+    padding: 50px;
+    margin: 20px auto 70px;
+    height: 580px;
+
+    h1{
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 32px;
+        text-align: center;
+        color: $bg-light;        
+    }
+    span{
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 21px;
+        text-align: center;
+        color: $bg-light;        
+    }
+}
+}

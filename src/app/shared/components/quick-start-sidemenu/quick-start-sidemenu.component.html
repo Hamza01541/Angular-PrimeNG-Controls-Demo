@@ -1,0 +1,86 @@
+<!-- collapsible sidebar -->
+<div class="sidebar" [ngClass]="sidebar ? 'open-sidebar' : 'close-sidebar'">
+  <!-- header -->
+  <div class="p-d-flex p-flex-column p-jc-between header">
+    <div class="p-d-flex p-jc-between">
+      <img src="assets/icons/close-white.svg" class="close" alt="" (click)="hideQuickStartSideMenu()">
+    </div>
+
+    <div class="p-d-flex p-jc-between header-content">
+      <div>
+        <h1 class="title">Day 1</h1>
+        <span>Learn & Earn Credits</span>
+      </div>
+      <div class="p-d-flex">
+        <img src="assets/icons/coins-white.svg" alt="">
+        <div>
+          <h1 class="title">25</h1>
+          <span>Total Credits</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progess-bar">
+      <p-progressBar [value]="progressBar"></p-progressBar>
+    </div>
+  </div>
+
+  <!-- body -->
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="content-list" *ngFor="let quickStart of quickStartList">
+        <ul class="p-d-flex p-flex-column p-jc-center">
+          <div class="p-grid p-pt-3" (click)="showSelectTitleItem(quickStart)">
+            <div class="p-d-flex p-col-2 p-pt-1">
+              <img *ngIf="!quickStart.isCompleted; else successImg;"
+                [src]="quickStart.title == selectedTitle ? getImage(quickStart.active_icon) : getImage(quickStart.icon)"
+                alt="">
+              <ng-template #successImg>
+                <img [src]="getImage(quickStart.approved)" alt="">
+              </ng-template>
+            </div>
+
+
+            <div class="p-d-flex p-ai-center p-col-6">
+              <li>{{quickStart.title}}</li>
+            </div>
+
+            <div class="p-col-4 credits-count">
+              <h4>{{quickStart.credits}}</h4>
+              <span>earn Credits</span>
+            </div>
+          </div>
+        </ul>
+
+        <div *ngIf='isShowContent && quickStart.title == selectedTitle'>
+          <div class="p-d-flex p-flex-column p-jc-between p-text-center video-wrapper p-mt-3">
+            <div>
+              <h3>{{selectedTitle}}</h3>
+              <img class="p-mt-4" src="assets/icons/resume-white.svg" alt="">
+            </div>
+
+            <div class="p-d-flex p-as-end project-logo">
+              <img src="assets/images/deal-signal-logo.svg" alt="">
+            </div>
+          </div>
+
+          <div class="video-content">
+            <div class="p-text-left description p-my-3">
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis, sint laboriosam! Enim ullam
+                teneturriosam maiores!
+                <br>
+                <br>
+                {{selectedTitle}}
+              </p>
+            </div>
+
+            <div class="p-d-flex button-wrapper p-my-5">
+              <button class="active p-mr-4" type="button" (click)="openVideoModalPopup()">Show me</button>
+              <button type="button" (click)="hideSelectTitleItem()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

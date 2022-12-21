@@ -1,0 +1,83 @@
+@import 'src/variables.scss';
+
+.filter-bar {
+  width: 350px;
+  height: 92vh;
+  border-right: 0.5px solid $border-lighter;
+  padding: 1px;
+  padding-right: 0px;
+  position: relative; 
+  .filter-bar-arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    background: url(../../../../../assets/icons/btn-close.svg);
+    margin-right: -22px;
+    z-index: 999;
+    margin-top: 67px;
+    cursor: pointer;
+    &.closed {
+      background: url(../../../../../assets/icons/btn-close-rt.svg);
+      transition: 0.5s;
+      transform: rotate(-360deg);
+    }
+  }
+  &.hide-filter-bar {
+    width: 0px;
+    transition: 0.5s;
+    border-right: none;
+  }
+  &.show-filter-bar {
+    width: 350px;
+    transition: 0.5s;
+    border-right: 0.5px solid $border-lighter;
+  }
+  .filter-footer-btn {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    border-top: 1px solid $border-lighter;
+    font-size: 12px;
+  }
+}
+
+:host ::ng-deep {
+  .filter-footer-btn
+  .p-button {
+    font-size: 14px;
+    width: 150px;
+  }
+  .filter-footer-btn
+  .p-button.p-button-outlined {
+    font-size: 14px;
+    width: 150px;
+    background: $bg-light;
+  }
+  .search-btn {
+    .p-button-label {
+      padding-right: 15px;
+    }
+  }  
+  .p-inputtext:enabled:focus {
+    box-shadow: none;
+  }
+}
+
+.result-page {
+  padding: 0; 
+  width:calc(100vw - 590px);
+}
+
+.search-grid {
+  margin-left: -3px;
+}
+
+.hide-filter-area {
+  display: none;
+  transition: 0.5s;
+}

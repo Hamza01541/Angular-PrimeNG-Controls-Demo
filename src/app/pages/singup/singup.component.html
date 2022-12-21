@@ -1,0 +1,112 @@
+<div class="form-container p-p-3 flex justify-content-start h-screen overflow-auto">
+  <div class="card">
+    <div class="form-wrapper p-3">
+      <h3 class="my-5">Create your Free Account</h3>
+      <div class="p-fluid p-formgrid p-grid">
+        <form class="w-full" name="form" (ngSubmit)="signUpForm.form.valid && signUp()" #signUpForm='ngForm' novalidate>
+
+          <div class="p-grid m-0">
+            <div class="p-field p-col">
+              <label for="firstname1">First Name</label>
+              <input id="firstname1" #fname="ngModel" pTooltip="Enter First Name" required [(ngModel)]='user.first_name'
+                name="first_name" type="text" pInputText required />
+              <div *ngIf="(fname.touched || signUpForm.submitted)  && fname.invalid" class="error-message">
+                <span>First Name is required</span>
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+            </div>
+            <div class="p-field p-col">
+              <label for="lastname1">Last Name</label>
+              <input id="lastname1" #lname="ngModel" pTooltip="Enter Last Name" [(ngModel)]='user.last_name' required
+                name="last_name" type="text" pInputText required />
+              <div *ngIf="(lname.touched || signUpForm.submitted) && lname.invalid" class="error-message">
+                <span>Last Name is required</span>
+                <i class="fas fa-exclamation-circle"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-field p-col-12">
+            <label for="email">Business Email</label>
+            <input id="email" #email="ngModel" type="email" pTooltip="Enter Business Email" name="email"
+              [(ngModel)]="user.email" pInputText email required
+              pattern="\b[\w\.-]+@((?!gmail|googlemail|yahoo|hotmail|outlook|live).)[\w\.-]+\.\w{2,4}\b" />
+            <div *ngIf="email.invalid && (email.touched || signUpForm.submitted)" class="error-message">
+              <span *ngIf="email.errors?.required">Email is required</span>
+              <span *ngIf="email.errors?.email || email.errors?.pattern">Please enter a valid business email</span>
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+          </div>
+
+          <div class="p-field p-col-12">
+            <label for="pwd">Password</label>
+            <p-password [(ngModel)]="user.password" pTooltip="New Password" (change)="validatePassword()"
+              [feedback]="false" id="pwd" #pwd="ngModel" name="password" minlength="6" required [toggleMask]="true"
+              pattern="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W_]){1,})(?!.*\s).{1,}$">
+            </p-password>
+            <div *ngIf="pwd.invalid && (pwd.touched || signUpForm.submitted)" class="error-message">
+              <span *ngIf="pwd.errors?.required">Password is required</span>
+              <span *ngIf="!pwd.errors?.required && pwd.errors?.minlength">Minimum 6 characters are required</span>
+              <span *ngIf="!pwd.errors?.required && !pwd.errors?.minlength && pwd.errors?.pattern">1 uppercase, 1 number
+                and 1 special character are required</span>
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+          </div>
+          <div class="p-field p-col-12">
+            <label for="pwd">Confirm Password</label>
+            <span class="p-input-icon-left"></span>
+            <p-password (change)="validatePassword()" pTooltip="Confirmation Password"
+              [(ngModel)]="user.password_confirmation" [feedback]="false" id="cpwd" #cpwd="ngModel" minlength="6"
+              name="password_confirmation" required [toggleMask]="true">
+            </p-password>
+            <div *ngIf="(cpwd.touched || signUpForm.submitted) && cpwd.errors?.required" class="error-message">
+              <span>Confirm Password is required</span>
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div *ngIf="(cpwd.touched || signUpForm.submitted) && !cpwd.errors?.required && !isPasswordMatched"
+              class="error-message">
+              <span>Confirmed Password does't match password</span>
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+          </div>
+
+          <div class=" p-col-12 p-mt-5 p-mb-5">
+            <p-checkbox class="mr-3" inputId="binary" [binary]='true' pTooltip="Agree" name="check-box"
+              [(ngModel)]="user.isConsentChecked"></p-checkbox>
+            <label for="">I agree to <strong class="signup-terms" (click)="openConsentForm()">Terms and
+                Privacy Policies</strong> </label>
+            <div *ngIf="(signUpForm.submitted) && !user.isConsentChecked" class="error-message">
+              <span>Please read and accept the Terms and Privacy Policies</span>
+              <i class="fas fa-exclamation-circle"></i>
+            </div>
+          </div>
+
+          <div class="p-field p-col-12 p-mt-5 p-mb-3">
+            <button pButton type="submit" pTooltip="Continue" label="Continue"></button>
+          </div>
+        </form>
+
+        <div class="p-field p-col-12">
+          <p-divider align="center">
+            <span class="signup-with-text">Or sign up with</span>
+          </p-divider>
+        </div>
+
+        <div class="p-field p-col-12">
+          <button pButton type="button" pTooltip="Sign Up with Google" label="Signup with Google"
+            class="signup-google-btn" (click)="loginWithGoogle()">
+
+            <img src="assets/icons/gmail-logo.svg" alt="">
+          </button>
+        </div>
+
+        <div class="p-field p-col-12 p-text-center">
+          <span class="signup-text">Already have a DealSignal account?
+            <b><a class="no-underline p-text-capitalize text-500 text-blue-500 cursor-pointer" pTooltip="Sign In"
+                (click)="redirectTo(appRoutes.login)"> Sign in</a></b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-background></app-background>

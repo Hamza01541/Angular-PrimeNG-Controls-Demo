@@ -1,0 +1,20 @@
+@import 'src/variables.scss';
+
+:host {
+     ::ng-deep {
+        .p-progress-spinner {
+            height: 100vh !important;
+            width: 100vw !important;
+            background: $bg-dark;
+            opacity: 0.5;
+            z-index: 9999;
+            position: absolute !important;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .p-progress-spinner-svg {
+            width: 100px !important;
+        }
+    }
+}

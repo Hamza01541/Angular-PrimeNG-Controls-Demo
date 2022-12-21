@@ -1,0 +1,250 @@
+@import 'src/variables.scss';
+
+.no-result {
+  text-align: center;
+  color: $bg-dark-gray;
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+  }
+}
+
+.search-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+}
+
+.refresh-status-container {
+  width: 45px;
+  height: 50px;
+  position: relative;
+  margin-top: 10px;
+  img {
+    width: 42px;
+  }
+}
+
+.refresh-status {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid $bg-light;
+  bottom: 38px;
+  right: 2px;
+  position: absolute;
+  &.outdated {
+    background-color: $bg-orange;
+  }
+  &.fresh {
+    background-color: $bg-parrot-green;
+  }
+  &.no-data {
+    background-color: $bg-dark-gray;
+  }
+}
+
+.last-update-body {
+  flex-grow: 1;
+  width: 180px;
+  p {
+    margin: 0;
+    line-height: 20px;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+
+    &.old {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      background: $bg-light-orange;
+      color: $bg-orange;
+      i {
+        margin-right: 5px;
+        font-weight: 700;
+      }
+      span {
+        font-weight: 600;
+        padding-left: 10px;
+      }
+    }
+    &.fresh {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      background: $bg-light-green;
+      color: $bg-dark-green;
+      i {
+        margin-right: 5px;
+        font-weight: 700;
+      }
+      span {
+        font-weight: 600;
+        padding-left: 10px;
+      }
+    }
+
+    &.outdated {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      padding: 3px;
+      background: $bg-light-red;
+      color: $text-red;
+      i {
+        margin-right: 5px;
+        font-weight: 700;
+      }
+      span {
+        font-weight: 600;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  img {
+    border-radius: 50px;
+    height: 42px;
+    width: 42px;
+    margin-right: 10px;
+  }
+  .contact-body {
+    flex-grow: 1;
+    width: 70%;
+    p {
+      margin: 0;
+      line-height: 20px;
+      border-radius: 5px;
+      &.headline {
+        font-size: 12px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 2px 0;
+        width: 180px;
+      }
+      &.name {
+        color: $bg-primary;
+        font-size: 12px;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 2px 0;
+        width: 180px;
+      }
+      &.company-name {
+        color: $bg-primary;
+        font-size: 12px;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 2px 0;
+        width: 130px;
+      }
+    }
+  }
+}
+
+:host ::ng-deep {
+  .p-datatable {
+    height: calc(100vh - 135px);
+    .p-datatable-thead > tr > th {
+      font-size: 12px;
+    }
+    .p-paginator-bottom {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+    
+    .p-datatable-scrollable-body {
+      overflow-y: auto;
+    }
+  }
+}
+
+.more-action {
+  display: flex;
+  .side-icons {
+    i {
+      padding-left: 20px;
+    }
+  }
+}
+
+.emp-count {
+  display: flex;
+  p {
+    padding-left: 10px;
+  }
+  img {
+    width: 25px;
+  }
+}
+
+// CSS for Quick view as its part of Contact search
+:host ::ng-deep {
+  .p-sidebar-right {
+    width: 50%;
+  }
+  .p-sidebar .p-sidebar-header {
+    padding: 0px;
+  }
+
+  .p-datatable-scrollable-both .p-datatable-tbody>tr>td {
+    display: grid;
+  }
+}
+
+.w-50 {
+  width: 50px;
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.w-150 {
+  width: 150px;
+}
+
+.w-200 {
+  width: 200px;
+}
+
+.w-250 {
+  width: 250px;
+}
+
+.w-120 {
+  width: 120px;
+}
+
+.circle-progress {
+  height: 50px;
+}
+
+.accuracy-grade {
+  text-align: center;
+}
+
+.just-center {
+  justify-content: center;
+}
+
+.f-13 {
+  font-size: 13px;
+  color: $bg-dark-gray;
+}

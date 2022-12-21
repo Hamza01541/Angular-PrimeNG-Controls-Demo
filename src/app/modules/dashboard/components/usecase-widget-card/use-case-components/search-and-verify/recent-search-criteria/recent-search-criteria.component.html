@@ -1,0 +1,85 @@
+<div class="search-verify-wrapper">
+  <div>
+    <p-tabView>
+      <p-tabPanel header="Recent Contact Searches" tooltip="Recent Contact Searches">
+        <!-- recent contact list new design -->
+        <div class="search-verify-panel" *ngFor="let searchedContact of recentSearchedContacts">
+          <!-- ceo profile -->
+          <div>
+            <div class="p-grid p-ai-center search-verify-card p-mt-3 cursor-pointer">
+              <div class="col-2 search-verify-card__image">
+                <img src="assets/icons/peoples-group.svg" alt="" />
+              </div>
+              <div class="col-8 profile-info p-pl-2">
+                <div class="profile-title p-d-flex">
+                  <h4 class="m-0" pTooltip="">{{searchedContact.type}}</h4>
+                </div>
+
+                <div class="p-pt-1 p-d-flex social-icons">
+                  <div class="p-d-flex p-ai-center">
+                    <span class="employes pr-2"
+                      pTooltip=". employees"> .
+                      1 hour ago  • {{searchedContact.data.count}} Result</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-1">
+                <img src="assets/icons/seen-eye.svg" (click)="openRecentlySearchedContactSideBar(searchedContact)" pTooltip="Recent Contact Search"
+                 alt="" />
+              </div>
+              <div class="col-1 p-text-center">
+                <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg"
+                    alt="" /></span>
+                <p-menu #menu [popup]="true" [model]=""></p-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+
+      <!-- second tab -->
+      <p-tabPanel tooltip="Recent AccountSearches" header="Recent Account Searches">
+        <!-- recent accpunt list -->
+        <div class="search-verify-panel" *ngFor="let searchedAccount of recentSearchedAccount">
+          <!-- ceo profile -->
+          <div>
+            <div class="
+                p-grid p-ai-center
+                search-verify-card
+                p-mt-3
+                cursor-pointer
+              ">
+              <div class="col-2 search-verify-card__image">
+                <img src="assets/icons/peoples-group.svg" alt="" />
+              </div>
+              <div class="col-8 profile-info p-pl-2">
+                <div class="profile-title p-d-flex">
+                  <h4 class="m-0" pTooltip="">{{searchedAccount.type}}</h4>
+                </div>
+
+                <div class="p-pt-1 p-d-flex social-icons">
+                  <div class="p-d-flex p-ai-center">
+                    <span class="employes pr-2"
+                      pTooltip=". employees"> .
+                      {{searchedAccount.created_at_in_words}}  • {{searchedAccount.data.count}} Result</span>
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-1">
+                <img src="assets/icons/seen-eye.svg" (click)="openRecentlySearchedContactSideBar(searchedAccount)" pTooltip="Recent Account Search"
+                 alt="" />
+              </div>
+              <div class="col-1 p-text-center">
+                <span type="button" (click)="menu.toggle($event)"><img src="assets/icons/menu.svg"
+                    alt="" /></span>
+                <p-menu #menu [popup]="true" [model]=""></p-menu>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

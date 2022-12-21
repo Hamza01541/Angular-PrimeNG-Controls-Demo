@@ -1,0 +1,135 @@
+@import 'src/variables.scss';
+
+app-background {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.goole-signup {
+    border: 1px solid rgb(238, 236, 236);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.p-text-muted {
+    color: $text-light-dark;
+    font-size: 12px;
+}
+
+.p-text-dark {
+    color: $text-gray;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.p-text-info {
+    color: $text-primary;
+}
+
+.signup-with-text {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: $text-secondary;
+}
+
+.signup-google-btn {
+    background: $bg-light;
+    border: 0.5px solid $border-dark;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: $text-primary;
+}
+
+.term-service {
+    background: $bg-secondary;
+    border: 1px solid $border-dim-light;
+    box-sizing: border-box;
+    border-radius: 0px 0px 10px 10px;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    color: $text-dark;
+    padding: 0 !important;
+}
+
+.signup-text {
+    color: $text-dark;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.signup-terms {
+    color: $text-primary;
+    cursor: pointer;
+    &:hover {
+        text-decoration-line: underline;
+    }
+}
+
+.p-password i {
+    position: absolute;
+    padding: 13px;
+    width: 40px;
+    height: 43px;
+    right: 0px;
+    top: 7px;
+    background: $bg-light;
+    border: 0.5px solid rgba(129, 129, 165, 0.4);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 3%);
+    border-radius: 0px 4px 4px 0px;
+}
+
+.card {
+    height: auto !important;
+}
+
+    .form-wrapper {
+        max-width: 420px;
+        width: 100%;
+        margin: auto;
+        form {
+            label {
+                color: $text-dark;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 21px;
+            }
+            input {
+                background: $bg-light;
+                border: 0.5px solid rgba(129, 129, 165, 0.4);
+                box-sizing: border-box;
+                box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.03);
+                border-radius: 4px;
+                height: 42px;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 21px;
+                color: $text-light-dark;
+            }
+            button {
+                font-family: Montserrat;
+                background: $button-primary;
+                border: 1px solid $bg-primary;
+                border-radius: 4px;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 21px;
+                height: 42px;
+                text-align: center;
+                color: $text-light;
+            }
+        }
+    }

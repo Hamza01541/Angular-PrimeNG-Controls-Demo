@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="p-grid">
+    <div class="p-col">
+      <div class="remove-dashboard-image">
+        <p>{{imageTitle}}</p>
+        <img src="assets/images/dashboard-card.svg" alt="">
+      </div>
+    </div>
+    <div class="p-col">
+      <div class="approval-content">
+        <h4 class="p-mt-0">{{contentTitle}}</h4>
+        <p>Are you sure you want to remove this {{contentDescription}} view you’ve created, if yes?
+          <br><br> Click <strong>“Approve”</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="p-dialog-footer footer">
+    <button pButton type="button" label="Cancel" (click)="decline()" class="p-mr-3"></button>
+    <button pButton label="Approve" (click)="accept()"></button>
+  </div>
+</div>

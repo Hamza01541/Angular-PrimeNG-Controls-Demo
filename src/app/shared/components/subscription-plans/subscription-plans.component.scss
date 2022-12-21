@@ -1,0 +1,227 @@
+@import 'src/variables.scss';
+
+:host
+{ ::ng-deep {
+    .ng-tns-c124-1.p-dialog-mask.p-component-overlay.p-dialog-mask-scrollblocker{
+      z-index: 99999 !important;
+    }
+
+    .p-tabview .p-tabview-nav {
+        background: rgb(238, 237, 237);
+        justify-content: center;
+        border: 0;
+    }
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        border-radius: 5px !important;
+        padding: 10px 30px;
+    }
+    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+        background: $bg-primary;
+        color: $text-light;
+        border-color: none;
+    }
+    .p-tabview .p-tabview-panels {
+        border: 3px solid $bg-dard-midnight-blue;
+        border-radius: 5px;
+    }
+    .p-dialog-header{
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    ul.p-tabview-nav {
+        display: none;
+    }
+}
+}
+
+.container {
+    background: rgb(245, 245, 245);
+    .header {
+        background: rgb(248, 248, 248);
+        padding: 20px;
+        text-align: center;
+        h3 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: 600;
+            color: $bg-dard-midnight-blue;
+        }
+        span {
+            font-size: 17px;
+            color: $bg-dard-midnight-blue;
+            padding-bottom: 5px;
+        }
+    }
+    .body {
+        background: rgb(238, 237, 237);
+        padding: 20px;
+        .plan-buttons {
+            border-radius: 6px;
+            width: 300px;
+            button {
+                width: 100%;
+                padding: 8px 10px;
+                font-size: 13px;
+                font-weight: bold;
+                color: $text-black;
+                border: 1px solid $border-gray-shade;
+                cursor: pointer;
+                &.active {
+                    background: $bg-dard-midnight-blue;
+                    color: $text-light;
+                    border: 1px solid $bg-dard-midnight-blue;
+                }
+            }
+        }
+        .plan-section {
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto;
+            .plan {
+                max-width: 250px;
+                width: 100%;
+                background: $bg-light;
+                color: $text-gray-shade;
+                border-radius: 3px;
+                border: 1px solid $border-dim-light;
+                box-shadow: 0 0 10px;
+
+                .content {
+                    padding: 0 0 5px 0;
+                    .title {
+                        position: relative;
+                        color: $text-black;
+                        margin: 0;
+                        text-transform: capitalize;
+                        font-weight: bold;
+                        font-size: 20px;
+                        padding: 20px 10px;
+                        &::after {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            height: 2px;
+                            border-radius: 2px;
+                            width: 50px;
+                            background-image: linear-gradient(to right, $bg-dard-midnight-blue, $bg-primary, $bg-active,);
+                        }
+                    }
+                    .text,
+                    .numbers {
+                        display: block;
+                    }
+                    .text {
+                        font-weight: 400;
+                        font-size: 16px;
+                        text-transform: uppercase;
+                        padding-top: 15px;
+                    }
+                    .numbers {
+                        text-transform: capitalize;
+                        color: $text-gray-shade;
+                        font-size: 14px;
+                        font-weight: 600;
+                        padding-top: 15px;
+                    }
+                    .border-bottom {
+                        height: 2px;
+                        background: $bg-gray-shade;
+                        margin: 15px 5px 0;
+                    }
+                    .price-btn {
+                        border: 1px solid $border-gray-shade;
+                        color: $text-light;
+                        font-size: 11px;
+                        max-width: 200px;
+                        width: 85%;
+                        padding: 10px 15px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        margin: 10px auto 0;
+                    }
+                    .plan-date {
+                        color: rgb(41, 41, 41);
+                        font-weight: bold;
+                        font-size: 11px;
+                        display: block;
+                    }
+                }
+                &.active {
+                    margin-right: 10px;
+                    background: $bg-dard-midnight-blue;
+                    color: $text-light !important;
+                    transform: scale(1.05);
+                    .title {
+                        color: $text-light !important;
+                        &::after {
+                            background-image: none !important;
+                        }
+                    }
+                    .numbers {
+                        color: $text-light !important;
+                    }
+                    .price-btn {
+                        background: $bg-light !important;
+                        font-weight: bold;
+                        color: $text-gray-shade !important;
+                        border: 1px solid $border-gray-shade !important;
+                        box-shadow: 0 0 2px $shadow-light-gray !important;
+                    }
+                    .plan-date {
+                        color: $text-light !important;
+                    }
+                    .border-bottom {
+                        background: rgb(202, 202, 202) !important;
+                    }
+                }
+            }
+            .basic-plan {
+                border: 3px solid $button-seconday;
+                border-radius: 5px;
+                margin: 1px;
+
+                .basic-btn {
+                    background: $button-seconday;
+                }
+
+                &:hover{
+                    box-shadow: 0px 0px 5px 2px $button-seconday;
+                }
+            }
+            /** @Todo => Will use later */
+            // .silver-plan {
+            //     border-top: 4px solid rgb(17, 176, 182);
+            //     .silver-btn {
+            //         background: rgb(17, 176, 182);
+            //     }
+            // }
+            // .gold-plan {
+            //     border-top: 4px solid rgb(204, 170, 21);
+            //     .gold-btn {
+            //         background: rgb(204, 170, 21);
+            //     }
+            // }
+            // .platinum-plan {
+            //     border-top: 4px solid rgb(5, 167, 113);
+            //     .platinum-btn {
+            //         background: rgb(5, 167, 113);
+            //     }
+            // }
+            // .enterprise-plan {
+            //     border-top: 4px solid rgb(116, 24, 238);
+            //     .enterprise-btn {
+            //         background: rgb(116, 24, 238);
+            //         text-transform: uppercase;
+            //     }
+            // }
+        }
+    }
+    .content-wrapper{
+        // height: calc(100vh - 143px);
+        overflow: auto;
+    }
+}

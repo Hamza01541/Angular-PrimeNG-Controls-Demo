@@ -1,0 +1,48 @@
+<div class="saved-list-menu">
+  <div class="criteria-filters p-col">
+    <p-button label="Use Persona Criteria or Saved Searches" styleClass="p-button-outlined" icon="fas fa-caret-down"
+      iconPos="right" [disabled]="true"></p-button>
+      <!-- (click)="showSavedPersona()" -->
+    <div class="tabs-view" *ngIf="showSavedPersonaLists">
+      <p-tabView>
+        <p-tabPanel header="Persona Criteria" [selected]="true">
+          <div class="input-search">
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="search" #keywordSearch pInputText [(ngModel)]="keyword" placeholder="Search Saved Persona"
+               (keyup)="onSearchElement(keywordSearch.value)" (search)="onClearSearch()">
+            </span>
+          </div>
+          <div class="result-section scroll">
+            <div class="result-item" *ngFor="let persona of savedPersonaList" (click)="onSelectedPersona(persona)">
+              <i class="pi pi-users"></i>
+              <span>{{persona.name}}</span>
+            </div>
+          </div>
+          <div class="result-section links">
+            <div class="result-item">
+              <img src="assets/icons/external.svg" alt="">
+              <span>See all saved personas</span>
+            </div>
+            <div class="result-item">
+              <i class="pi pi-plus-circle"></i>
+              <span>Create new persona</span>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Saved Searches" [disabled]="true">
+          <p>Saved Searches</p>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+    <div *ngIf="(!showSavedPersonaLists) && isPersonaSelected">
+      <div class="custom-chip">
+        <div class="custom-txt">
+          <i class="pi pi-users"></i>
+          <span>{{selectedPersona.name}}</span>
+        </div>
+        <i class="pi pi-times close-icon" (click)="removeSelected()"></i>
+      </div>
+    </div>
+  </div>
+</div>
