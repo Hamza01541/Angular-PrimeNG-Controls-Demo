@@ -1,4 +1,29 @@
-# DealSignal
+# PrimeNG Controls Demo
+
+
+This project demontrate following PrimeNG controls:
+- 'primeng/table',
+- 'primeng/dynamicdialog',
+- 'primeng/dialog',
+- 'primeng/tabview',
+- 'primeng/calendar'
+- 'primeng/toast',
+- 'primeng/menu',
+- 'primeng/card',
+- 'primeng/orderlist',
+- 'primeng/progressbar',
+- 'primeng/progressspinner',
+- 'primeng/tooltip',
+- 'primeng/toolbar',
+- 'primeng/button',
+- 'primeng/inputtext',
+- 'primeng/checkbox',
+- 'primeng/divider',
+- 'primeng/splitbutton',
+- 'primeng/password',
+- 'primeng/dropdown',
+- 'primeng/multiselect',
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
 ## Development server
